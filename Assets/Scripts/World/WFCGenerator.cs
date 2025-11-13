@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WFCGenerator : MonoBehaviour
 {
+
     [Header("Размер сетки уровня")]
     public int gridWidth = 5;
     public int gridHeight = 5;
@@ -12,6 +13,11 @@ public class WFCGenerator : MonoBehaviour
     [Header("Ссылки")]
     public RoomTemplates templates;
     public GameObject playerPrefab;     // префаб игрока
+
+    [Header("Враги")]
+    public GameObject enemyPrefab;
+    public int minEnemiesPerRoom = 1;
+    public int maxEnemiesPerRoom = 3;
 
     private Room[,] grid;
 
@@ -112,6 +118,8 @@ public class WFCGenerator : MonoBehaviour
         Vector3 worldPos = new Vector3(gridPos.x * roomSize, gridPos.y * roomSize, 0);
         Room newRoom = Instantiate(roomPrefab, worldPos, Quaternion.identity);
         grid[gridPos.x, gridPos.y] = newRoom;
+        SpawnEnemiesInRoom(newRoom);
+
     }
 
     bool OutOfBounds(Vector2Int p)
@@ -130,4 +138,56 @@ public class WFCGenerator : MonoBehaviour
         GameObject prefab = templates.allRooms[Random.Range(0, templates.allRooms.Length)];
         return prefab.GetComponent<Room>();
     }
+
+    void SpawnEnemiesInRoom(Room room)
+    {
+        // Находим все объекты с тегом Ground внутри комнаты
+        var transforms = room.GetComponentsInChildren<Transform>();
+        List<Transform> groundList = new List<Transform>();
+
+        foreach (var t in transforms)
+        {
+            if (t.CompareTag("Ground"))
+                groundList.Add(t);
+        }
+
+        if (groundList.Count == 0)
+            return;
+
+        int enemyCount = Random.Range(minEnemiesPerRoom, maxEnemiesPerRoom + 1);
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            // Выбираем случайный блок земли
+            Transform ground = groundList[Random.Range(0, groundList.Count)];
+            var collider = ground.GetComponent<Collider2D>();
+            if (collider == null) continue;
+
+            Bounds b = collider.bounds;
+
+            // Выбираем случайную точку на поверхности
+            float spawnX = Random.Range(b.min.x + 0.5f, b.max.x - 0.5f);
+            float spawnY = b.max.y + 0.5f; // чуть выше поверхности
+
+            Vector3 spawnPos = new Vector3(spawnX, spawnY, 0);
+
+            // Проверяем, не стоит ли враг слишком близко к другим
+            bool tooClose = false;
+            foreach (var existing in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                if (Vector2.Distance(existing.transform.position, spawnPos) < 1.0f)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (tooClose) continue;
+
+            // Создаём врага
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            enemy.tag = "Enemy";
+        }
+    }
+
 }
+

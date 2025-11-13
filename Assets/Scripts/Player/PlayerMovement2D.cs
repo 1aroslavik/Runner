@@ -2,6 +2,12 @@
 
 public class PlayerMovement2D : MonoBehaviour
 {
+
+    [Header("Стрельба")]
+    public GameObject arrowPrefab;   // Префаб стрелы
+    public float arrowSpeed = 10f;   // Скорость полета
+    public float arrowLifetime = 3f; // Через сколько уничтожать
+
     [Header("Параметры движения")]
     public float moveSpeed = 5f;          // обычная скорость
     public float sprintSpeed = 8f;        // скорость во время спринта
@@ -46,6 +52,11 @@ public class PlayerMovement2D : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ShootArrow();
+        }
     }
 
     void FixedUpdate()
@@ -69,4 +80,33 @@ public class PlayerMovement2D : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
+
+    void ShootArrow()
+    {
+        if (arrowPrefab == null)
+        {
+            Debug.LogWarning("⚠️ Префаб стрелы не назначен!");
+            return;
+        }
+
+        // Позиция выстрела — чуть впереди игрока
+        Vector3 spawnPos = transform.position + new Vector3(transform.localScale.x * 0.6f, 0f, 0f);
+
+        // Создаём стрелу
+        GameObject arrow = Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
+
+        // Получаем Rigidbody2D стрелы
+        Rigidbody2D rbArrow = arrow.GetComponent<Rigidbody2D>();
+
+        // Направление полета зависит от того, куда смотрит игрок
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+        rbArrow.linearVelocity = new Vector2(direction * arrowSpeed, 0f);
+
+        // Немного повернём стрелу по направлению движения (необязательно)
+        arrow.transform.localScale = new Vector3(direction, 1f, 1f);
+
+        // Уничтожаем стрелу через arrowLifetime секунд
+        Destroy(arrow, arrowLifetime);
+    }
+
 }
