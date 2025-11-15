@@ -2,36 +2,38 @@
 
 public class PlayerMovement2D : MonoBehaviour
 {
-
+    // ... (Все твои [Header] остаются без изменений)
     [Header("Стрельба")]
-    public GameObject arrowPrefab;   // Префаб стрелы
-    public float arrowSpeed = 10f;   // Скорость полета
-    public float arrowLifetime = 3f; // Через сколько уничтожать
+    public GameObject arrowPrefab;
+    public float arrowSpeed = 10f;
+    public float arrowLifetime = 3f;
 
     [Header("Параметры движения")]
-    public float moveSpeed = 5f;          // обычная скорость
-    public float sprintSpeed = 8f;        // скорость во время спринта
-    public float jumpForce = 12f;         // сила прыжка
-    public LayerMask groundLayer;         // слой земли
+    public float moveSpeed = 5f;
+    public float sprintSpeed = 8f;
+    public float jumpForce = 12f;
+    public LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
+    private Animator animator; // <--- Ссылка на твой Аниматор
 
     [Header("Проверка земли")]
-    public Transform groundCheck;         // точка проверки земли
+    public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); // <--- Находим Аниматор при старте
 
-        // Если GroundCheck не создан — создаём автоматически
+        // ... (Твой код для groundCheck)
         if (groundCheck == null)
         {
             GameObject gc = new GameObject("GroundCheck");
             gc.transform.SetParent(transform);
-            gc.transform.localPosition = new Vector3(0, -1f, 0); // чуть ниже ног
+            gc.transform.localPosition = new Vector3(0, -1f, 0);
             groundCheck = gc.transform;
         }
     }
@@ -47,15 +49,34 @@ public class PlayerMovement2D : MonoBehaviour
         else if (moveInput < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        // Прыжок
+        // --- 1. ОТПРАВЛЯЕМ "Speed" В BLEND TREE ---
+        float horizontalMove = Mathf.Abs(moveInput); // 0 (стоим) или 1 (движемся)
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+        if (horizontalMove > 0) // Если движемся
+        {
+            animator.SetFloat("Speed", isSprinting ? 1f : 0.5f);
+        }
+        else // Если стоим
+        {
+            animator.SetFloat("Speed", 0f);
+        }
+
+        // --- 2. ОТПРАВЛЯЕМ "isGrounded" ---
+        animator.SetBool("isGrounded", isGrounded);
+
+        // --- 3. ПРЫЖОК (Триггер "Jump") ---
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetTrigger("Jump");
         }
 
+        // --- 4. АТАКА (Триггер "Attack") ---
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ShootArrow();
+            animator.SetTrigger("Attack");
+            ShootArrow(); // <--- Теперь эта функция "видна"
         }
     }
 
@@ -70,7 +91,7 @@ public class PlayerMovement2D : MonoBehaviour
         // Применяем движение
         rb.linearVelocity = new Vector2(moveInput * currentSpeed, rb.linearVelocity.y);
     }
-
+    
     // Визуализация зоны проверки земли
     void OnDrawGizmosSelected()
     {
@@ -81,6 +102,7 @@ public class PlayerMovement2D : MonoBehaviour
         }
     }
 
+    // 👇👇👇 ВОТ ОН, ТЕПЕРЬ ВНУТРИ КЛАССА 👇👇👇
     void ShootArrow()
     {
         if (arrowPrefab == null)
@@ -109,4 +131,4 @@ public class PlayerMovement2D : MonoBehaviour
         Destroy(arrow, arrowLifetime);
     }
 
-}
+} // <--- ВОТ ЭТА СКОБКА ТЕПЕРЬ ПОСЛЕДНЯЯ
