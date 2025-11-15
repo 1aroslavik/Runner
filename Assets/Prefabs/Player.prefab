@@ -181,7 +181,7 @@ MonoBehaviour:
   arrowLifetime: 3
   moveSpeed: 5
   sprintSpeed: 8
-  jumpForce: 20
+  jumpForce: 50
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -200,3 +200,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthFill: {fileID: 0}
