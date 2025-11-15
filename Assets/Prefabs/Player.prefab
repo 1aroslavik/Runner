@@ -157,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.85487807, y: 2.2085366}
+    oldSize: {x: 2.0028572, y: 5.174286}
     newSize: {x: 0.87625, y: 2.26375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   arrowLifetime: 3
   moveSpeed: 5
   sprintSpeed: 8
-  jumpForce: 20
+  jumpForce: 24
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthFill: {fileID: 0}
 --- !u!95 &5823636399245760961
 Animator:
   serializedVersion: 7
