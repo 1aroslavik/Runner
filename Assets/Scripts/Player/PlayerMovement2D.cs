@@ -91,7 +91,7 @@ public class PlayerMovement2D : MonoBehaviour
         // Применяем движение
         rb.linearVelocity = new Vector2(moveInput * currentSpeed, rb.linearVelocity.y);
     }
-    
+
     // Визуализация зоны проверки земли
     void OnDrawGizmosSelected()
     {

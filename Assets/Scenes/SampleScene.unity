@@ -340,41 +340,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   playerPrefab: {fileID: 1459336307477340451, guid: 8e5c2b3afc13aed4992162ccd557fcdf, type: 3}
   cameraFollow: {fileID: 330585549}
   roomWidth: 20
   roomHeight: 12
+  gridWidth: 8
+  gridHeight: 5
   startRoomPrefab: {fileID: 4046206930262337529, guid: a400c3c8f18e7294f8e175ef41a50e4c, type: 3}
   endRoomPrefab: {fileID: 4046206930262337529, guid: b8a25171f65e159449019499f10f6080, type: 3}
-  forwardRooms:
-  - {fileID: 4046206930262337529, guid: 685243fe03713c14bb7d1ea522c6f232, type: 3}
-  - {fileID: 4046206930262337529, guid: c553707d085218148a17cfa685e95183, type: 3}
-  upRooms:
-  - {fileID: 4046206930262337529, guid: 885a63118ed2bfb43b8e4e973519c3bf, type: 3}
-  - {fileID: 4046206930262337529, guid: 6b68c875b4eb92c4a845e4a91408b9e1, type: 3}
+  roomPrefabs:
   - {fileID: 4046206930262337529, guid: 0826345afb947c047beb85598583ccac, type: 3}
-  downRooms:
   - {fileID: 4046206930262337529, guid: 2bc4c94cc4a487d4ba6ce8c783ddf020, type: 3}
-  branchEndRooms:
-  - {fileID: 4046206930262337529, guid: a400c3c8f18e7294f8e175ef41a50e4c, type: 3}
-  - {fileID: 4046206930262337529, guid: a400c3c8f18e7294f8e175ef41a50e4c, type: 3}
-  mainPathLength: 8
-  minBranchLength: 2
-  maxBranchLength: 4
-  chanceBranchUp: 0.35
-  chanceBranchDown: 0.45
-  enemyPrefab: {fileID: -6832564944333225844, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
-  enemyTypes:
-  - {fileID: 11400000, guid: 92712ca833214ff44afacefd8c82c8f6, type: 2}
-  - {fileID: 11400000, guid: 6d4e1f69d6c6c3647bccf41bf96e147a, type: 2}
-  - {fileID: 11400000, guid: be25fd2f26ef785499fef490e234c344, type: 2}
-  - {fileID: 11400000, guid: 88fa0c7b34952484d8f5fbce01d60f45, type: 2}
-  enemyRoomChance: 0.8
+  - {fileID: 4046206930262337529, guid: 721a5984fd0a31e429af9feb3714db7e, type: 3}
+  - {fileID: 4046206930262337529, guid: 685243fe03713c14bb7d1ea522c6f232, type: 3}
+  - {fileID: 4046206930262337529, guid: 6b68c875b4eb92c4a845e4a91408b9e1, type: 3}
+  - {fileID: 4046206930262337529, guid: 885a63118ed2bfb43b8e4e973519c3bf, type: 3}
+  - {fileID: 4046206930262337529, guid: 5a7c7160c99c827458e1a7a8c9955182, type: 3}
+  - {fileID: 4046206930262337529, guid: c553707d085218148a17cfa685e95183, type: 3}
+  - {fileID: 4046206930262337529, guid: a10b49e4e3d66f44999e904a5ada58bb, type: 3}
+  - {fileID: 4046206930262337529, guid: 7c914b5474819824d8ffc205d285a89c, type: 3}
+  - {fileID: 4046206930262337529, guid: fd5b92b3801906d4d8f6d1a2633bcb70, type: 3}
+  - {fileID: 4046206930262337529, guid: bfbff2786a0f41240bdb938d423b7b52, type: 3}
+  - {fileID: 4046206930262337529, guid: 1f73e0679ad19154d90688d32195c194, type: 3}
+  - {fileID: 4046206930262337529, guid: d9507a07264c15d40b5840e8eea392c8, type: 3}
+  enemyPrefab: {fileID: 0}
+  enemyTypes: []
+  enemyRoomChance: 0.7
   minEnemiesPerRoom: 1
   maxEnemiesPerRoom: 3
   chestPrefab: {fileID: 0}
-  chestChance: 0.25
+  chestChance: 0.3
 --- !u!4 &1023446503
 Transform:
   m_ObjectHideFlags: 0
