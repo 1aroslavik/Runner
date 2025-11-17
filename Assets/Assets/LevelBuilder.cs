@@ -5,51 +5,79 @@ public class LevelBuilder : MonoBehaviour
 {
     public WFCTilemapGenerator wfc;
     public PlayerSpawn spawner;
-
-    public Transform enemySpawnParent;
-    public GameObject enemyPrefab;
     public EnemySpawner enemySpawner;
+
+    public int maxAttempts = 10;
 
     private void Start()
     {
-        // Когда WFC закончит генерацию — вызываем ВСЁ остальное
-        wfc.OnGenerationComplete = () =>
+        // 1) Загружаем список сохранённых сидов
+        var seeds = SeedStorage.LoadAllSeeds();
+        LoadingScreenController.Instance.Show();
+
+        if (seeds.Count > 0)
         {
-            Debug.Log("🎉 WFC generation complete!");
+            int seed = seeds[Random.Range(0, seeds.Count)];
+            Debug.Log("📥 Loading saved seed: " + seed);
 
-            // 1. Спавним игрока
-            spawner.SpawnPlayer();
+            wfc.SetSeed(seed);
+            wfc.Generate();
 
-            if (enemySpawner != null)
-                enemySpawner.SpawnEnemies();
-        };
-    }
+            wfc.OnGenerationComplete = () =>
+            {
+                spawner.SpawnPlayer();
+                LoadingScreenController.Instance.Hide();
+                enemySpawner?.SpawnEnemies();
+            };
 
-    void SpawnEnemies()
-    {
-        if (enemyPrefab == null || enemySpawnParent == null)
-        {
-            Debug.LogWarning("❗ Enemy prefab or spawn parent is missing!");
             return;
         }
 
-        foreach (Transform point in enemySpawnParent)
-        {
-            Vector3 pos = point.position;
-
-            // Ставим врага НА землю с +1 по Y
-            Vector3 spawnPos = new Vector3(pos.x, pos.y + 1f, pos.z);
-
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-        }
-
-        Debug.Log("✔ Enemies spawned!");
+        // Если нет ни одного сида — генерируем новый
+        Debug.Log("🆕 No saved seeds. Generating new world...");
+        GenerateNewWorld();
     }
-
     public void BuildLevel()
     {
-        Debug.Log("🔥 Building Level...");
-        wfc.Generate();   // WFC начнёт генерацию
-        // ВСЁ остальное произойдёт только POСLE OnGenerationComplete()
+        // например:
+        wfc.RandomSeed();
+        wfc.Generate();
+    }
+
+    void GenerateNewWorld()
+    {
+        int attempts = 0;
+
+        wfc.OnGenerationComplete = () =>
+        {
+            var validator = GetComponent<LevelValidator>();
+
+            if (validator != null && !validator.Validate())
+            {
+                attempts++;
+                if (attempts >= maxAttempts)
+                {
+                    Debug.LogError("❌ Failed to create valid world");
+                    return;
+                }
+
+                // генерируем новый seed
+                wfc.RandomSeed();
+                wfc.Generate();
+                return;
+            }
+
+            // Если карта валидная → сохраняем seed
+            SeedStorage.SaveSeed(wfc.Seed);
+
+            spawner.SpawnPlayer();
+            LoadingScreenController.Instance.Hide();
+
+            enemySpawner?.SpawnEnemies();
+        };
+
+        // первый запуск генерации
+        wfc.RandomSeed();
+        wfc.Generate();
     }
 }

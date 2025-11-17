@@ -7,79 +7,115 @@ public class PlayerSpawn : MonoBehaviour
     public GameObject playerPrefab;
     public Tilemap groundTilemap;
 
+    public CameraFollow cameraFollow; // ⬅ добавили ссылку на скрипт камеры
+
     public void SpawnPlayer()
     {
-        if (playerPrefab == null)
+        if (!playerPrefab)
         {
-            Debug.LogError("❌ playerPrefab is not assigned!");
+            Debug.LogError("❌ Player prefab is missing!");
             return;
         }
 
-        if (groundTilemap == null)
+        if (!groundTilemap)
         {
-            Debug.LogError("❌ groundTilemap is not assigned!");
+            Debug.LogError("❌ groundTilemap is missing!");
             return;
         }
 
         BoundsInt bounds = groundTilemap.cellBounds;
 
-        List<Vector3> topTiles = new List<Vector3>();
+        List<Vector3> validSpawns = new List<Vector3>();
 
-        // 1) Собираем все верхние плитки (тайлы, у которых сверху нет другой тайлы)
-        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        foreach (var pos in bounds.allPositionsWithin)
         {
-            for (int y = bounds.yMin; y < bounds.yMax; y++)
-            {
-                Vector3Int cell = new Vector3Int(x, y, 0);
+            Vector3Int cell = new Vector3Int(pos.x, pos.y, 0);
 
-                if (groundTilemap.HasTile(cell))
-                {
-                    // проверяем, нет ли тайлы выше
-                    Vector3Int above = new Vector3Int(x, y + 1, 0);
-
-                    if (!groundTilemap.HasTile(above))
-                    {
-                        topTiles.Add(groundTilemap.GetCellCenterWorld(cell));
-                    }
-                }
-            }
+            if (IsGoodSpawnPoint(cell))
+                validSpawns.Add(groundTilemap.GetCellCenterWorld(cell));
         }
 
-        if (topTiles.Count == 0)
+        if (validSpawns.Count == 0)
         {
-            Debug.LogError("❌ No valid platforms found!");
+            Debug.LogError("❌ No valid spawn points found!");
             return;
         }
 
-        // 2) Ищем плитку, которая ближе всего к центру карты
         float centerX = (bounds.xMin + bounds.xMax) * 0.5f;
 
-        Vector3 bestTile = topTiles[0];
-        float bestDist = Mathf.Abs(bestTile.x - centerX);
+        Vector3 best = validSpawns[0];
+        float bestDist = Mathf.Abs(best.x - centerX);
 
-        foreach (var t in topTiles)
+        foreach (var v in validSpawns)
         {
-            float dist = Mathf.Abs(t.x - centerX);
-
+            float dist = Mathf.Abs(v.x - centerX);
             if (dist < bestDist)
             {
                 bestDist = dist;
-                bestTile = t;
+                best = v;
             }
         }
 
-        // 3) Спавним игрока над этой плиткой
-        Vector3 spawnPos = bestTile + Vector3.up * 1.2f;
-
+        Vector3 spawnPos = best + Vector3.up * 1.2f;
         GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
-        // 4) Камера на игрока
-        if (Camera.main != null)
+        CameraFollow cf = Camera.main.GetComponent<CameraFollow>();
+        if (cf != null)
+            cf.SetTarget(player.transform);
+
+        Debug.Log("✔ Player spawned at " + spawnPos);
+    }
+
+
+    private Vector3 FindSpawnPoint(BoundsInt bounds)
+    {
+        List<Vector3> validSpawns = new List<Vector3>();
+
+        foreach (var pos in bounds.allPositionsWithin)
         {
-            Camera.main.transform.position =
-                new Vector3(spawnPos.x, spawnPos.y, Camera.main.transform.position.z);
+            Vector3Int cell = new Vector3Int(pos.x, pos.y, 0);
+
+            if (IsGoodSpawnPoint(cell))
+                validSpawns.Add(groundTilemap.GetCellCenterWorld(cell));
         }
 
-        Debug.Log("✔ Player spawned on top platform " + spawnPos);
+        if (validSpawns.Count == 0)
+        {
+            Debug.LogError("❌ No valid spawn points found!");
+            return Vector3.zero;
+        }
+
+        float centerX = (bounds.xMin + bounds.xMax) * 0.5f;
+
+        Vector3 best = validSpawns[0];
+        float bestDist = Mathf.Abs(best.x - centerX);
+
+        foreach (var v in validSpawns)
+        {
+            float dist = Mathf.Abs(v.x - centerX);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = v;
+            }
+        }
+
+        return best + Vector3.up * 1.2f;
+    }
+
+    private bool IsGoodSpawnPoint(Vector3Int cell)
+    {
+        if (!groundTilemap.HasTile(cell)) return false;
+
+        if (groundTilemap.HasTile(cell + Vector3Int.up)) return false;
+        if (groundTilemap.HasTile(cell + Vector3Int.up * 2)) return false;
+
+        if (groundTilemap.HasTile(cell + new Vector3Int(1, 1, 0))) return false;
+        if (groundTilemap.HasTile(cell + new Vector3Int(-1, 1, 0))) return false;
+
+        if (!groundTilemap.HasTile(cell + new Vector3Int(1, -1, 0))) return false;
+        if (!groundTilemap.HasTile(cell + new Vector3Int(-1, -1, 0))) return false;
+
+        return true;
     }
 }

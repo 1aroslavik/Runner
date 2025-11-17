@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using SardineFish.Utils;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,9 +10,10 @@ namespace WFC
     [RequireComponent(typeof(Tilemap))]
     public class WFCTilemapGenerator : MonoBehaviour
     {
+        [Header("WFC")]
         public int Seed;
         public TilemapPattern TilemapPattern;
-        public BoundsInt Bounds;
+        public BoundsInt Bounds;          // ставь здесь size = (1000, 70, 1) в инспекторе
         public bool ShowSuperposition = false;
 
         private Tilemap _tilemap;
@@ -21,12 +21,25 @@ namespace WFC
         private List<Tilemap> _stateMaps = new List<Tilemap>();
 
         public Action OnGenerationComplete;
+        public Tilemap Tilemap => _tilemap;
+        public BoundsInt GenerationBounds => Bounds;
 
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
         }
 
+        /// <summary>
+        /// Установить сид извне (LevelBuilder)
+        /// </summary>
+        public void SetSeed(int seed)
+        {
+            Seed = seed;
+        }
+
+        /// <summary>
+        /// Запустить генерацию с текущим Seed (не меняя его)
+        /// </summary>
         public void Generate()
         {
             if (!TilemapPattern)
@@ -41,54 +54,62 @@ namespace WFC
                 TilemapPattern.Patterns
             );
 
-            foreach (var tilemap in _stateMaps)
-                tilemap.ClearAllTiles();
-
-            RandomSeed();
+            foreach (var t in _stateMaps)
+                t.ClearAllTiles();
 
             StartCoroutine(GenerateAndThenSpawnPlayer());
         }
 
-        IEnumerator GenerateAndThenSpawnPlayer()
+        private IEnumerator GenerateAndThenSpawnPlayer()
         {
             yield return StartCoroutine(GenerateProgressive());
 
-            Debug.Log("✔ WFC generation completed");
-
-            // вызываем событие – LevelBuilder или любой другой объект может подписаться
+            Debug.Log("✔ WFC generation completed with Seed = " + Seed);
             OnGenerationComplete?.Invoke();
         }
 
-        IEnumerator GenerateProgressive()
+        private IEnumerator GenerateProgressive()
         {
+            // Один раз сбрасываем генератор с текущим Seed
             _generator.Reset(Seed);
 
+            // Можно немного поднять FPS, чтобы генерация шла быстрее
+            Application.targetFrameRate = 200;
+
             yield return null;
+
+            int step = 0;
 
             foreach (var collapsedChunk in _generator.RunProgressive())
             {
                 Vector3Int pos = Bounds.min + collapsedChunk;
-                TileBase tile = _generator.ChunkStates[collapsedChunk.x, collapsedChunk.y, collapsedChunk.z].Pattern.Chunk;
+                TileBase tile = _generator
+                    .ChunkStates[collapsedChunk.x, collapsedChunk.y, collapsedChunk.z]
+                    .Pattern.Chunk;
 
                 _tilemap.SetTile(pos, tile);
 
                 if (ShowSuperposition)
                     DrawSuperposition();
 
-                yield return null;
+                // Для большой карты 1000×70 — иногда отдаём кадр Unity
+                step++;
+                if (step % 50 == 0)
+                    yield return null;
             }
         }
-        void DrawSuperposition()
+
+        private void DrawSuperposition()
         {
             if (_stateMaps.Count < _generator.Patterns.Count)
             {
                 for (var i = _stateMaps.Count; i < _generator.Patterns.Count; i++)
                 {
-                    var obj = new GameObject();
+                    var obj = new GameObject("StateMap_" + i);
                     obj.transform.parent = transform;
                     obj.transform.position = transform.position + Vector3.forward * (i + 1);
                     var tilemap = obj.AddComponent<Tilemap>();
-                    var renderer = obj.AddComponent<TilemapRenderer>();
+                    obj.AddComponent<TilemapRenderer>();
                     tilemap.color = Color.white.WithAlpha(0.7f);
                     _stateMaps.Add(tilemap);
                 }
@@ -106,6 +127,9 @@ namespace WFC
                 }
         }
 
+        /// <summary>
+        /// Если нужен случайный сид – вызываешь это ИЗВНЕ, а потом Generate()
+        /// </summary>
         public void RandomSeed()
         {
             Seed = new System.Random().Next();

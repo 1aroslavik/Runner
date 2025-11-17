@@ -1,25 +1,93 @@
-using UnityEngine;
+п»їusing UnityEngine;
+using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    [Header("Цель для слежения")]
-    public Transform target;          // объект, за которым следует камера
+    [Header("РЎР»РµРґРёРј Р·Р° СЌС‚РёРј РѕР±СЉРµРєС‚РѕРј")]
+    public Transform target;
 
-    [Header("Настройки камеры")]
-    public float smoothSpeed = 5f;    // скорость сглаживания
-    public Vector3 offset;            // смещение относительно игрока
+    [Header("РќР°СЃС‚СЂРѕР№РєРё РґРІРёР¶РµРЅРёСЏ")]
+    public float smoothSpeed = 5f;
+    public Vector3 offset = new Vector3(0, 0, 0);
+
+    [Header("РќР°РµР·Рґ (Intro)")]
+    public float startZoom = 14f;   // РёР·РґР°Р»РµРєР°
+    public float finalZoom = 6f;    // РЅРѕСЂРјР°Р»СЊРЅС‹Р№ Р·СѓРј
+    public float zoomDuration = 1.2f;
+
+    private Camera cam;
+
+    // рџ”Ґ Р­РўРћ Р’РђР–РќРћ вЂ” СЌС‚o РїРѕР»Рµ Р±С‹Р»Рѕ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёРј!
+    private bool introDone = false;
+
+    void Awake()
+    {
+        cam = GetComponent<Camera>();
+    }
 
     void LateUpdate()
     {
-        if (target == null) return;
+        if (target == null)
+            return;
 
-        // Позиция, к которой камера должна двигаться
+        // РїРѕРєР° РёРЅС‚СЂРѕ РЅРµ Р·Р°РєРѕРЅС‡РµРЅРѕ вЂ” РґРІРёР¶РµРЅРёРµ РєР°РјРµСЂС‹ РЅРµ СЂР°Р±РѕС‚Р°РµРј
+        if (!introDone)
+            return;
+
         Vector3 desiredPosition = target.position + offset;
+        desiredPosition.z = -10f;  // С„РёРєСЃ Z РґР»СЏ 2D
 
-        // Плавное движение
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        Vector3 smoothedPosition =
+            Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 
-        // Обновляем позицию камеры
-        transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
+        transform.position = smoothedPosition;
+    }
+
+    // ======================================================
+    // Р’Р«Р—Р«Р’РђР•РўРЎРЇ РР— PlayerSpawn РїРѕСЃР»Рµ СЃРїР°РІРЅР° РёРіСЂРѕРєР°
+    // ======================================================
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+
+        // РєР°РјРµСЂР° РїСЂС‹РіР°РµС‚ Рє РЅР°С‡Р°Р»СЊРЅРѕР№ РїРѕР·РёС†РёРё РёРіСЂРѕРєР°
+        transform.position = new Vector3(
+            target.position.x + offset.x,
+            target.position.y + offset.y,
+            -10f
+        );
+
+        // Р·Р°РїСѓСЃРєР°РµРј РЅР°РµР·Рґ РєР°РјРµСЂС‹
+        StartCoroutine(IntroSequence());
+    }
+
+    IEnumerator IntroSequence()
+    {
+        introDone = false;
+
+        // СЃС‚Р°РІРёРј СЃС‚Р°СЂС‚РѕРІС‹Р№ Р·СѓРј
+        cam.orthographicSize = startZoom;
+
+        float t = 0;
+
+        while (t < zoomDuration)
+        {
+            t += Time.deltaTime;
+            float k = t / zoomDuration;
+
+            // Р·СѓРј РєР°РјРµСЂС‹
+            cam.orthographicSize = Mathf.Lerp(startZoom, finalZoom, k);
+
+            // РґРІРёР¶РµРЅРёРµ РєР°РјРµСЂС‹ Рє РёРіСЂРѕРєСѓ
+            Vector3 desired = target.position + offset;
+            desired.z = -10f;
+
+            transform.position = Vector3.Lerp(transform.position, desired, k);
+
+            yield return null;
+        }
+
+        cam.orthographicSize = finalZoom;
+        introDone = true;      // рџ”Ґ С‚РµРїРµСЂСЊ LateUpdate РЅР°С‡РёРЅР°РµС‚ СЃР»РµРґРёС‚СЊ Р·Р° РёРіСЂРѕРєРѕРј
     }
 }
