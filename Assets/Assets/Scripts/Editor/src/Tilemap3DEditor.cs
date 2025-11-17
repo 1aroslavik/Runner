@@ -97,7 +97,11 @@ namespace WFC.Editor
             SceneView.duringSceneGui += OnScene;
             AssemblyReloadEvents.afterAssemblyReload += AssemblyReload;
             EditorApplication.playModeStateChanged += PlayModeChanged;
-            _tilemaps = GameObject.FindObjectsOfType<Tilemap3D.GameObjectTilemap>().ToList();
+            
+            // 👇👇👇 ИСПРАВЛЕНО (Строка 102) 👇👇👇
+            // Мы уточнили, что нам нужен 'Object' из 'UnityEngine'
+            _tilemaps = UnityEngine.Object.FindObjectsByType<Tilemap3D.GameObjectTilemap>(FindObjectsSortMode.None).ToList();
+            
             _controlID = GUIUtility.GetControlID(FocusType.Passive);
         }
 
@@ -110,7 +114,8 @@ namespace WFC.Editor
 
         void Refresh()
         {
-            _tilemaps = GameObject.FindObjectsOfType<Tilemap3D.GameObjectTilemap>().ToList();
+            // 👇👇👇 ИСПРАВЛЕНО (Строка 127) 👇👇👇
+            _tilemaps = UnityEngine.Object.FindObjectsByType<Tilemap3D.GameObjectTilemap>(FindObjectsSortMode.None).ToList();
 
             if (!Application.isPlaying)
             {
@@ -169,15 +174,6 @@ namespace WFC.Editor
                 {
                     pos = (ray.origin + ray.direction * (-ray.origin.y / ray.direction.y)).FloorToVector3Int();
                 }
-                // var tobj = new GameObject();
-                // var test = tobj.AddComponent<TestRayMarching>();
-                // var objFrom = new GameObject();
-                // var objTo = new GameObject();
-                // test.From = objFrom.transform;
-                // test.To = objTo.transform;
-                // objFrom.transform.position = ray.origin;
-                // objTo.transform.position = ray.origin + ray.direction * 100;
-                // tile.gameObject.name = "Fuck";
                 
                 _editingGameObjectTilemap.SetTile(pos, _selectedTile);
             }

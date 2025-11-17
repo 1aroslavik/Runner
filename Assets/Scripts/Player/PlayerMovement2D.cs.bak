@@ -7,18 +7,17 @@ public class PlayerMovement2D : MonoBehaviour
     public float arrowSpeed = 10f;
     public float arrowLifetime = 3f;
 
-    // --- НОВОЕ: Переменные для ближнего боя ---
     [Header("Ближний бой (Атака E)")]
-    public Transform attackPoint; // Точка, откуда бьем
+    public Transform attackPoint;
     public float attackRadius = 0.6f;
-    public float meleeDamage = 25f; // Урон мечом
-    public LayerMask enemyLayer;    // Какие слои считать врагами
-    // --- Конец нового ---
+    public float meleeDamage = 25f;
+    public LayerMask enemyLayer;
 
     [Header("Параметры движения")]
     public float moveSpeed = 5f;
     public float sprintSpeed = 8f;
     public float jumpForce = 12f;
+    public LayerMask groundLayer; // <--- Ты объявил этот слой
 
     private Rigidbody2D rb;
     private float moveInput;
@@ -34,7 +33,6 @@ public class PlayerMovement2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        // Создаём точку groundCheck, если её нет
         if (groundCheck == null)
         {
             GameObject gc = new GameObject("GroundCheck");
@@ -43,15 +41,13 @@ public class PlayerMovement2D : MonoBehaviour
             groundCheck = gc.transform;
         }
 
-        // --- НОВОЕ: Создаем attackPoint, если его нет ---
         if (attackPoint == null)
         {
             GameObject ap = new GameObject("AttackPoint");
             ap.transform.SetParent(transform);
-            ap.transform.localPosition = new Vector3(0.6f, 0, 0); // Позиция по умолчанию
+            ap.transform.localPosition = new Vector3(0.6f, 0, 0);
             attackPoint = ap.transform;
         }
-        // --- Конец нового ---
     }
 
     void Update()
@@ -65,7 +61,20 @@ public class PlayerMovement2D : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
 
         // Анимации
-        animator.SetFloat("Speed", Mathf.Abs(moveInput));
+        // --- 1. ОТПРАВЛЯЕМ "Speed" В BLEND TREE ---
+        float horizontalMove = Mathf.Abs(moveInput);
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+        if (horizontalMove > 0)
+        {
+            animator.SetFloat("Speed", isSprinting ? 1f : 0.5f);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f);
+        }
+
+        // --- 2. ОТПРАВЛЯЕМ "isGrounded" ---
         animator.SetBool("isGrounded", isGrounded);
 
         // ПРЫЖОК
@@ -78,14 +87,14 @@ public class PlayerMovement2D : MonoBehaviour
         // Атака Q (Стрельба)
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            animator.SetTrigger("Attack"); // Триггер для лука
+            animator.SetTrigger("Attack");
             ShootArrow();
         }
 
         // --- НОВОЕ: Атака E (Ближний бой) ---
         if (Input.GetKeyDown(KeyCode.E))
         {
-            animator.SetTrigger("Attack_2"); // НОВЫЙ триггер для меча
+            animator.SetTrigger("AttackE");
             MeleeAttack();
         }
         // --- Конец нового ---
@@ -94,7 +103,9 @@ public class PlayerMovement2D : MonoBehaviour
     void FixedUpdate()
     {
         // ПРОВЕРКА ЗЕМЛИ
-        Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius);
+        // 🛑🛑🛑 ВОТ ТУТ БЫЛА ОШИБКА 🛑🛑🛑
+        // Ты забыл добавить 'groundLayer' в проверку
+        Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // <--- ИСПРАВЛЕНО
         isGrounded = hit != null;
 
         float currentSpeed =
@@ -118,7 +129,6 @@ public class PlayerMovement2D : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
-        // --- Конец нового ---
     }
 
     // СТРЕЛЬБА (Атака Q)
@@ -155,5 +165,4 @@ public class PlayerMovement2D : MonoBehaviour
             // enemy.GetComponent<EnemyHealth>().TakeDamage(meleeDamage);
         }
     }
-    // --- Конец нового ---
 }

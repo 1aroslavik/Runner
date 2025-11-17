@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using SardineFish.Utils;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using SardineFish.Utils;
 
 namespace WFC
 {
