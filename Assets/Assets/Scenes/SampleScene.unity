@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 641589485}
   - component: {fileID: 641589487}
   - component: {fileID: 641589486}
+  - component: {fileID: 641589488}
   m_Layer: 0
   m_Name: WFC Output
   m_TagString: Ground
@@ -433,6 +434,27 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &641589488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641589477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f13a9f68a1ad964084758ad97cf1479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTilemap: {fileID: 641589481}
+  enemyPrefab: {fileID: 4356048621037516206, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+  enemyTypes:
+  - {fileID: 11400000, guid: 92712ca833214ff44afacefd8c82c8f6, type: 2}
+  - {fileID: 11400000, guid: 6d4e1f69d6c6c3647bccf41bf96e147a, type: 2}
+  - {fileID: 11400000, guid: be25fd2f26ef785499fef490e234c344, type: 2}
+  - {fileID: 11400000, guid: 88fa0c7b34952484d8f5fbce01d60f45, type: 2}
+  enemiesToSpawn: 10
+  minDistanceBetween: 5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -12547,6 +12569,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wfc: {fileID: 641589479}
   spawner: {fileID: 2125331785}
+  enemySpawnParent: {fileID: 641589478}
+  enemyPrefab: {fileID: 4356048621037516206, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+  enemySpawner: {fileID: 641589488}
 --- !u!1 &1938725960
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8630568539387872741}
   - component: {fileID: 8001011597046853384}
   - component: {fileID: 6121669771321508416}
+  - component: {fileID: 8079143763735540115}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -233,6 +234,21 @@ MonoBehaviour:
   pointA: {fileID: 6420632593110388024}
   pointB: {fileID: 6250657707164296061}
   speed: 2
+--- !u!114 &8079143763735540115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356048621037516206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72245a45dd4c0a4ea3199927f06231c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 6
+  attackRange: 1.2
+  attackCooldown: 1
 --- !u!1 &4438900080984280897
 GameObject:
   m_ObjectHideFlags: 0

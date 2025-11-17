@@ -183,9 +183,6 @@ MonoBehaviour:
   moveSpeed: 5
   sprintSpeed: 8
   jumpForce: 24
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
   groundCheck: {fileID: 0}
   groundCheckRadius: 0.2
 --- !u!114 &5926737429105222871
