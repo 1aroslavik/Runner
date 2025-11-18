@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: cavesofgallet_reverse_tiles_7
+  m_Name: Wall
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -4457060233959578638, guid: 3f403557e5aaffd4ea03425d57fa16ba, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
+  m_Sprite: {fileID: 7724512741311895759, guid: 3f403557e5aaffd4ea03425d57fa16ba, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

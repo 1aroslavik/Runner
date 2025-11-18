@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿/*using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(LevelBuilder))]
@@ -15,3 +15,4 @@ public class LevelBuilderEditor : Editor
         }
     }
 }
+*/
