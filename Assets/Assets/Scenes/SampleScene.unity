@@ -662,6 +662,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1459336307477340451, guid: 8e5c2b3afc13aed4992162ccd557fcdf, type: 3}
   groundTilemap: {fileID: 0}
   cameraFollow: {fileID: 0}
+  npcSpawner: {fileID: 0}
 --- !u!50 &641589485
 Rigidbody2D:
   serializedVersion: 5
@@ -1257,6 +1258,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113626762}
   m_CullTransparentMesh: 1
+--- !u!1 &1189694562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189694563}
+  - component: {fileID: 1189694564}
+  m_Layer: 0
+  m_Name: NPCSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189694563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189694562}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1392126398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189694564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189694562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538a6687cee0f4b518693d784d85b1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcPrefab: {fileID: 7106086100951560994, guid: e49cae7743eef446894e3acc80cb9c3a, type: 3}
+  groundTilemap: {fileID: 641589481}
+  npcCount: 1
+  minRadius: 3
+  maxRadius: 8
 --- !u!1 &1320271151
 GameObject:
   m_ObjectHideFlags: 0
@@ -105385,6 +105435,7 @@ Transform:
   - {fileID: 1655409752}
   - {fileID: 1938725961}
   - {fileID: 1884729157}
+  - {fileID: 1189694563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475346045
@@ -105936,7 +105987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1459336307477340451, guid: 8e5c2b3afc13aed4992162ccd557fcdf, type: 3}
   groundTilemap: {fileID: 641589481}
-  cameraFollow: {fileID: 0}
+  cameraFollow: {fileID: 963194230}
+  npcSpawner: {fileID: 1189694564}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,51 +1,64 @@
 using UnityEngine;
+using UnityEngine.UI; // Нужно для работы с UI
 
 public class DialogueTrigger : MonoBehaviour
 {
-    // Сюда мы сложим ВСЕ варианты бесед
+    [Header("Настройки Диалога")]
     public DialogueConversation[] conversations;
 
-    private bool playerInRange = false;
+    [Header("UI Кнопка")]
+    public GameObject talkButton; // Сюда перетащена кнопка (или сам Canvas)
 
-    void Update()
+    private void Start()
     {
-        // Эта часть не меняется - мы все так же жмем "E"
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        // --- НОВАЯ ЧАСТЬ: ЧИНИМ КАМЕРУ ---
+        
+        // 1. Пытаемся найти Canvas внутри этого NPC (в детях)
+        Canvas myCanvas = GetComponentInChildren<Canvas>();
+        
+        // 2. Если нашли Canvas, ищем главную камеру и привязываем её
+        if (myCanvas != null)
         {
-            TriggerDialogue();
+            myCanvas.worldCamera = Camera.main;
         }
+        // ---------------------------------
+
+        // На старте прячем кнопку
+        if (talkButton != null)
+            talkButton.SetActive(false);
     }
 
-    // !!! ВНИМАНИЕ: ИЗМЕНЕНИЕ ЗДЕСЬ !!!
-    // Было: OnTriggerEnter(Collider other)
-    // Стало: OnTriggerEnter2D(Collider2D other)
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Проверяем, что в триггер вошел Игрок
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
-            Debug.Log("Игрок вошел в зону диалога (2D)");
-            // Тут можно показать UI-подсказку "[E] Поговорить"
+            if (talkButton != null) talkButton.SetActive(true);
         }
     }
 
-    // !!! И ЗДЕСЬ !!!
-    // Было: OnTriggerExit(Collider other)
-    // Стало: OnTriggerExit2D(Collider2D other)
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
-            Debug.Log("Игрок вышел из зоны диалога (2D)");
-            // Тут можно скрыть UI-подсказку
+            if (talkButton != null) talkButton.SetActive(false);
         }
     }
 
-    // Эта часть не меняется - логика та же
-    public void TriggerDialogue()
+    public void OnClickTalk()
     {
+        if (talkButton != null) talkButton.SetActive(false);
+        TriggerDialogue();
+    }
+
+    private void TriggerDialogue()
+    {
+        // Защита от отсутствия DialogueManager
+        if (DialogueManager.Instance == null) 
+        {
+            Debug.LogError("❌ Нет DialogueManager на сцене!");
+            return;
+        }
+
         int runCount = PlayerPrefs.GetInt("CurrentRunCount", 0);
         if (conversations.Length == 0) return;
 
