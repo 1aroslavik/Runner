@@ -7,7 +7,12 @@ public class PlayerSpawn : MonoBehaviour
     public GameObject playerPrefab;
     public Tilemap groundTilemap;
 
-    public CameraFollow cameraFollow; // ⬅ добавили ссылку на скрипт камеры
+    public CameraFollow cameraFollow; 
+
+    // --- НОВОЕ ПОЛЕ ---
+    // Сюда нужно будет перетащить объект с NPCSpawner в инспекторе
+    public NPCSpawner npcSpawner; 
+    // ------------------
 
     public void SpawnPlayer()
     {
@@ -57,6 +62,8 @@ public class PlayerSpawn : MonoBehaviour
         }
 
         Vector3 spawnPos = best + Vector3.up * 1.2f;
+        
+        // Создаем игрока и сохраняем ссылку на него в переменную player
         GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
         CameraFollow cf = Camera.main.GetComponent<CameraFollow>();
@@ -64,6 +71,18 @@ public class PlayerSpawn : MonoBehaviour
             cf.SetTarget(player.transform);
 
         Debug.Log("✔ Player spawned at " + spawnPos);
+
+        // --- ВСТАВКА: ЗАПУСК СПАВНА NPC ---
+        // Как только игрок создан, говорим NPC спавнеру работать
+        if (npcSpawner != null)
+        {
+            npcSpawner.SpawnNPCNear(player);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ В PlayerSpawn не привязан NPC Spawner! NPC не появятся.");
+        }
+        // ----------------------------------
     }
 
 
