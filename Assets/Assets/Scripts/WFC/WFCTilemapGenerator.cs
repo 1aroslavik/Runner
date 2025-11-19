@@ -11,27 +11,84 @@ namespace WFC
     [RequireComponent(typeof(Tilemap))]
     public class WFCTilemapGenerator : MonoBehaviour, ICustomEditorEX
     {
+        [Header("Player Spawner")]
+        public PlayerSpawn playerSpawn;
+
         public int Seed;
+        public int SavedSeed;
+
         public TilemapPattern TilemapPattern;
         public BoundsInt Bounds;
         public bool ShowSuperposition = false;
 
+        // Y клетки, где стоит игрок в стартовой комнате
+        private int playerSpawnY = -99999;
+
+        [Header("Start / End Rooms (Tilemap prefabs)")]
+        public GameObject StartRoomPrefab;
+        public GameObject EndRoomPrefab;
+
+        [Header("Room Offsets")]
+        public float StartRoomOffset = 3f;
+        public float EndRoomOffset = 3f;
+
+        // === ГЛОБАЛЬНАЯ ВЫСОТА ПУТИ (клетка пола, по которой идём) ===
+        private int startRoomBottomY = -99999;
+
         private Tilemap _tilemap;
         private WFCGenerator<TileBase> _generator;
         private List<Tilemap> _stateMaps = new List<Tilemap>();
-
-        private CoroutineRunner CoroutineRunner;
 
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
         }
 
+        // ============================================================
+        [EditorButton]
+        public void RandomSeed()
+        {
+            Seed = new System.Random().Next();
+            Debug.Log($"[WFC] New random Seed = {Seed}");
+        }
+
+        [EditorButton]
+        public void RandomSeedAndGenerate()
+        {
+            RandomSeed();
+            Generate();
+        }
+
+        [EditorButton]
+        public void SaveCurrentSeed()
+        {
+            SavedSeed = Seed;
+            Debug.Log($"[WFC] Saved Seed = {SavedSeed}");
+        }
+
+        [EditorButton]
+        public void LoadSavedSeed()
+        {
+            if (SavedSeed == 0)
+            {
+                Debug.LogWarning("SavedSeed = 0 — сначала сохрани сид");
+                return;
+            }
+
+            Seed = SavedSeed;
+            Debug.Log($"[WFC] Loaded saved Seed = {Seed}");
+            Generate();
+        }
+
+        // ============================================================
         [EditorButton]
         public void Generate()
         {
             if (!TilemapPattern)
                 return;
+
+            startRoomBottomY = -99999;
+            playerSpawnY = -99999;
 
             _tilemap.ClearAllTiles();
             TilemapPattern.ExtractPatterns();
@@ -42,22 +99,15 @@ namespace WFC
                 TilemapPattern.Patterns
             );
 
-            foreach (var tilemap in _stateMaps)
-                tilemap.ClearAllTiles();
+            foreach (var tm in _stateMaps)
+                tm.ClearAllTiles();
 
-            RandomSeed();
             StartCoroutine(GenerateProgressive());
         }
 
-
-
-        // ====================================================================  
-        //                       WFC GENERATION (НЕ ТРОГАЕМ)
-        // ====================================================================
         IEnumerator GenerateProgressive()
         {
             _generator.Reset(Seed);
-
             yield return null;
 
             foreach (var collapsedChunk in _generator.RunProgressive())
@@ -76,11 +126,8 @@ namespace WFC
                 yield return null;
             }
 
-            // 🟦 Путь после генерации
-            GeneratePath();
+            GenerateAntTunnelNetwork();
         }
-
-
 
         void DrawSuperposition()
         {
@@ -88,12 +135,14 @@ namespace WFC
             {
                 for (var i = _stateMaps.Count; i < _generator.Patterns.Count; i++)
                 {
-                    var obj = new GameObject();
+                    var obj = new GameObject($"StateMap_{i}");
                     obj.transform.parent = transform;
                     obj.transform.position = transform.position + Vector3.forward * (i + 1);
+
                     var tilemap = obj.AddComponent<Tilemap>();
-                    var renderer = obj.AddComponent<TilemapRenderer>();
+                    obj.AddComponent<TilemapRenderer>();
                     tilemap.color = Color.white.WithAlpha(0.7f);
+
                     _stateMaps.Add(tilemap);
                 }
             }
@@ -102,187 +151,217 @@ namespace WFC
                 for (var y = 0; y < _generator.Size.y; y++)
                 {
                     var p = Bounds.min + new Vector3Int(x, y, 0);
-                    var idx = 0;
-                    foreach (var pattern in _generator.ChunkStates[x, y, 0].Compatibles)
-                    {
-                        _stateMaps[idx++].SetTile(p, pattern.Chunk);
-                    }
+                    int idx = 0;
+
+                    foreach (var pat in _generator.ChunkStates[x, y, 0].Compatibles)
+                        _stateMaps[idx++].SetTile(p, pat.Chunk);
                 }
         }
 
-
-
-        [EditorButton()]
-        public void RandomSeed()
-        {
-            Seed = new System.Random().Next();
-        }
-
+        // ============================================================
         bool InsideBounds(Vector3Int p)
         {
             return p.x >= Bounds.xMin && p.x < Bounds.xMax &&
                    p.y >= Bounds.yMin && p.y < Bounds.yMax;
         }
 
-
-        // ====================================================================  
-        //                             ПУТЬ
-        // ====================================================================  
-
-
-        // ─────────────────────────────────────────────
-        // Генерация ветки
-        // ─────────────────────────────────────────────
-        List<Vector3Int> GenerateBranch(Vector3Int start, System.Random rnd)
+        // ============================================================
+        //     ROOM SPAWN — ОПРЕДЕЛЯЕМ ВЫСОТУ ПУТИ ОТ START ROOM
+        // ============================================================
+        void PlaceRoomPrefab(GameObject prefab, Vector3Int tunnelCell, bool isLeft)
         {
-            List<Vector3Int> branch = new List<Vector3Int>();
-            Vector3Int p = start;
+            if (prefab == null) return;
 
-            int length = rnd.Next(5, 20);
+            Vector3 tunnelWorld = _tilemap.CellToWorld(tunnelCell);
 
-            for (int i = 0; i < length; i++)
+            Tilemap roomMap = prefab.GetComponentInChildren<Tilemap>();
+            if (roomMap == null)
             {
-                int dir = rnd.Next(0, 4);
-
-                switch (dir)
-                {
-                    case 0: p += Vector3Int.up; break;
-                    case 1: p += Vector3Int.down; break;
-                    case 2: p += Vector3Int.left; break;
-                    case 3: p += Vector3Int.right; break;
-                }
-
-                if (!InsideBounds(p)) break;
-
-                branch.Add(p);
-            }
-
-            return branch;
-        }
-
-
-
-        // ─────────────────────────────────────────────
-        // Основной путь + ветвления
-        // ─────────────────────────────────────────────
-        List<Vector3Int> BuildOrganicBranchedPath(Vector3Int start)
-        {
-            List<Vector3Int> mainPath = new List<Vector3Int>();
-            List<List<Vector3Int>> branches = new List<List<Vector3Int>>();
-
-            Vector3Int p = start;
-
-            System.Random rnd = new System.Random(Seed);
-
-            int maxMainSteps = Mathf.Max(40, Bounds.size.x * 2);
-
-            for (int i = 0; i < maxMainSteps; i++)
-            {
-                p += Vector3Int.right;
-
-                int r = rnd.Next(0, 100);
-
-                if (r < 20 && p.y < Bounds.yMax - 3)
-                    p += Vector3Int.up;
-                else if (r < 40 && p.y > Bounds.yMin + 3)
-                    p += Vector3Int.down;
-
-                if (!InsideBounds(p)) break;
-
-                mainPath.Add(p);
-
-                // 🔥 Ветки
-                if (rnd.Next(0, 100) < 25)
-                {
-                    var branch = GenerateBranch(p, rnd);
-                    if (branch.Count > 0)
-                        branches.Add(branch);
-                }
-
-                if (p.x >= Bounds.xMax - 4)
-                    break;
-            }
-
-            // Объединяем путь и ветви
-            List<Vector3Int> full = new List<Vector3Int>(mainPath);
-            foreach (var b in branches)
-                full.AddRange(b);
-
-            return full;
-        }
-
-
-
-        // ─────────────────────────────────────────────
-        // Выкапывание
-        // ─────────────────────────────────────────────
-        void CarveOrganicPath(List<Vector3Int> path)
-        {
-            if (path == null || path.Count == 0)
+                Debug.LogError("❌ В префабе комнаты нет Tilemap!");
                 return;
+            }
 
-            var firstPattern = TilemapPattern.Patterns.FirstOrDefault();
-            TileBase groundTile = firstPattern != null ? firstPattern.Chunk : null;
+            BoundsInt rb = roomMap.cellBounds;
 
-            foreach (var p in path)
+            float cell = roomMap.cellSize.x;
+            float leftEdge = rb.xMin * cell;
+            float rightEdge = rb.xMax * cell;
+
+            Vector3 spawnPos = tunnelWorld;
+
+            if (isLeft)
             {
-                if (!InsideBounds(p))
-                    continue;
+                spawnPos.x -= Mathf.Abs(rightEdge);
+                spawnPos.x -= StartRoomOffset;
+            }
+            else
+            {
+                spawnPos.x += Mathf.Abs(leftEdge);
+                spawnPos.x += EndRoomOffset;
+            }
 
-                // пространство для игрока
-                ClearIfInside(p);
-                ClearIfInside(p + Vector3Int.up);
+            // создаём комнату
+            GameObject instance = Instantiate(prefab, spawnPos, Quaternion.identity, transform);
 
-                // расширение
-                ClearIfInside(p + Vector3Int.left);
-                ClearIfInside(p + Vector3Int.right);
+            // === ЕСЛИ ЭТО START ROOM → ИЩЕМ PlayerSpawnPoint ===
+            if (prefab == StartRoomPrefab)
+            {
+                Transform spawnPoint = instance.transform.Find("PlayerSpawnPoint");
 
-                // пол
-                if (groundTile != null)
+                if (spawnPoint != null)
                 {
-                    SetGroundIfInside(p + Vector3Int.down, groundTile);
-                    SetGroundIfInside(p + Vector3Int.down * 2, groundTile);
+                    // мировая позиция спавна игрока
+                    Vector3 wp = spawnPoint.position;
+
+                    // переводим в клетку тайлмапа
+                    Vector3Int cellPos = _tilemap.WorldToCell(wp);
+
+                    playerSpawnY = cellPos.y;
+
+                    // Путь идёт по клетке пола под игроком
+                    startRoomBottomY = playerSpawnY - 1;
+
+                    Debug.Log($"✔ PlayerSpawn Y = {playerSpawnY}, путь по Y = {startRoomBottomY}");
+                }
+                else
+                {
+                    Debug.LogError("❌ В стартовой комнате нет PlayerSpawnPoint");
                 }
             }
         }
 
-
-
-        void ClearIfInside(Vector3Int pos)
+        // ============================================================
+        //            УНИВЕРСАЛЬНЫЙ ВЫРЕЗАТЕЛЬ ПРЯМОУГОЛЬНИКА
+        // ============================================================
+        void CutRect(int x1, int y1, int x2, int y2)
         {
-            if (InsideBounds(pos))
-                _tilemap.SetTile(pos, null);
+            if (x2 < x1) { int tmp = x1; x1 = x2; x2 = tmp; }
+            if (y2 < y1) { int tmp = y1; y1 = y2; y2 = tmp; }
+
+            for (int x = x1; x <= x2; x++)
+            {
+                for (int y = y1; y <= y2; y++)
+                {
+                    Vector3Int cell = new Vector3Int(x, y, 0);
+                    if (InsideBounds(cell))
+                        _tilemap.SetTile(cell, null);
+                }
+            }
         }
 
-        void SetGroundIfInside(Vector3Int pos, TileBase groundTile)
+        // ============================================================
+        //         ГЛАВНЫЙ ПУТЬ — ПРЯМОЙ ТУННЕЛЬ
+        // ============================================================
+        void CarveMainTunnel()
         {
-            if (InsideBounds(pos))
-                _tilemap.SetTile(pos, groundTile);
+            int y = startRoomBottomY;   // уровень пола
+            int h = 4;                  // высота туннеля
+
+            CutRect(
+                Bounds.xMin,
+                y - 1,
+                Bounds.xMax,
+                y + h
+            );
         }
 
-
-
-        // ─────────────────────────────────────────────
-        // Главный запуск пути
-        // ─────────────────────────────────────────────
-        void GeneratePath()
+        // ============================================================
+        //                        ЯМА ВНИЗ
+        // ============================================================
+        void CarvePit(int x, int depth, int width = 4)
         {
-            Vector3Int start = new Vector3Int(
-                Bounds.xMin + 2,
-                Bounds.yMin + Bounds.size.y / 2,
+            int y = startRoomBottomY;
+
+            CutRect(
+                x - width,
+                y - depth - 4,
+                x + width,
+                y
+            );
+        }
+
+        // ============================================================
+        //                      ВЕРТИКАЛЬНЫЙ ТУННЕЛЬ ВВЕРХ
+        // ============================================================
+        void CarveUp(int x, int height, int width = 3)
+        {
+            int y = startRoomBottomY;
+
+            CutRect(
+                x - width,
+                y,
+                x + width,
+                y + height
+            );
+        }
+
+        // ============================================================
+        //                          КОМНАТА
+        // ============================================================
+        void CarveRoom(int x, int y, int w = 6, int h = 4)
+        {
+            CutRect(
+                x - w,
+                y - h,
+                x + w,
+                y + h
+            );
+        }
+
+        // ============================================================
+        //                 ОСНОВНАЯ ГЕНЕРАЦИЯ ТОННЕЛЕЙ
+        // ============================================================
+        void GenerateAntTunnelNetwork()
+        {
+            // 1. ставим комнату старта
+            Vector3Int tmpStartCell = new Vector3Int(
+                Bounds.xMin + 5,
+                Mathf.FloorToInt(Bounds.center.y),
                 0
             );
 
-            var fullPath = BuildOrganicBranchedPath(start);
+            PlaceRoomPrefab(StartRoomPrefab, tmpStartCell, true);
 
-            CarveOrganicPath(fullPath);
+            if (startRoomBottomY == -99999)
+            {
+                Debug.LogError("StartRoomBottomY NOT SET");
+                return;
+            }
 
-            Debug.Log("Generated path nodes: " + fullPath.Count);
+            // 2. главный туннель
+            CarveMainTunnel();
+
+            System.Random rnd = new System.Random(Seed);
+
+            // 3. добавляем ямы и верхние тоннели каждые ~40 клеток
+            for (int x = Bounds.xMin + 20; x < Bounds.xMax - 20; x += rnd.Next(35, 50))
+            {
+                // яма вниз
+                if (rnd.Next(0, 100) < 60)
+                    CarvePit(x, rnd.Next(8, 15));
+
+                // тоннель вверх
+                if (rnd.Next(0, 100) < 40)
+                    CarveUp(x, rnd.Next(6, 12));
+
+                // комнатка внизу
+                if (rnd.Next(0, 100) < 30)
+                    CarveRoom(x, startRoomBottomY - rnd.Next(10, 20));
+
+                // комнатка вверху
+                if (rnd.Next(0, 100) < 30)
+                    CarveRoom(x, startRoomBottomY + rnd.Next(8, 18));
+            }
+
+            // 4. ставим конец
+            PlaceRoomPrefab(EndRoomPrefab, new Vector3Int(Bounds.xMax - 5, startRoomBottomY, 0), false);
+
+            // 5. спавн
+            if (playerSpawn != null)
+                playerSpawn.SpawnPlayer();
         }
 
-
-
-        // ====================================================================  
+        // ============================================================
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
