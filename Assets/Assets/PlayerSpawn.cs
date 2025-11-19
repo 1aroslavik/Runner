@@ -4,15 +4,19 @@ using UnityEngine.Tilemaps;
 
 public class PlayerSpawn : MonoBehaviour
 {
+    [Header("Player")]
     public GameObject playerPrefab;
     public Tilemap groundTilemap;
 
-    public CameraFollow cameraFollow; 
+    [Header("Camera")]
+    public CameraFollow cameraFollow;
 
-    // --- НОВОЕ ПОЛЕ ---
-    // Сюда нужно будет перетащить объект с NPCSpawner в инспекторе
-    public NPCSpawner npcSpawner; 
-    // ------------------
+    [Header("NPC Spawner")]
+    public NPCSpawner npcSpawner;
+
+    [Header("Start Room Spawn Point")]
+    [Tooltip("Тэг объекта внутри стартовой комнаты, который задаёт точку спавна игрока.")]
+    public string spawnPointTag = "PlayerSpawnPoint";
 
     public void SpawnPlayer()
     {
@@ -30,50 +34,44 @@ public class PlayerSpawn : MonoBehaviour
 
         BoundsInt bounds = groundTilemap.cellBounds;
 
-        List<Vector3> validSpawns = new List<Vector3>();
+        // 1) Пытаемся найти точку спавна внутри стартовой комнаты
+        GameObject spawnObj = GameObject.FindWithTag(spawnPointTag);
+        Vector3 spawnPos;
 
-        foreach (var pos in bounds.allPositionsWithin)
+        if (spawnObj != null)
         {
-            Vector3Int cell = new Vector3Int(pos.x, pos.y, 0);
-
-            if (IsGoodSpawnPoint(cell))
-                validSpawns.Add(groundTilemap.GetCellCenterWorld(cell));
+            spawnPos = spawnObj.transform.position;
+            Debug.Log("✔ PlayerSpawnPoint найден, спавним игрока в стартовой комнате");
         }
-
-        if (validSpawns.Count == 0)
+        else
         {
-            Debug.LogError("❌ No valid spawn points found!");
-            return;
-        }
-
-        float centerX = (bounds.xMin + bounds.xMax) * 0.5f;
-
-        Vector3 best = validSpawns[0];
-        float bestDist = Mathf.Abs(best.x - centerX);
-
-        foreach (var v in validSpawns)
-        {
-            float dist = Mathf.Abs(v.x - centerX);
-            if (dist < bestDist)
+            // 2) Если точки нет — используем старую логику по тайлмапу
+            Debug.LogWarning("⚠️ PlayerSpawnPoint не найден, ищу позицию по тайлмапу");
+            spawnPos = FindSpawnPoint(bounds);
+            if (spawnPos == Vector3.zero)
             {
-                bestDist = dist;
-                best = v;
+                Debug.LogError("❌ Не удалось найти ни PlayerSpawnPoint, ни валидную точку на тайлмапе!");
+                return;
             }
         }
 
-        Vector3 spawnPos = best + Vector3.up * 1.2f;
-        
-        // Создаем игрока и сохраняем ссылку на него в переменную player
+        // чуть приподнимаем игрока
+        spawnPos += Vector3.up * 0.0f; // 0, потому что в комнате ты уже сама выставишь высоту
+
+        // создаём игрока
         GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
-        CameraFollow cf = Camera.main.GetComponent<CameraFollow>();
+        // настраиваем камеру
+        CameraFollow cf = cameraFollow;
+        if (cf == null && Camera.main != null)
+            cf = Camera.main.GetComponent<CameraFollow>();
+
         if (cf != null)
             cf.SetTarget(player.transform);
 
         Debug.Log("✔ Player spawned at " + spawnPos);
 
-        // --- ВСТАВКА: ЗАПУСК СПАВНА NPC ---
-        // Как только игрок создан, говорим NPC спавнеру работать
+        // запускаем спавн NPC вокруг игрока
         if (npcSpawner != null)
         {
             npcSpawner.SpawnNPCNear(player);
@@ -82,9 +80,9 @@ public class PlayerSpawn : MonoBehaviour
         {
             Debug.LogWarning("⚠️ В PlayerSpawn не привязан NPC Spawner! NPC не появятся.");
         }
-        // ----------------------------------
     }
 
+    // ===== ВСПОМОГАТЕЛЬНЫЙ ПОИСК ТОЧКИ НА ТАЙЛМАПЕ (ФОЛЛБЭК) =====
 
     private Vector3 FindSpawnPoint(BoundsInt bounds)
     {
@@ -100,7 +98,7 @@ public class PlayerSpawn : MonoBehaviour
 
         if (validSpawns.Count == 0)
         {
-            Debug.LogError("❌ No valid spawn points found!");
+            Debug.LogError("❌ No valid spawn points found on tilemap!");
             return Vector3.zero;
         }
 
