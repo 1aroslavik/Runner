@@ -594,16 +594,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawn: {fileID: 2125331785}
   Seed: 1424857295
-  SavedSeed: 0
   TilemapPattern: {fileID: 1320271153}
   Bounds:
     m_Position: {x: -9, y: -5, z: 0}
     m_Size: {x: 100, y: 50, z: 0}
   ShowSuperposition: 0
-  StartRoomPrefab: {fileID: 6093222412762566911, guid: 44f96d0dd110be84b82a21c60b6eb65f, type: 3}
-  EndRoomPrefab: {fileID: 4108613488743548901, guid: af43419dd30b53d4c8c07883b8e532f5, type: 3}
-  StartRoomOffset: 3
-  EndRoomOffset: 3
+  tunnelGenerator: {fileID: 1393529883}
+  savedMaps: {fileID: 11400000, guid: ca99e1a194dd238448dc1142cb57046f, type: 2}
 --- !u!483693784 &641589480
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -116942,10 +116939,67 @@ Transform:
   - {fileID: 1475346046}
   - {fileID: 1655409752}
   - {fileID: 1938725961}
-  - {fileID: 1884729157}
   - {fileID: 1189694563}
+  - {fileID: 1393529882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1393529881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393529882}
+  - component: {fileID: 1393529883}
+  m_Layer: 0
+  m_Name: TunnelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1393529882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393529881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1392126398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393529883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393529881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa96ca69d6e7784eb5b3604a8e33fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTunnelPath: []
+  startRoomWorldPos: {x: 0, y: 0, z: 0}
+  endRoomWorldPos: {x: 0, y: 0, z: 0}
+  StartRoomPrefab: {fileID: 6093222412762566911, guid: 44f96d0dd110be84b82a21c60b6eb65f, type: 3}
+  EndRoomPrefab: {fileID: 4108613488743548901, guid: af43419dd30b53d4c8c07883b8e532f5, type: 3}
+  StartRoomOffset: 3
+  EndRoomOffset: 3
+  decorations: []
+  decorChance: 0.12
+  map: {fileID: 0}
+  bounds:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 0, y: 0, z: 0}
 --- !u!1 &1475346045
 GameObject:
   m_ObjectHideFlags: 0
@@ -117388,37 +117442,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   parallaxEffect: 0.5
   spriteRenderer: {fileID: 0}
---- !u!1 &1884729156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1884729157}
-  m_Layer: 0
-  m_Name: WallsTilemap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1884729157
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884729156}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1392126398}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938725960
 GameObject:
   m_ObjectHideFlags: 0
