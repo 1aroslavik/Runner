@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using SardineFish.Utils;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,6 +12,10 @@ namespace WFC
     [RequireComponent(typeof(Tilemap))]
     public class WFCTilemapGenerator : MonoBehaviour, ICustomEditorEX
     {
+        [Header("Decorations")]
+        public GameObject[] decorations;
+        public float decorChance = 0.12f;
+
         [Header("Player Spawner")]
         public PlayerSpawn playerSpawn;
 
@@ -32,12 +37,15 @@ namespace WFC
         public float StartRoomOffset = 3f;
         public float EndRoomOffset = 3f;
 
-        // === ГЛОБАЛЬНАЯ ВЫСОТА ПУТИ (клетка пола, по которой идём) ===
+        // глобальная высота пола основного пути
         private int startRoomBottomY = -99999;
 
         private Tilemap _tilemap;
         private WFCGenerator<TileBase> _generator;
         private List<Tilemap> _stateMaps = new List<Tilemap>();
+
+        // путь основного туннеля
+        private List<Vector3Int> mainTunnelPath = new List<Vector3Int>();
 
         private void Awake()
         {
@@ -89,6 +97,7 @@ namespace WFC
 
             startRoomBottomY = -99999;
             playerSpawnY = -99999;
+            mainTunnelPath.Clear();
 
             _tilemap.ClearAllTiles();
             TilemapPattern.ExtractPatterns();
@@ -126,6 +135,7 @@ namespace WFC
                 yield return null;
             }
 
+            // после WFC — вырезаем систему тоннелей
             GenerateAntTunnelNetwork();
         }
 
@@ -196,29 +206,24 @@ namespace WFC
             }
             else
             {
-                spawnPos.x += Mathf.Abs(leftEdge);
-                spawnPos.x += EndRoomOffset;
+                // конечная комната ближе к тоннелю
+                spawnPos.x += Mathf.Abs(leftEdge) - 1f;
             }
 
-            // создаём комнату
+
             GameObject instance = Instantiate(prefab, spawnPos, Quaternion.identity, transform);
 
-            // === ЕСЛИ ЭТО START ROOM → ИЩЕМ PlayerSpawnPoint ===
+            // стартовая комната → ищем PlayerSpawnPoint
             if (prefab == StartRoomPrefab)
             {
                 Transform spawnPoint = instance.transform.Find("PlayerSpawnPoint");
 
                 if (spawnPoint != null)
                 {
-                    // мировая позиция спавна игрока
                     Vector3 wp = spawnPoint.position;
-
-                    // переводим в клетку тайлмапа
                     Vector3Int cellPos = _tilemap.WorldToCell(wp);
 
                     playerSpawnY = cellPos.y;
-
-                    // Путь идёт по клетке пола под игроком
                     startRoomBottomY = playerSpawnY - 1;
 
                     Debug.Log($"✔ PlayerSpawn Y = {playerSpawnY}, путь по Y = {startRoomBottomY}");
@@ -249,63 +254,252 @@ namespace WFC
             }
         }
 
-        // ============================================================
-        //         ГЛАВНЫЙ ПУТЬ — ПРЯМОЙ ТУННЕЛЬ
-        // ============================================================
-        void CarveMainTunnel()
+        // округлая "капля" / камера
+        void CutBlob(Vector3Int center, int radiusX, int radiusY)
         {
-            int y = startRoomBottomY;   // уровень пола
-            int h = 4;                  // высота туннеля
-
-            CutRect(
-                Bounds.xMin,
-                y - 1,
-                Bounds.xMax,
-                y + h
-            );
+            for (int dx = -radiusX; dx <= radiusX; dx++)
+            {
+                for (int dy = -radiusY; dy <= radiusY; dy++)
+                {
+                    float nx = (float)dx / radiusX;
+                    float ny = (float)dy / radiusY;
+                    if (nx * nx + ny * ny <= 1.0f)
+                    {
+                        Vector3Int c = new Vector3Int(center.x + dx, center.y + dy, 0);
+                        if (InsideBounds(c))
+                            _tilemap.SetTile(c, null);
+                    }
+                }
+            }
         }
 
         // ============================================================
-        //                        ЯМА ВНИЗ
+        //           L-SYSTEM ПРОФИЛЬ (пока не используется)
         // ============================================================
-        void CarvePit(int x, int depth, int width = 4)
+        string BuildLSystemProfile(int length, System.Random rnd)
         {
-            int y = startRoomBottomY;
+            // S = ровно, U = вверх, D = вниз
+            string axiom = "S";
+            Dictionary<char, string> rules = new Dictionary<char, string>()
+            {
+                { 'S', "SUD" },
+                { 'U', "SU"  },
+                { 'D', "SD"  }
+            };
 
-            CutRect(
-                x - width,
-                y - depth - 4,
-                x + width,
-                y
-            );
+            string current = axiom;
+
+            while (current.Length < length)
+            {
+                StringBuilder sb = new StringBuilder(current.Length * 3);
+                foreach (char c in current)
+                {
+                    if (rules.TryGetValue(c, out string prod))
+                        sb.Append(prod);
+                    else
+                        sb.Append(c);
+                }
+                current = sb.ToString();
+            }
+
+            char[] arr = current.ToCharArray();
+
+            // небольшая мутация для разнообразия
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int r = rnd.Next(0, 100);
+                if (r < 8) arr[i] = 'S';
+                else if (r < 16) arr[i] = 'U';
+                else if (r < 24) arr[i] = 'D';
+            }
+
+            if (arr.Length > length)
+                current = new string(arr, 0, length);
+            else
+                current = new string(arr);
+
+            return current;
         }
 
         // ============================================================
-        //                      ВЕРТИКАЛЬНЫЙ ТУННЕЛЬ ВВЕРХ
+        //           ПЕРЛИН-ПРОФИЛЬ ОСНОВНОГО ТОННЕЛЯ
         // ============================================================
-        void CarveUp(int x, int height, int width = 3)
+        List<Vector3Int> BuildMainAntTunnelPerlin(Vector3Int startCell, int width)
         {
-            int y = startRoomBottomY;
+            List<Vector3Int> path = new List<Vector3Int>();
+            float scale = 0.015f;        // частота шума
+            float amp = 12f;             // амплитуда (высота колебаний)
+            float offset = Seed % 9999;  // случайный оффсет
 
-            CutRect(
-                x - width,
-                y,
-                x + width,
-                y + height
-            );
+            for (int x = Bounds.xMin; x <= Bounds.xMax; x++)
+            {
+                float nx = x * scale + offset;
+                float noise = Mathf.PerlinNoise(nx, 0f);
+
+                int y = startCell.y + Mathf.RoundToInt((noise - 0.5f) * amp);
+
+                y = Mathf.Clamp(y, Bounds.yMin + 8, Bounds.yMax - 8);
+
+                path.Add(new Vector3Int(x, y, 0));
+            }
+
+            return path;
         }
 
         // ============================================================
-        //                          КОМНАТА
+        //           ВЕРТИКАЛЬНЫЕ ШАХТЫ
         // ============================================================
-        void CarveRoom(int x, int y, int w = 6, int h = 4)
+        void AddVerticalShafts(List<Vector3Int> path, System.Random rnd)
         {
-            CutRect(
-                x - w,
-                y - h,
-                x + w,
-                y + h
+            for (int i = 20; i < path.Count - 20; i += rnd.Next(25, 40))
+            {
+                if (rnd.Next(0, 100) > 45)
+                    continue;
+
+                Vector3Int p = path[i];
+
+                // насколько падаем/поднимаемся
+                int height = rnd.Next(6, 18);
+                int dir = rnd.Next(0, 2) == 0 ? -1 : +1; // вверх или вниз
+
+                for (int dy = 0; dy < height; dy++)
+                {
+                    Vector3Int v = new Vector3Int(p.x, p.y + dy * dir, 0);
+
+                    if (!InsideBounds(v))
+                        break;
+
+                    CutRect(v.x - 2, v.y - 2, v.x + 2, v.y + 2);
+                }
+            }
+        }
+
+        // ============================================================
+        //           СТУПЕНИ / МНОГО УРОВНЕЙ ВЫСОТЫ
+        // ============================================================
+        void ApplyHeightSteps(List<Vector3Int> path, System.Random rnd)
+        {
+            for (int i = 10; i < path.Count - 10; i++)
+            {
+                int r = rnd.Next(0, 100);
+
+                if (r < 4)
+                {
+                    // ступень вверх
+                    path[i] = new Vector3Int(path[i].x, path[i].y + rnd.Next(1, 3), 0);
+                }
+                else if (r < 8)
+                {
+                    // ступень вниз
+                    path[i] = new Vector3Int(path[i].x, path[i].y - rnd.Next(1, 3), 0);
+                }
+            }
+        }
+
+        // ============================================================
+        //      ОСНОВНОЙ ТОЛСТЫЙ ТОННЕЛЬ
+        // ============================================================
+        void CarveMainAntTunnel(List<Vector3Int> path)
+        {
+            foreach (var p in path)
+            {
+                // ширина 6 тайлов, высота 4 тайла
+                CutRect(p.x - 3, p.y - 2, p.x + 3, p.y + 2);
+            }
+        }
+
+        // боковой ход (как корень)
+        List<Vector3Int> GrowSideBranch(Vector3Int from, System.Random rnd)
+        {
+            List<Vector3Int> branch = new List<Vector3Int>();
+
+            int length = rnd.Next(10, 25);
+            int dirX = rnd.Next(0, 2) == 0 ? -1 : +1;
+            int x = from.x;
+            int y = from.y;
+
+            for (int i = 0; i < length; i++)
+            {
+                x += dirX;
+                int r = rnd.Next(0, 100);
+                if (r < 30) y += 1;
+                else if (r < 60) y -= 1;
+
+                y = Mathf.Clamp(y, Bounds.yMin + 4, Bounds.yMax - 4);
+
+                Vector3Int c = new Vector3Int(x, y, 0);
+                if (!InsideBounds(c)) break;
+
+                branch.Add(c);
+            }
+
+            return branch;
+        }
+
+        void CarveBranchWithChambers(List<Vector3Int> branch, System.Random rnd)
+        {
+            if (branch.Count == 0) return;
+
+            for (int i = 0; i < branch.Count; i++)
+            {
+                Vector3Int p = branch[i];
+
+                // узкий коридор
+                CutBlob(p, 2, 1);
+
+                // маленькие изгибы и комнаты
+                if (i > 3 && i < branch.Count - 3 && rnd.Next(0, 100) < 25)
+                {
+                    Vector3Int chamberCenter = p + new Vector3Int(
+                        rnd.Next(-2, 3),
+                        rnd.Next(-2, 3),
+                        0
+                    );
+
+                    int rx = rnd.Next(3, 5);
+                    int ry = rnd.Next(2, 4);
+                    CutBlob(chamberCenter, rx, ry);
+                }
+            }
+        }
+
+        // маленькая камера прямо от основного туннеля
+        void CarveMiniChamber(Vector3Int center, System.Random rnd)
+        {
+            // вход
+            CutBlob(center, 2, 1);
+
+            // сама камера (капля)
+            Vector3Int chamberCenter = center + new Vector3Int(
+                rnd.Next(-2, 3),
+                rnd.Next(-2, 3),
+                0
             );
+
+            int rx = rnd.Next(3, 5);
+            int ry = rnd.Next(2, 3);
+            CutBlob(chamberCenter, rx, ry);
+        }
+
+        // ============================================================
+        //      ДЕКОРАЦИИ
+        // ============================================================
+        void PlaceDecorations(List<Vector3Int> path, System.Random rnd)
+        {
+            if (decorations == null || decorations.Length == 0)
+                return;
+
+            foreach (var p in path)
+            {
+                if (rnd.NextDouble() > decorChance)
+                    continue;
+
+                Vector3 world = _tilemap.CellToWorld(p);
+                world += new Vector3(rnd.Next(-1, 2), rnd.Next(-1, 2), 0);
+
+                GameObject prefab = decorations[rnd.Next(decorations.Length)];
+                Instantiate(prefab, world, Quaternion.identity, transform);
+            }
         }
 
         // ============================================================
@@ -313,52 +507,67 @@ namespace WFC
         // ============================================================
         void GenerateAntTunnelNetwork()
         {
-            // 1. ставим комнату старта
-            Vector3Int tmpStartCell = new Vector3Int(
+            System.Random rnd = new System.Random(Seed);
+
+            // ------- 1. СПАВНИМ СТАРТОВУЮ КОМНАТУ -------
+            Vector3Int tmpStart = new Vector3Int(
                 Bounds.xMin + 5,
                 Mathf.FloorToInt(Bounds.center.y),
                 0
             );
 
-            PlaceRoomPrefab(StartRoomPrefab, tmpStartCell, true);
-
+            PlaceRoomPrefab(StartRoomPrefab, tmpStart, true);
             if (startRoomBottomY == -99999)
             {
                 Debug.LogError("StartRoomBottomY NOT SET");
                 return;
             }
 
-            // 2. главный туннель
-            CarveMainTunnel();
+            // ------- 2. ПЕРЛИН-ТОННЕЛЬ -------
+            mainTunnelPath = BuildMainAntTunnelPerlin(
+                new Vector3Int(Bounds.xMin, startRoomBottomY),
+                Bounds.size.x
+            );
 
-            System.Random rnd = new System.Random(Seed);
+            // ------- 3. Ступени, несколько уровней -------
+            ApplyHeightSteps(mainTunnelPath, rnd);
 
-            // 3. добавляем ямы и верхние тоннели каждые ~40 клеток
-            for (int x = Bounds.xMin + 20; x < Bounds.xMax - 20; x += rnd.Next(35, 50))
+            // ------- 4. Вертикальные шахты -------
+            AddVerticalShafts(mainTunnelPath, rnd);
+
+            // ------- 5. ВЫРЕЗАЕМ ТОННЕЛЬ -------
+            CarveMainAntTunnel(mainTunnelPath);
+
+            // ------- 6. Боковые ветви + мини-камеры -------
+            for (int i = 15; i < mainTunnelPath.Count - 20;)
             {
-                // яма вниз
-                if (rnd.Next(0, 100) < 60)
-                    CarvePit(x, rnd.Next(8, 15));
+                if (rnd.Next(0, 100) < 45)
+                {
+                    var br = GrowSideBranch(mainTunnelPath[i], rnd);
+                    CarveBranchWithChambers(br, rnd);
+                }
 
-                // тоннель вверх
-                if (rnd.Next(0, 100) < 40)
-                    CarveUp(x, rnd.Next(6, 12));
-
-                // комнатка внизу
                 if (rnd.Next(0, 100) < 30)
-                    CarveRoom(x, startRoomBottomY - rnd.Next(10, 20));
+                {
+                    CarveMiniChamber(mainTunnelPath[i], rnd);
+                }
 
-                // комнатка вверху
-                if (rnd.Next(0, 100) < 30)
-                    CarveRoom(x, startRoomBottomY + rnd.Next(8, 18));
+                i += rnd.Next(18, 28);
             }
 
-            // 4. ставим конец
-            PlaceRoomPrefab(EndRoomPrefab, new Vector3Int(Bounds.xMax - 5, startRoomBottomY, 0), false);
+            // ------- 7. Декорации -------
+            PlaceDecorations(mainTunnelPath, rnd);
 
-            // 5. спавн
+            // ------- 8. КОНЕЧНАЯ КОМНАТА -------
+            Vector3Int end = mainTunnelPath[mainTunnelPath.Count - 1];
+            CutRect(end.x - 2, end.y - 2, end.x + 2, end.y + 2);
+            PlaceRoomPrefab(EndRoomPrefab, end, false);
+
+            // ------- 9. СПАВН ИГРОКА -------
             if (playerSpawn != null)
                 playerSpawn.SpawnPlayer();
+
+            Debug.Log("✔ Перлин-тоннель сгенерирован");
         }
 
         // ============================================================
