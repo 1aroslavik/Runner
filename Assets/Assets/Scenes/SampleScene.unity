@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 641589481}
   - component: {fileID: 641589480}
   - component: {fileID: 641589479}
+  - component: {fileID: 641589482}
   - component: {fileID: 641589485}
   - component: {fileID: 641589487}
   - component: {fileID: 641589486}
@@ -592,18 +593,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55465d6fddba4421857ee74cf51815c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawn: {fileID: 2125331785}
   Seed: 1424857295
-  SavedSeed: 0
   TilemapPattern: {fileID: 1320271153}
   Bounds:
     m_Position: {x: -9, y: -5, z: 0}
     m_Size: {x: 100, y: 50, z: 0}
   ShowSuperposition: 0
-  StartRoomPrefab: {fileID: 6093222412762566911, guid: 44f96d0dd110be84b82a21c60b6eb65f, type: 3}
-  EndRoomPrefab: {fileID: 4108613488743548901, guid: af43419dd30b53d4c8c07883b8e532f5, type: 3}
-  StartRoomOffset: 3
-  EndRoomOffset: 3
 --- !u!483693784 &641589480
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -736,6 +731,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &641589482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641589477}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ef21aad17195646917b0c045b20882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1459336307477340451, guid: 8e5c2b3afc13aed4992162ccd557fcdf, type: 3}
+  groundTilemap: {fileID: 0}
+  cameraFollow: {fileID: 0}
+  npcSpawner: {fileID: 0}
 --- !u!50 &641589485
 Rigidbody2D:
   serializedVersion: 5
@@ -951,7 +962,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 259.5, y: 15.13}
+  m_Size: {x: 40, y: 15.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1171,7 +1182,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 134.67
+  orthographic size: 139
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1196,7 +1207,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: 1.88, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117703,7 +117714,6 @@ MonoBehaviour:
   groundTilemap: {fileID: 641589481}
   cameraFollow: {fileID: 963194230}
   npcSpawner: {fileID: 1189694564}
-  spawnPointTag: PlayerSpawnPoint
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
