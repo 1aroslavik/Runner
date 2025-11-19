@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerMovement2D : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class PlayerMovement2D : MonoBehaviour
     [Header("Ближний бой (Атака E)")]
     public Transform attackPoint; // Точка, откуда бьем
     public float attackRadius = 0.6f;
-    public float meleeDamage = 25f; // Урон мечом
+    public float meleeDamage = 25f; // Урон 
     public LayerMask enemyLayer;    // Какие слои считать врагами
     // --- Конец нового ---
 
