@@ -15,6 +15,11 @@ public class DialogueManager : MonoBehaviour
     public Transform optionsContainer;
     public GameObject optionButtonPrefab; // Наш префаб кнопки
 
+    // --- НОВЫЕ ПОЛЯ ДЛЯ ПОРТРЕТА И СКОРОСТИ ---
+    public UnityEngine.UI.Image portraitImage; // Ссылка на новый компонент UI
+    public float textAnimationSpeed = 0.02f;   // Скорость печати
+    // ------------------------------------------
+
     // --- Состояние ---
     private DialogueNode currentNode;
     private Queue<DialogueLine> lineQueue; // Очередь реплик
@@ -32,14 +37,32 @@ public class DialogueManager : MonoBehaviour
         }
 
         lineQueue = new Queue<DialogueLine>();
+        // ВАЖНО: Убедитесь, что панель диалога выключена на старте
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
     }
 
     public void StartDialogue(DialogueConversation conversation)
     {
         if (isDialogueActive) return;
 
+        // --- ПРОВЕРКА ДАННЫХ ---
+        if (conversation == null || conversation.startNode == null)
+        {
+            Debug.LogError("❌ Ошибка запуска: Conversation или StartNode равен NULL. Проверьте ассеты!");
+            return;
+        }
+        // -----------------------
+        
         isDialogueActive = true;
-        dialoguePanel.SetActive(true);
+        
+        // Проверяем, что панель подключена, прежде чем ее включать
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(true);
+        }
 
         // Тут можно поставить игру на паузу (Time.timeScale = 0)
         // или отключить управление игроком
@@ -52,16 +75,32 @@ public class DialogueManager : MonoBehaviour
         currentNode = node;
         lineQueue.Clear(); // Очищаем очередь
 
+        // --- ПРОВЕРКА: ЕСЛИ ЛИНИЙ ВООБЩЕ НЕТ, ВЫХОДИМ ---
+        if (node.lines == null || node.lines.Length == 0)
+        {
+            Debug.LogWarning("⚠️ Диалог пустой! Перехожу к вариантам.");
+            ShowOptions();
+            return;
+        }
+        // ----------------------------------------------
+
         // Заполняем очередь всеми репликами из этого узла
         foreach (DialogueLine line in node.lines)
         {
             lineQueue.Enqueue(line);
         }
 
+        // --- ДИАГНОСТИКА (1): СКОЛЬКО ДАННЫХ ПОЛУЧЕНО ---
+        Debug.Log($"[DEBUG] Node received. Lines in queue: {lineQueue.Count}.");
+        // ------------------------------------------------
+
         // Очищаем старые кнопки
-        foreach (Transform child in optionsContainer)
+        if (optionsContainer != null)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in optionsContainer)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         DisplayNextLine();
@@ -73,7 +112,16 @@ public class DialogueManager : MonoBehaviour
         if (lineQueue.Count > 0)
         {
             DialogueLine line = lineQueue.Dequeue();
-            nameText.text = line.characterName;
+            
+            // --- ПРОВЕРКА СУЩЕСТВОВАНИЯ UI ---
+            if (nameText != null) nameText.text = line.characterName;
+
+            // ОБНОВЛЕНИЕ: ПОКАЗЫВАЕМ ПОРТРЕТ
+            if (portraitImage != null && line.portrait != null)
+            {
+                portraitImage.sprite = line.portrait;
+            } 
+            // -------------------------------------
 
             StopAllCoroutines(); // Останавливаем прошлую "печатающую машинку"
             StartCoroutine(TypeSentence(line.text));
@@ -88,12 +136,18 @@ public class DialogueManager : MonoBehaviour
     // Эффект "пишущей машинки"
     IEnumerator TypeSentence(string sentence)
     {
+        // 🚨 ПРОВЕРКА: Если строка текста пустая, не запускаем корутину
+        if (string.IsNullOrEmpty(sentence) || dialogueText == null) yield break;
+        
         dialogueText.text = "";
+        
+        // Проверка: скорость не должна быть нулевой
+        float speed = textAnimationSpeed > 0 ? textAnimationSpeed : 0.02f;
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null; // Ждем 1 кадр
-            // yield return new WaitForSeconds(0.02f); // Для замедления
+            yield return new WaitForSeconds(speed); 
         }
     }
 
@@ -102,21 +156,50 @@ public class DialogueManager : MonoBehaviour
         // Если вариантов ответа нет, просто закрываем диалог
         if (currentNode.options.Length == 0)
         {
+            // Убедимся, что есть куда вставлять кнопку
+            if (optionButtonPrefab == null || optionsContainer == null)
+            {
+                EndDialogue();
+                return;
+            }
+            
             // Добавляем кнопку "Завершить" для наглядности
             GameObject buttonGO = Instantiate(optionButtonPrefab, optionsContainer);
-            buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = "Завершить";
-            buttonGO.GetComponent<Button>().onClick.AddListener(EndDialogue);
+            // ПРОВЕРКА: что есть компонент TMP для текста на кнопке
+            TextMeshProUGUI buttonText = buttonGO.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                 buttonText.text = "Завершить";
+            }
+            
+            Button buttonComponent = buttonGO.GetComponent<Button>();
+            if (buttonComponent != null)
+            {
+                buttonComponent.onClick.AddListener(EndDialogue);
+            }
             return;
         }
 
         // Создаем кнопки для каждого варианта
         foreach (DialogueOption option in currentNode.options)
         {
+            if (optionButtonPrefab == null || optionsContainer == null) break;
+            
             GameObject buttonGO = Instantiate(optionButtonPrefab, optionsContainer);
-            buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = option.optionText;
+            
+            TextMeshProUGUI buttonText = buttonGO.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                // Тут мы используем TextMeshProUGUI, который установлен в префабе кнопки
+                buttonText.text = option.optionText;
+            }
 
-            DialogueNode nextNode = option.nextNode;
-            buttonGO.GetComponent<Button>().onClick.AddListener(() => SelectOption(nextNode));
+            Button buttonComponent = buttonGO.GetComponent<Button>();
+            if (buttonComponent != null)
+            {
+                DialogueNode nextNode = option.nextNode;
+                buttonComponent.onClick.AddListener(() => SelectOption(nextNode));
+            }
         }
     }
 
@@ -135,7 +218,15 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         isDialogueActive = false;
-        dialoguePanel.SetActive(false);
+        
+        // --- ДИАГНОСТИКА (2): СРАБАТЫВАЕТ ЛИ ЗАВЕРШЕНИЕ СРАЗУ? ---
+        Debug.Log($"[DEBUG] Dialogue process ended.");
+        // ---------------------------------------------------------
+        
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
 
         // Тут возвращаем управление игроку (Time.timeScale = 1)
     }

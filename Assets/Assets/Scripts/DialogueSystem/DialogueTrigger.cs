@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Нужно для работы с UI
+using UnityEngine.UI; // Обязательно для Canvas
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -11,19 +11,34 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        // --- НОВАЯ ЧАСТЬ: ЧИНИМ КАМЕРУ ---
-        
-        // 1. Пытаемся найти Canvas внутри этого NPC (в детях)
+        // 1. Ищем Canvas в дочерних объектах этого NPC
         Canvas myCanvas = GetComponentInChildren<Canvas>();
         
-        // 2. Если нашли Canvas, ищем главную камеру и привязываем её
+        // --- ЧАСТЬ ДЛЯ ПРИВЯЗКИ КАМЕРЫ ---
+        
+        // Убедимся, что компонент Canvas найден
         if (myCanvas != null)
         {
-            myCanvas.worldCamera = Camera.main;
+            // Привязываем Главную Камеру, если она существует и помечена тегом "MainCamera"
+            if (Camera.main != null)
+            {
+                myCanvas.worldCamera = Camera.main;
+                Debug.Log("✔ Камера успешно привязана к Canvas NPC.");
+            }
+            else
+            {
+                // Это сработает, если забыли тег MainCamera на объекте камеры
+                Debug.LogError("❌ Главная камера не найдена! Убедитесь, что камера на сцене имеет тег 'MainCamera'!");
+            }
+        } 
+        else
+        {
+            // Это сработает, если забыли создать Canvas внутри префаба NPC
+            Debug.LogWarning("⚠️ Не найден Canvas в дочерних объектах NPC! Кнопка работать не будет.");
         }
         // ---------------------------------
 
-        // На старте прячем кнопку
+        // 2. На старте прячем кнопку
         if (talkButton != null)
             talkButton.SetActive(false);
     }
