@@ -2,19 +2,45 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    private bool opened = false;
+    private Animator _animator;
+    private bool _isOpened = false;
+
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+        if (_animator == null)
+        {
+            Debug.LogError("РљРѕРјРїРѕРЅРµРЅС‚ Animator РЅРµ РЅР°Р№РґРµРЅ РЅР° РѕР±СЉРµРєС‚Рµ СЃСѓРЅРґСѓРєР°: " + gameObject.name);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (opened) return;
+        if (_isOpened) return;
         if (!col.CompareTag("Player")) return;
 
-        opened = true; // чтобы второй раз не сработало
+        OpenChestSequence();
+    }
 
-        // показать окно выбора 3 апгрейдов
+    private void OpenChestSequence()
+    {
+        _isOpened = true; 
+        
+        // 1. Р—Р°РїСѓСЃРє Р°РЅРёРјР°С†РёРё
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Open");
+        }
+        
+        // 2. Р›РѕРіРёРєР° РІС‹РґР°С‡Рё Р»СѓС‚Р°
         FindObjectOfType<UpgradeManager>().TriggerUpgrade();
 
-        // удалить сундук (или открыть анимацией)
+        // 3. РЈРґР°Р»РµРЅРёРµ Р±СѓРґРµС‚ РІС‹Р·РІР°РЅРѕ С„СѓРЅРєС†РёРµР№ CleanUp С‡РµСЂРµР· Animation Event
+    }
+    
+    // !!! Р­РўРЈ Р¤РЈРќРљР¦РР® Р’Р«Р—Р«Р’РђР•Рў РђРќРРњРђРўРћР , РљРћР“Р”Рђ РђРќРРњРђР¦РРЇ Р—РђРљРђРќР§РР’РђР•РўРЎРЇ !!!
+    public void CleanUp()
+    {
         Destroy(gameObject);
     }
 }

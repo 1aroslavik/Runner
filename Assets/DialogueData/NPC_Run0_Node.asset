@@ -15,32 +15,34 @@ MonoBehaviour:
   lines:
   - characterName: Player
     text: hello? where am I? what is this place?
-    portrait: {fileID: 21300000, guid: f41f3c3b78a1547ad93d9dc5eb5344c9, type: 3}
+    portrait: {fileID: 21300000, guid: efb2a070b193c4d239a7befb5a2f08f0, type: 3}
   - characterName: Stranger
     text: ' wellcome back, dear friend'
-    portrait: {fileID: 21300000, guid: 5c82f2e0468034430a64c06239e2200c, type: 3}
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Stranger
-    text: finally ypu are here! imissed you
-    portrait: {fileID: 21300000, guid: a6eb83c895a634eee983c20822ba2967, type: 3}
+    text: finally you are here! i've missed you
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Player
     text: im sorry but i have never meet you before
-    portrait: {fileID: 21300000, guid: f41f3c3b78a1547ad93d9dc5eb5344c9, type: 3}
+    portrait: {fileID: 21300000, guid: efb2a070b193c4d239a7befb5a2f08f0, type: 3}
   - characterName: Stranger
     text: you've changed
-    portrait: {fileID: 21300000, guid: 5c82f2e0468034430a64c06239e2200c, type: 3}
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Stranger
     text: Il take care about you now
-    portrait: {fileID: 21300000, guid: 5c82f2e0468034430a64c06239e2200c, type: 3}
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Player
     text: really? thank you
-    portrait: {fileID: 21300000, guid: f41f3c3b78a1547ad93d9dc5eb5344c9, type: 3}
+    portrait: {fileID: 21300000, guid: efb2a070b193c4d239a7befb5a2f08f0, type: 3}
   - characterName: Player
     text: now tell me where am I?
-    portrait: {fileID: 21300000, guid: f41f3c3b78a1547ad93d9dc5eb5344c9, type: 3}
+    portrait: {fileID: 21300000, guid: efb2a070b193c4d239a7befb5a2f08f0, type: 3}
   - characterName: Stranger
     text: relax
-    portrait: {fileID: 21300000, guid: a6eb83c895a634eee983c20822ba2967, type: 3}
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Stranger
     text: try to reach the end
-    portrait: {fileID: 21300000, guid: a6eb83c895a634eee983c20822ba2967, type: 3}
-  options: []
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
+  options:
+  - optionText: Exit
+    nextNode: {fileID: 0}

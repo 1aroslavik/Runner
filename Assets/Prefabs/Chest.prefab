@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2650387884457619853}
   - component: {fileID: 8227976090123336831}
   - component: {fileID: 7824090921423687995}
+  - component: {fileID: 1927391040700514485}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.42, y: 10.78}
+    oldSize: {x: 2.884, y: 2.156}
     newSize: {x: 14.42, y: 10.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -147,3 +148,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5cd81e96ba611b4884f8a80d738436e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1927391040700514485
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241575905382877883}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dcd1e569c32f243989271689d6cd61e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
