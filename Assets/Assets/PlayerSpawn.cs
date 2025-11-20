@@ -8,6 +8,9 @@ public class PlayerSpawn : MonoBehaviour
     public GameObject playerPrefab;
     public Tilemap groundTilemap;
 
+    [Header("UPGRADES")]
+    public UpgradeUI upgradeUI;
+
     [Header("Camera")]
     public CameraFollow cameraFollow;
 
@@ -17,6 +20,7 @@ public class PlayerSpawn : MonoBehaviour
     [Header("Start Room Spawn Point")]
     [Tooltip("Тэг объекта внутри стартовой комнаты, который задаёт точку спавна игрока.")]
     public string spawnPointTag = "PlayerSpawnPoint";
+
 
     public void SpawnPlayer()
     {
@@ -34,7 +38,6 @@ public class PlayerSpawn : MonoBehaviour
 
         BoundsInt bounds = groundTilemap.cellBounds;
 
-        // 1) Пытаемся найти точку спавна внутри стартовой комнаты
         GameObject spawnObj = GameObject.FindWithTag(spawnPointTag);
         Vector3 spawnPos;
 
@@ -45,44 +48,42 @@ public class PlayerSpawn : MonoBehaviour
         }
         else
         {
-            // 2) Если точки нет — используем старую логику по тайлмапу
             Debug.LogWarning("⚠️ PlayerSpawnPoint не найден, ищу позицию по тайлмапу");
             spawnPos = FindSpawnPoint(bounds);
+
             if (spawnPos == Vector3.zero)
             {
-                Debug.LogError("❌ Не удалось найти ни PlayerSpawnPoint, ни валидную точку на тайлмапе!");
+                Debug.LogError("❌ Не удалось найти точку спавна!");
                 return;
             }
         }
 
-        // чуть приподнимаем игрока
-        spawnPos += Vector3.up * 0.0f; // 0, потому что в комнате ты уже сама выставишь высоту
-
         // создаём игрока
         GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 
-        // настраиваем камеру
-        CameraFollow cf = cameraFollow;
-        if (cf == null && Camera.main != null)
-            cf = Camera.main.GetComponent<CameraFollow>();
-
-        if (cf != null)
-            cf.SetTarget(player.transform);
-
-        Debug.Log("✔ Player spawned at " + spawnPos);
-
-        // запускаем спавн NPC вокруг игрока
-        if (npcSpawner != null)
+        // подключаем статы
+        PlayerStats stats = player.GetComponent<PlayerStats>();
+        if (upgradeUI != null)
         {
-            npcSpawner.SpawnNPCNear(player);
+            upgradeUI.playerStats = stats;
+            Debug.Log("✔ PlayerStats connected to UpgradeUI");
         }
         else
         {
-            Debug.LogWarning("⚠️ В PlayerSpawn не привязан NPC Spawner! NPC не появятся.");
+            Debug.LogError("❌ upgradeUI НЕ ПОДКЛЮЧЕН В PlayerSpawn!!!");
         }
+
+        // камера
+        if (cameraFollow != null)
+            cameraFollow.SetTarget(player.transform);
+
+        Debug.Log("✔ Player spawned at " + spawnPos);
+
+        // NPC
+        if (npcSpawner != null)
+            npcSpawner.SpawnNPCNear(player);
     }
 
-    // ===== ВСПОМОГАТЕЛЬНЫЙ ПОИСК ТОЧКИ НА ТАЙЛМАПЕ (ФОЛЛБЭК) =====
 
     private Vector3 FindSpawnPoint(BoundsInt bounds)
     {
@@ -91,16 +92,12 @@ public class PlayerSpawn : MonoBehaviour
         foreach (var pos in bounds.allPositionsWithin)
         {
             Vector3Int cell = new Vector3Int(pos.x, pos.y, 0);
-
             if (IsGoodSpawnPoint(cell))
                 validSpawns.Add(groundTilemap.GetCellCenterWorld(cell));
         }
 
         if (validSpawns.Count == 0)
-        {
-            Debug.LogError("❌ No valid spawn points found on tilemap!");
             return Vector3.zero;
-        }
 
         float centerX = (bounds.xMin + bounds.xMax) * 0.5f;
 
@@ -119,6 +116,7 @@ public class PlayerSpawn : MonoBehaviour
 
         return best + Vector3.up * 1.2f;
     }
+
 
     private bool IsGoodSpawnPoint(Vector3Int cell)
     {

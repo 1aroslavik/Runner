@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1293244363999998278}
   - component: {fileID: 2967127561807688742}
   - component: {fileID: 112906615098292802}
-  - component: {fileID: 5926737429105222871}
   - component: {fileID: 5823636399245760961}
+  - component: {fileID: 2958266065494178857}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -180,25 +180,17 @@ MonoBehaviour:
   arrowPrefab: {fileID: 7560335134571892222, guid: 6564af50bf385f44ba242d263f79780c, type: 3}
   arrowSpeed: 10
   arrowLifetime: 3
+  attackPoint: {fileID: 0}
+  attackRadius: 0.6
+  meleeDamage: 25
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 5
   sprintSpeed: 8
   jumpForce: 24
   groundCheck: {fileID: 0}
   groundCheckRadius: 0.2
---- !u!114 &5926737429105222871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459336307477340451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e563619bc927e1e41b0b6d8c813179ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthFill: {fileID: 0}
 --- !u!95 &5823636399245760961
 Animator:
   serializedVersion: 7
@@ -221,3 +213,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2958266065494178857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459336307477340451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99e2ccde626dc04e9dbd3a250261f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 0
+  damage: 10
+  moveSpeed: 5
+  attackSpeed: 1
+  critChance: 0
+  defence: 0
