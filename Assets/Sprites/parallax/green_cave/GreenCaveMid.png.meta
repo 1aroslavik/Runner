@@ -37,19 +37,19 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 80
+  spriteBorder: {x: 1, y: 26, z: 2, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -95,13 +95,7273 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: GreenCaveMid_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5d03d03f948415fafde9c96575ffe5
+      internalID: 1991474896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7776e332014aa402db9bdd9a904e55fa
+      internalID: -1501610893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2bae382d7cef44ce96858de3de2c336
+      internalID: -137886089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2382c6e61777d4b86a73df28d2c32b79
+      internalID: 1093364072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d947d55be626d400e8327bd93c9fa77c
+      internalID: 960019874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b73e53e52ea4db08f4deff03fcda4b
+      internalID: 858364239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb98544b204245d2b4a5d4d8dccfdc7
+      internalID: -1898141388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_7
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eec6db6f686248fa8d043394a6ede5d
+      internalID: 1919860456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_8
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9874e7cbbb646b886a3f9689167744
+      internalID: 988474173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_9
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec7c844f8a9f46baba26b4f96bcaff8
+      internalID: -651687386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a75d8835840c4a7386c1250b863f214
+      internalID: 1939622158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_11
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9437f39d30b5d47c697e6b5c05a01dbf
+      internalID: -1873834664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_12
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb318fe9c27324c19bf6661862937463
+      internalID: 1331389456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_13
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d41796c71be64f728291fb6d6619e15
+      internalID: 1343310107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_14
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68220390275dc47e18d85b1ce83e9676
+      internalID: -110457433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_15
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65aba8867cc84cf08a678144c9ae79e
+      internalID: 1576098672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_16
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef12bdea0164547919237717dce5a045
+      internalID: -586785938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_17
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d7c4fc87d1948f283961b989a08030
+      internalID: -1223925341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_18
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0377237d1e32e4b7ea3c9808a9dd7f9c
+      internalID: -1289947443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_19
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be21f2c0fbc043418d24eb2f0e1b558
+      internalID: 1736498685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_20
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c8fcbb07ac484dd4b2bb1a4015acc53
+      internalID: 1645602120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_21
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0284a3765734bacbd48da839cf0a03
+      internalID: 483066526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_22
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07978d1f4c6dd45e2bc6ff804ac170d8
+      internalID: 1782417658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_23
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3184f1190c4b046509169d42112cb003
+      internalID: -117166066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_24
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71fb13871da7946e2925bd164c2397ae
+      internalID: 1737496036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_25
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7987685b280c4f7c8e0d423dd2b52b8
+      internalID: 1728109749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_26
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e9e8bf6968b4aa6ace7867a9ac9dec
+      internalID: 1213912362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_27
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28492a260f8364e289abf958c8860f18
+      internalID: -1220571586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_28
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0859ed3ebf4f4b51b8013312584f8ff
+      internalID: -1203215779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_29
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 990
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7faa82b2f48c048cc8c1fd47bf36fcd2
+      internalID: 995023203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd1aca77427b496aa5fe6f9ed7995a7
+      internalID: -1515350644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_31
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b6ea41115224be58d0b8b20a910bc5
+      internalID: -1478211513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_32
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b549663aed14460b9295b4f4b1b7cc
+      internalID: -1770008069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_33
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e9a2cac53fa4dffabad5e9fd6f9148
+      internalID: 1572345324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_34
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db85a9b0f0ce847dca6b8ced733b3bc1
+      internalID: 1731451453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_35
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9306c54e32ef44abac525ce917fcef0
+      internalID: 1643530132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_36
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68d09fedbf2a541379066da332e628bd
+      internalID: 249092941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_37
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70fff9b1379c947c89975b2f7ced8145
+      internalID: -391943401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_38
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b5c15729f414f128e86fcbc75e6525
+      internalID: 1333150208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_39
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e356f23dd1a76493b9df2fc426af773c
+      internalID: 1684891382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_40
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cfe7e6eb873408db28fa57c3e143c9
+      internalID: -755643279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_41
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a70790d875584aa789bc2c2b5768892
+      internalID: 524337572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_42
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db64f09e332494da88ff0244ba6dfce7
+      internalID: -625262071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_43
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64e5eabdae5b4bf2b33ddf8c983b601
+      internalID: 1418108277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_44
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a41e56c465104e529454676027c5d9f
+      internalID: -380151785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_45
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156600e17b1854d8ca23791a35194d28
+      internalID: -1562515355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_46
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120b04e8843b843718b1f7a80a9e242a
+      internalID: 1901909248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_47
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc3612e3991b410aa34077ebe2e1c62
+      internalID: -1715308882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_48
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d132dc73e1ad1442d9b7931cec777218
+      internalID: 1296201376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_49
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501d3cf5e6d4a4d1fb2603144cdf0371
+      internalID: 1656872680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_50
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea45bb24018949eea786b2291070b9b
+      internalID: -432266363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_51
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed8811a254c24892a36c954878e5d30
+      internalID: -1723834542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_52
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b62c33b4f474190a7980d737d4f2aa
+      internalID: -855092511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_53
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b72385cf9ec4b2aaff6399aa2dc55f
+      internalID: 1820289516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_54
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19db2ec24b56e458ebd7b4baf73df51d
+      internalID: -1682788464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_55
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b865b8e93b4e84e21a27b911c9c2448d
+      internalID: 754931925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_56
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce4142618c0f4b998eba8a593ca018d
+      internalID: 1911596621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_57
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa6500b7561a421f84d955b34900c52
+      internalID: -1823000246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_58
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af395122537c4fa7a0e56d70f3b1545
+      internalID: 557733760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_59
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 900
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c00b35edf3a4e1cbb0848b9a1fa669
+      internalID: -1473475777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817737af03ce345ae997bda41b740451
+      internalID: 1256820175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_61
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be906cac38b84e3b9e592fd42cfd8f9
+      internalID: -924743453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_62
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b78bf90a655945bea1f5e8f9f69d849
+      internalID: 70459192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_63
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd484b4bfd8d48aaac678d8e167efdd
+      internalID: 299629752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_64
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e09252de62bd45a78e3842606ae8802
+      internalID: -314075577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_65
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b14c81e938d4ab38f8f48453b580f5
+      internalID: -1578448770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_66
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7983c5d7e644f2a90919544044e415
+      internalID: -522657915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_67
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe5059bcc5854f61a380467ff2d42c5
+      internalID: 43628629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_68
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb95126ef8314790a590ae6f8a4aeee
+      internalID: 827170825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_69
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84bf3b8d14845444c95075acc2344c1d
+      internalID: -51551591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_70
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d465a09deb254e8b84beaf8e024b4a9
+      internalID: -378389399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_71
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079a79f9e6d2847919a8260c16fee7a3
+      internalID: 1570530570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_72
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3712564f2912c40bb9e3e7ae2fd9704d
+      internalID: 2111774880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_73
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b236943b720da47a48bfda817f4305d2
+      internalID: 804657035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_74
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a6c1aa0553e47bc949355249b52829
+      internalID: -2058895282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_75
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 648fa5bebcdfa4a85967c0dfb12c7afc
+      internalID: 1934840223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_76
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319c9124ea6184dd4b637b9f1a409953
+      internalID: -843968164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_77
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603387db7b62c44d5811774c13c99cc0
+      internalID: -915678959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_78
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfd06e15bbc694d9facffc209ef33e7c
+      internalID: 1862829110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_79
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28f19554f53d84e5e8ca152dd8a8969e
+      internalID: 1342604750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_80
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491570c070b7e4186bf784d7e67f9efe
+      internalID: -594127693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_81
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3344c6c972c6d4ce7994e102de43db9a
+      internalID: 1684721366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_82
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f28cc70b31a42dd8566d6f9fd93af7
+      internalID: 725423274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_83
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186f77dccb62b4c77a8490ccf8f1fb2d
+      internalID: -2072978531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_84
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1db1eee0e1654a0f847e3aa8c3e4eaa
+      internalID: -427005244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_85
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676a4a05724d744f69cdd9290c0c6e1d
+      internalID: 1928792503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_86
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c535296047aa45a8a6636aebc1b2f6e
+      internalID: 1652978638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_87
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeee055317a9042129bfa3f15b9e985f
+      internalID: 951791392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_88
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73548dc639ed44293ba219075dd4838d
+      internalID: 977907098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_89
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 810
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2f7442b1628484981f8933e085a83b
+      internalID: -701948581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e943baf79f6144639372c3283c67076
+      internalID: 2035584668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_91
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a762b0c93f5fe4c0b8693c5f0596eb69
+      internalID: 1356826462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_92
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a288df8f400e74eef9afa46fece29aee
+      internalID: -1120637197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_93
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543aeb36f8f584d639bfadbc01a31c89
+      internalID: -657932303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_94
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f61d4a33425445ba84c553f59449434
+      internalID: -664843516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_95
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebf699e03c8c74c849f0b4bae3b5a67d
+      internalID: -287204593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_96
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7406b07aa68d4b54b82146d1632f864
+      internalID: -1153936077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_97
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 662669d5953444c259473543adbdb5b8
+      internalID: -1463505316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_98
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ef78a581f2c847fdb0f370e4af99bcf
+      internalID: -707355539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_99
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4ee137fa47b84e169e99435565e1a64
+      internalID: -1102166269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_100
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87d388bf1fb64522991eaebb5d2882a
+      internalID: 1110224256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_101
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed198ffe7d3e41e1be654ba1847d96f
+      internalID: -225812040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_102
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c975ce9c6f24071b4ac5805bad98f5
+      internalID: 1793230766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_103
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e46a8aadb45b43fea797e6d787da584
+      internalID: -26039764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_104
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf87a63e2c8af4acfbdff9b32b37bf55
+      internalID: -1457542372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_105
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291d72ba0d1524cb9a5f29dd1638437a
+      internalID: -926778882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_106
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5889236bb2cd5438e864f087a42eb6bb
+      internalID: 1442906038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_107
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e656390318d2f45f4bf3b30733351b57
+      internalID: 860460320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_108
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c2cfc1b0e0154620a47b7ac7ba5440a
+      internalID: 2023390365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_109
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c67c34a64b614bf79639f98fcae2619
+      internalID: -2070198660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_110
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4189875656d404beaa985150e4162823
+      internalID: -548978475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_111
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2518e9d12fdb4388a3414b1befb4ed1
+      internalID: 81623468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_112
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431bd8c5c3fae461c85c235e89df6373
+      internalID: -1727656644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_113
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1db6e88f5a344896af17d0f6597aa2c
+      internalID: -451769071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_114
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ffc3ffa073c49c29d7056e4280f532
+      internalID: -943077050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_115
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12e03386e03b4d98b73b0b6b09cf0ae
+      internalID: -417421390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_116
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52fb4b3523791490f957019ac7507126
+      internalID: 1271432564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_117
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6117cfb7df6de4022b6ff3cf6773b65b
+      internalID: -2064160569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_118
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb19dd5d57fe4cc78be6df27a103879
+      internalID: 436056792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_119
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 720
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d073a6199bc544a2b93cc4d76ee1ac2
+      internalID: -217493215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba942f09ff65470aae132757b6cabfb
+      internalID: -849557056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_121
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead32b8b3cf4d44beb69302aff4dd9a8
+      internalID: -769942756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_122
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70e02b1e43f0348e78a13d744f836777
+      internalID: 1362321952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_123
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a27f290bd6f7f419e9342075e7c8a15e
+      internalID: 543316615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_124
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d323bc79add4c599929992df58cbed
+      internalID: -1641426023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_125
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116786562643848a39af2a0b8503885b
+      internalID: -1218388744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_126
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42257ce873c9044d7b75323511eeedd1
+      internalID: 1385482465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_127
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53556986d61444110988a85efcbac247
+      internalID: 1626404547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_128
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760dd6b48a3de4d48ac63a8fba9d8508
+      internalID: 355353464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_129
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0f4c013ba3240b8b55719805a4cc51
+      internalID: 1391078193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_130
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f664a0c774604a11881adadcb0596cc
+      internalID: -743871727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_131
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ff7c70ca7c04d2b9676ea21ad9b54f
+      internalID: 1447617363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_132
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bad384d1af64c5d9c8e31bf8fde951
+      internalID: -1892825091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_133
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54aea5c2ffdc64def8b3e68d38f092b4
+      internalID: 1850352470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_134
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af673188613fe4033ba1cf1851fcaa21
+      internalID: 829153070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_135
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdeccae3460a649bcb75deef0a70bb18
+      internalID: 56003115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_136
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ae727691cb6469d9c0b11f8e9fdf44
+      internalID: 593074292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_137
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1218ed1ba754d4612a41c2f5d14fe5b3
+      internalID: 2109135912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_138
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6891c2617410d4eaf9ddad11e77b5970
+      internalID: 268891548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_139
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2eb275bd56014e16a67cef2950211fe
+      internalID: 1497140389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_140
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24986f04fa5fb40ad8d1f4fc1480ef43
+      internalID: 1432949773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_141
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d1a62bb52793473cad50fb3ae9dcca5
+      internalID: 472857666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_142
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f881ac423033464496421980a285615
+      internalID: -1640903919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_143
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e3a699897815465fb19e9ff825ba1ab
+      internalID: 691007155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_144
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b17839491b3d449369c78596b3aeca0a
+      internalID: 956612411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_145
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76196d0290e354ef7a8116a728073af2
+      internalID: -1854702901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_146
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 630
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d9147e60c9941d4bd0ca5b90cbc3dd
+      internalID: 1457006264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_147
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b697351d0f54a81a5d306ad6a7912a
+      internalID: -2020513628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_148
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 758fd2a8d0b1448e49a847eef5bbef7e
+      internalID: -1876949075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_149
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375f3b95a95b94dfeb3a61502d39a803
+      internalID: -406680263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_150
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f79e8027defa4144bb6e758bc16f96e
+      internalID: -1126600359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_151
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36440279662474c3aa5bf1b38c87cf3c
+      internalID: -1692423981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_152
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10265da24becc4f1ca6bde0e7dcf1fec
+      internalID: -348121502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_153
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c76182140b784968bafbf04d3f970de
+      internalID: -1943079729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_154
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e35894bc9f304424a4892551e31789f
+      internalID: -511278148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_155
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347c075f2501a423ab18668c21481746
+      internalID: -787956707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_156
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d19f7fc7810cb4c5db4fb6ad45001242
+      internalID: -759405244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_157
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b8c1bf394b94e439826aebe8d6f9db
+      internalID: -201493506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_158
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f08e6787901e94e43ab68b2fa34b6494
+      internalID: -670312105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_159
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f67ab8f16af4b2ea5a7f26aabca84d
+      internalID: 1664609027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_160
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9229a835b132549d6abc8d3f1352c025
+      internalID: 608982369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_161
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8246d8a44305c4a9c845134fcf3eb6f5
+      internalID: 1570958972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_162
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 160edae83d2494683b19294c3468f832
+      internalID: -1562035758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_163
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c876143548de4eafb45e31bd4b12d6d
+      internalID: 895840616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_164
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f6cf1f140593487ea471bdfc3e45a45
+      internalID: 1555780211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_165
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96831df220e354aa896fb3623938aaca
+      internalID: 1789411396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_166
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00dcc982f7384fe988de1d94ee95f03
+      internalID: -247627903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_167
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7036fcbd03614cde9355e636d49b9b3
+      internalID: -2095927470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_168
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c55d89054014c6a90400eb02c67143
+      internalID: -1645334136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_169
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c167e029acf24575a7a83d49868d98b
+      internalID: -1315671180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_170
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 540
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15a2ad9a1eaa4bcd85add315744ea3a
+      internalID: -2020958355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_171
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b4b317574bd44b4fa053765f6d9003e
+      internalID: -1475621273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_172
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02261f81796d14ea9b4387baee8f8778
+      internalID: -1926450780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_173
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf3d1e3e7a45438da02c39a995b0028
+      internalID: -992263858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_174
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ea53541ce554bea9364441b93b4241
+      internalID: -781394317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_175
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722fbb53677094275bf96a4eaf0cb9d8
+      internalID: -159688938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_176
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 934d1190dec004eb798ebe0d53651ccf
+      internalID: -630271802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_177
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41ad2fddae92e455ba37326dff55a1b2
+      internalID: 372269798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_178
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b56ae78906f4cb8bfb4e8fb5af194d
+      internalID: 380042746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_179
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3271406fe5734c9eaf54b5fc427a0cb
+      internalID: -273784746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_180
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44fe92f9f6fb6470893d0e3eec32fb08
+      internalID: 372491989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_181
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09c4d7e67047478095e5b0d112cf5fb
+      internalID: -140309472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_182
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd588a2c6d0e4c319ff40ee62eeafa4
+      internalID: -2114470842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_183
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1fddc93900942d6ba89da543bb6f9d
+      internalID: 1077181847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_184
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f0bc2f6242b4c0ebfc88427a6552df
+      internalID: 1434524389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_185
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002df36adf24141a9a19ab7818c9a06a
+      internalID: 731536817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_186
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ade176c064814173b22b00a6bcddf9c
+      internalID: -296876436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_187
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 307ce668eb6154cc89ba6e4acfa431cf
+      internalID: -1566881083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_188
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7e13331b43f4d77b9f2f1e61ae7ee4
+      internalID: -2044492222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_189
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df81df265b94d48c48b188540b35fc87
+      internalID: 1730317480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_190
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e918377e4ef5f402e95e03b83599196e
+      internalID: 83342023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_191
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90628e56459040608b5beac0c12a5f7
+      internalID: -713066252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_192
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 450
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6d2eb166b48481e9a8971a91a9cb3a
+      internalID: 558150741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_193
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deea4f4e79bc7486593839934481940a
+      internalID: -275496909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_194
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a6f48e0e6534b84b895ec639e106a0
+      internalID: 1261275103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_195
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4653b7e3a85147738ed6409ced5e40c
+      internalID: -490313055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_196
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06dbc2b7e719b4aa3b2ec5e1fa5efe16
+      internalID: 711129630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_197
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c23318b9ed5a84497a6099cf4acdff37
+      internalID: 41577501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_198
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9554100fcfd60489e805975857bfbbce
+      internalID: -1618275750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_199
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24099754998334e83886652eccda5451
+      internalID: 137121880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_200
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf884b09a94c34cf68c27bcb8b86cffd
+      internalID: -416801021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_201
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eed639d1adcdb4675b58fa84d6907ad1
+      internalID: 54412600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_202
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773d0a66634694b75ba6534f604581db
+      internalID: -1776286534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_203
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c63b66c8ae44947bd0ffe8a12bc8c4
+      internalID: -941815623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_204
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9149732af0e4be8ac7c6e810b1ac0f
+      internalID: 1175603258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_205
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58084d13431f34e30bb9611bfcf2ad7e
+      internalID: -1264865918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_206
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28692ce55fd6c4575907362f51ebf07a
+      internalID: -1316135381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_207
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf57648ad899340d8b1443356a380b65
+      internalID: -1875953705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_208
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f29668e713b9a42819b32dff3f2f7484
+      internalID: -190869108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_209
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 360
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf0631f683d04ca7a1d80f8680a859d
+      internalID: 1645625149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_210
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2645c5c719e248cba90ab4f2a8ec273
+      internalID: -563426448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_211
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f18cbbe279464323b2ba232ac3e22aa
+      internalID: 1042979415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_212
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74da8d9521834fd6a84e29d12df11da
+      internalID: 693441347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_213
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc722dd297cb94709a9b57d0cd5188a7
+      internalID: 1550378740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_214
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcef20e446254403e9a0779e4de921ae
+      internalID: -1392634443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_215
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cadb08bf187284da3a0b381b6f59b8fd
+      internalID: -1941731836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_216
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c10af0da35ab5482caa3bc43587b1238
+      internalID: -1883065450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_217
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ded99446cedd403c9ffb90545547f66
+      internalID: 480484390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_218
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65cd5ea9bbf354135baf527c9b27a59e
+      internalID: 619519549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_219
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc8aa123d0714e218d0cd8058b39d7d
+      internalID: -1193932700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_220
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cfeef929481a4077806a9ddb2fc2a7b
+      internalID: -1894663324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_221
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f4d83e38e934ad3ad467daccd33d8b
+      internalID: 914777859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_222
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba44c738c8f814a9595ecd2f7174a792
+      internalID: -366345923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_223
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd162ebd7f3046c59bec1ed77623463
+      internalID: 1220281182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_224
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55173eb1cc7864267bb57bf120627f83
+      internalID: 1899479796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_225
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf413173c47847589d4171077874d12
+      internalID: -1279154492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_226
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f010db38641248a7876d625e2957844
+      internalID: 982513418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_227
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b1e92d75d85141da9dd38054d644a57
+      internalID: -600427739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_228
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c5a983edc8f497ea836e71b92d884f
+      internalID: 1831099948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_229
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25cc77691983496297432c73c8bcf2b
+      internalID: -1046534695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_230
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffcfff6492a22462fa61789678ac311b
+      internalID: 1027793438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_231
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33060035da2904e6bb15548169e752a5
+      internalID: 738787619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_232
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbcb30819ca854c439c13ddeec9a0c65
+      internalID: -1662839703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_233
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a102f009d4dff4b00a9bc53c780e535a
+      internalID: 2060250384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_234
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4d1285b3d5e444abb6a6dc08774dae6
+      internalID: -1176689203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_235
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818c00fffa557457f9b9c6edf59dc171
+      internalID: -2055330437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_236
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 963c7d4d0d8274bd486d78af7df9067f
+      internalID: -1825735978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_237
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d23bce71d70d64ac882048e6179a7e4c
+      internalID: 312618701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_238
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 807630aa8d2a94682bbbf4a36f79969a
+      internalID: -602177620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_239
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 270
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 294826ea3db244ff6bb5b27a6962aa17
+      internalID: 629135905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_240
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de085bcb87dc4981b07aa26685a1f93
+      internalID: 232534117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_241
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf48b3e8dd674688a85a4fc751e77b8
+      internalID: -250141526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_242
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b19ae0fc8a840ec85a67fd2c61b6a8
+      internalID: -1997070610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_243
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7504753f9102d4f61901c3583bb0ef9b
+      internalID: -1548841172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_244
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0b023614029409489894b664d454b6
+      internalID: -40875856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_245
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41d80e09f9fad4c37b4e9bcd4a5f0e9d
+      internalID: -368763028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_246
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2567c4fb4727e4e1d90a89aa47c0f1dd
+      internalID: 574848363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_247
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b67bc819dad2a44669ae57994fde1ead
+      internalID: 1551384744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_248
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f210316cec7416ebab0a88dc063c1f
+      internalID: 1604738904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_249
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7e6fb9a0235492fb58511fea214307
+      internalID: 1312297283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_250
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81607a829ae92439d8d63bef82ad88ae
+      internalID: -51942856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_251
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221765bf200ee4319a83796b34c0f389
+      internalID: 1555973118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_252
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65942efab42c454f8eb6ea39c3dabcf
+      internalID: -2037864764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_253
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0a351d58f1e94e9aa883fe7df1f57c8
+      internalID: 1986512720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_254
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05b777db70124f738caa984aa5c6972
+      internalID: 429692863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_255
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4558e6541a7445f0bfaaa17d99da6c7
+      internalID: -1401592821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_256
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b6cbee9bdc94e6d977ad97585f28cd
+      internalID: -434575920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_257
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19af37e6ab29e475a895ba1435d7a911
+      internalID: 1279206574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_258
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df8e4e1838aba49518db0f7496fe296f
+      internalID: -673007714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_259
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e76ccc9c7f144913839c25a26088bee
+      internalID: 1767392986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_260
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f486ff1a25047399a47e1f610a4889
+      internalID: 8143952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_261
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b80c4e06aa94deab7b59260dbae3fe
+      internalID: -626044653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_262
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2fba12d5b764221a74aea226c59c8a
+      internalID: 1391332449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_263
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9447a9fdf76d647fb912c8d66ce019ca
+      internalID: 1701440707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_264
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb82c9df779ad4d9ebcffed2d9211d9a
+      internalID: 1773133200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_265
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45338bb2aa7dc4341afabbd625ad82c0
+      internalID: -699819623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_266
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2def60c90a24d1d8f6716aa9ae59fa
+      internalID: 1304315276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_267
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c5358c702daa4aa89c77c55691e323f
+      internalID: 2055544742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_268
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66269b5f619de47558fb04d3a688f1a3
+      internalID: 1927410771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_269
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 180
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01cef1cf593f4ec1814ae9dac041995
+      internalID: -216083438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_270
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a471b4b120ee46d28cd0f121b032ca4
+      internalID: 683084860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_271
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a158319d99b4f2082cd03005f5f8bc
+      internalID: 1478009267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_272
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44fc612d10fe8468d9762c6ccfc9f4f9
+      internalID: 1443426304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_273
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f267e02a55347401e968b3d953fa9b2d
+      internalID: 1415028245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_274
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fabf738c905c4f5ca7b7df8a694c07a
+      internalID: 1079591584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_275
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda423cd714614141bc9fc503c66e748
+      internalID: -2107709498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_276
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de794c9e0d5884302ba5f37007e9570b
+      internalID: 2134649019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_277
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30893760ffc2342fdaa7f99b32da608c
+      internalID: -1848301198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_278
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562bdce42e4e2429dabc9332bd869f9a
+      internalID: 14064665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_279
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0c5415c3a48437c97541d78b2c9775
+      internalID: -1243567429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_280
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc9d217e9c7943cea89f64b4a97a76e
+      internalID: 802194933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_281
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34338ac14550a41daac6d02e15f40d45
+      internalID: 1855912392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_282
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9da606d774ea4552aa2dfcfd447f515
+      internalID: -104328738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_283
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d12849043785f4379a04242191742cc2
+      internalID: 1067037238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_284
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b097de77c15494d38832fb62a85964bd
+      internalID: 731014137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_285
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3212b29d90f424bac74355d1947476
+      internalID: -823722064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_286
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d7a60927b2745cb8ebeda267afbe2b
+      internalID: -390225924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_287
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370052f5782cf4239ad521ac1c692065
+      internalID: -1590743644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_288
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431c999680f0f4b01b17ed6b48f12462
+      internalID: 1575865005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_289
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096a4e448ae3942d18986049747a2123
+      internalID: 721636226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_290
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c167387254a447096644228446f316
+      internalID: -194727917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_291
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a32cecd55bc8e41b9b3fae8a77a502ba
+      internalID: 1455390541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_292
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f30641848ee444e592fa9ad45eabee4
+      internalID: -398169559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_293
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d198bd6d744074213a1d0015012ed871
+      internalID: 916522961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_294
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df52b4ad87bb443f8e61854e1ccbbd8
+      internalID: -1692767181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_295
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dd3545dbd7664d658b19530e1138bdc
+      internalID: -717402991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_296
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5e3d2123bbe435580e3f1ce83e8175
+      internalID: -520994428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_297
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396b8ea64f2dc4e6bb52c4632b2c46b2
+      internalID: 1053938654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_298
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08459022665fd40c3b85bbac4ce0857d
+      internalID: -1871453891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_299
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 90
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 903bd2f274bad4ecebc1613ccc0b4d83
+      internalID: 1810814696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_300
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6412178bea1dd47d9a80f31fba36f4c6
+      internalID: -1329575586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_301
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d6201a3a7d844c7f9377a981233286b
+      internalID: -603719343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_302
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39680702201ca4b6fa09fdb6eb0e1318
+      internalID: -2075561864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_303
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca9f44a414a740598e38de2b47d040c
+      internalID: -1013099490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_304
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd171bef2ac884012a3ddb3d7d1bdab4
+      internalID: 947654980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_305
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32355711d453a400cba95d7c90ef095e
+      internalID: -691919057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_306
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c68e3bb60eb0b4cde958f1244265b93c
+      internalID: 1661036270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_307
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4f8bc00fa4f49069cba86e2b981ca3
+      internalID: -1102986684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_308
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06bb1dc1435fa48caaed5d4a900b0695
+      internalID: -52002145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_309
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110a518eb4a4a4b009f8f628f66d6c41
+      internalID: 2056700761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_310
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1da7a355a5a0b41e48459516921a1310
+      internalID: 1909566906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_311
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47515b8ee70754fe0990fb7ab9f1ff75
+      internalID: 1722342081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_312
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 214011a822fcc44bda17ae168153c8d1
+      internalID: 1241078873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_313
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50baf3e17d5714cc1ac5ad46f61c4a96
+      internalID: 1808218204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_314
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bc5f4d7db0af4d67a7d25b53b3bee1a
+      internalID: -1857944568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_315
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23af21483a7641f5b1eefc10c57d31f
+      internalID: 1995530438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_316
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3a86873c2f684a42bc8047a3e2dac0d
+      internalID: -279200444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_317
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b2cda12fdcf47b39a7330084eb8d09
+      internalID: 1198602201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_318
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbccc14ec7add440eb611379a3220256
+      internalID: 714170239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_319
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13c98749d9184a48a72fd735f11451b
+      internalID: 128254365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_320
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b61e6526decf4a49bc749a217ed3c9d
+      internalID: -895447957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_321
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21029cb396112428a8b80536529cc13d
+      internalID: 119370604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_322
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45e684389b284bcd9b9f35738964649
+      internalID: -1602795840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_323
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e6ad3d281cd45e781025e66645fdb5
+      internalID: 1424591263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_324
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e9dd261777e44d499d6d50eb637b79
+      internalID: -1805785552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_325
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbefb6571461f45ab882420ac95a4dfa
+      internalID: -1818490266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_326
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b01fc5e7b9034692bf470b4550da105
+      internalID: -1698904641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_327
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135bcea98f2e44ff6bc59b46f4f94f35
+      internalID: 862669508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_328
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec894462e70948f7824f695ce3e78b9
+      internalID: -690678541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenCaveMid_329
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 0
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4b73363e6584eff97844fb3c549f03
+      internalID: 24728198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -109,7 +7369,337 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GreenCaveMid_0: 1991474896
+      GreenCaveMid_1: -1501610893
+      GreenCaveMid_10: 1939622158
+      GreenCaveMid_100: 1110224256
+      GreenCaveMid_101: -225812040
+      GreenCaveMid_102: 1793230766
+      GreenCaveMid_103: -26039764
+      GreenCaveMid_104: -1457542372
+      GreenCaveMid_105: -926778882
+      GreenCaveMid_106: 1442906038
+      GreenCaveMid_107: 860460320
+      GreenCaveMid_108: 2023390365
+      GreenCaveMid_109: -2070198660
+      GreenCaveMid_11: -1873834664
+      GreenCaveMid_110: -548978475
+      GreenCaveMid_111: 81623468
+      GreenCaveMid_112: -1727656644
+      GreenCaveMid_113: -451769071
+      GreenCaveMid_114: -943077050
+      GreenCaveMid_115: -417421390
+      GreenCaveMid_116: 1271432564
+      GreenCaveMid_117: -2064160569
+      GreenCaveMid_118: 436056792
+      GreenCaveMid_119: -217493215
+      GreenCaveMid_12: 1331389456
+      GreenCaveMid_120: -849557056
+      GreenCaveMid_121: -769942756
+      GreenCaveMid_122: 1362321952
+      GreenCaveMid_123: 543316615
+      GreenCaveMid_124: -1641426023
+      GreenCaveMid_125: -1218388744
+      GreenCaveMid_126: 1385482465
+      GreenCaveMid_127: 1626404547
+      GreenCaveMid_128: 355353464
+      GreenCaveMid_129: 1391078193
+      GreenCaveMid_13: 1343310107
+      GreenCaveMid_130: -743871727
+      GreenCaveMid_131: 1447617363
+      GreenCaveMid_132: -1892825091
+      GreenCaveMid_133: 1850352470
+      GreenCaveMid_134: 829153070
+      GreenCaveMid_135: 56003115
+      GreenCaveMid_136: 593074292
+      GreenCaveMid_137: 2109135912
+      GreenCaveMid_138: 268891548
+      GreenCaveMid_139: 1497140389
+      GreenCaveMid_14: -110457433
+      GreenCaveMid_140: 1432949773
+      GreenCaveMid_141: 472857666
+      GreenCaveMid_142: -1640903919
+      GreenCaveMid_143: 691007155
+      GreenCaveMid_144: 956612411
+      GreenCaveMid_145: -1854702901
+      GreenCaveMid_146: 1457006264
+      GreenCaveMid_147: -2020513628
+      GreenCaveMid_148: -1876949075
+      GreenCaveMid_149: -406680263
+      GreenCaveMid_15: 1576098672
+      GreenCaveMid_150: -1126600359
+      GreenCaveMid_151: -1692423981
+      GreenCaveMid_152: -348121502
+      GreenCaveMid_153: -1943079729
+      GreenCaveMid_154: -511278148
+      GreenCaveMid_155: -787956707
+      GreenCaveMid_156: -759405244
+      GreenCaveMid_157: -201493506
+      GreenCaveMid_158: -670312105
+      GreenCaveMid_159: 1664609027
+      GreenCaveMid_16: -586785938
+      GreenCaveMid_160: 608982369
+      GreenCaveMid_161: 1570958972
+      GreenCaveMid_162: -1562035758
+      GreenCaveMid_163: 895840616
+      GreenCaveMid_164: 1555780211
+      GreenCaveMid_165: 1789411396
+      GreenCaveMid_166: -247627903
+      GreenCaveMid_167: -2095927470
+      GreenCaveMid_168: -1645334136
+      GreenCaveMid_169: -1315671180
+      GreenCaveMid_17: -1223925341
+      GreenCaveMid_170: -2020958355
+      GreenCaveMid_171: -1475621273
+      GreenCaveMid_172: -1926450780
+      GreenCaveMid_173: -992263858
+      GreenCaveMid_174: -781394317
+      GreenCaveMid_175: -159688938
+      GreenCaveMid_176: -630271802
+      GreenCaveMid_177: 372269798
+      GreenCaveMid_178: 380042746
+      GreenCaveMid_179: -273784746
+      GreenCaveMid_18: -1289947443
+      GreenCaveMid_180: 372491989
+      GreenCaveMid_181: -140309472
+      GreenCaveMid_182: -2114470842
+      GreenCaveMid_183: 1077181847
+      GreenCaveMid_184: 1434524389
+      GreenCaveMid_185: 731536817
+      GreenCaveMid_186: -296876436
+      GreenCaveMid_187: -1566881083
+      GreenCaveMid_188: -2044492222
+      GreenCaveMid_189: 1730317480
+      GreenCaveMid_19: 1736498685
+      GreenCaveMid_190: 83342023
+      GreenCaveMid_191: -713066252
+      GreenCaveMid_192: 558150741
+      GreenCaveMid_193: -275496909
+      GreenCaveMid_194: 1261275103
+      GreenCaveMid_195: -490313055
+      GreenCaveMid_196: 711129630
+      GreenCaveMid_197: 41577501
+      GreenCaveMid_198: -1618275750
+      GreenCaveMid_199: 137121880
+      GreenCaveMid_2: -137886089
+      GreenCaveMid_20: 1645602120
+      GreenCaveMid_200: -416801021
+      GreenCaveMid_201: 54412600
+      GreenCaveMid_202: -1776286534
+      GreenCaveMid_203: -941815623
+      GreenCaveMid_204: 1175603258
+      GreenCaveMid_205: -1264865918
+      GreenCaveMid_206: -1316135381
+      GreenCaveMid_207: -1875953705
+      GreenCaveMid_208: -190869108
+      GreenCaveMid_209: 1645625149
+      GreenCaveMid_21: 483066526
+      GreenCaveMid_210: -563426448
+      GreenCaveMid_211: 1042979415
+      GreenCaveMid_212: 693441347
+      GreenCaveMid_213: 1550378740
+      GreenCaveMid_214: -1392634443
+      GreenCaveMid_215: -1941731836
+      GreenCaveMid_216: -1883065450
+      GreenCaveMid_217: 480484390
+      GreenCaveMid_218: 619519549
+      GreenCaveMid_219: -1193932700
+      GreenCaveMid_22: 1782417658
+      GreenCaveMid_220: -1894663324
+      GreenCaveMid_221: 914777859
+      GreenCaveMid_222: -366345923
+      GreenCaveMid_223: 1220281182
+      GreenCaveMid_224: 1899479796
+      GreenCaveMid_225: -1279154492
+      GreenCaveMid_226: 982513418
+      GreenCaveMid_227: -600427739
+      GreenCaveMid_228: 1831099948
+      GreenCaveMid_229: -1046534695
+      GreenCaveMid_23: -117166066
+      GreenCaveMid_230: 1027793438
+      GreenCaveMid_231: 738787619
+      GreenCaveMid_232: -1662839703
+      GreenCaveMid_233: 2060250384
+      GreenCaveMid_234: -1176689203
+      GreenCaveMid_235: -2055330437
+      GreenCaveMid_236: -1825735978
+      GreenCaveMid_237: 312618701
+      GreenCaveMid_238: -602177620
+      GreenCaveMid_239: 629135905
+      GreenCaveMid_24: 1737496036
+      GreenCaveMid_240: 232534117
+      GreenCaveMid_241: -250141526
+      GreenCaveMid_242: -1997070610
+      GreenCaveMid_243: -1548841172
+      GreenCaveMid_244: -40875856
+      GreenCaveMid_245: -368763028
+      GreenCaveMid_246: 574848363
+      GreenCaveMid_247: 1551384744
+      GreenCaveMid_248: 1604738904
+      GreenCaveMid_249: 1312297283
+      GreenCaveMid_25: 1728109749
+      GreenCaveMid_250: -51942856
+      GreenCaveMid_251: 1555973118
+      GreenCaveMid_252: -2037864764
+      GreenCaveMid_253: 1986512720
+      GreenCaveMid_254: 429692863
+      GreenCaveMid_255: -1401592821
+      GreenCaveMid_256: -434575920
+      GreenCaveMid_257: 1279206574
+      GreenCaveMid_258: -673007714
+      GreenCaveMid_259: 1767392986
+      GreenCaveMid_26: 1213912362
+      GreenCaveMid_260: 8143952
+      GreenCaveMid_261: -626044653
+      GreenCaveMid_262: 1391332449
+      GreenCaveMid_263: 1701440707
+      GreenCaveMid_264: 1773133200
+      GreenCaveMid_265: -699819623
+      GreenCaveMid_266: 1304315276
+      GreenCaveMid_267: 2055544742
+      GreenCaveMid_268: 1927410771
+      GreenCaveMid_269: -216083438
+      GreenCaveMid_27: -1220571586
+      GreenCaveMid_270: 683084860
+      GreenCaveMid_271: 1478009267
+      GreenCaveMid_272: 1443426304
+      GreenCaveMid_273: 1415028245
+      GreenCaveMid_274: 1079591584
+      GreenCaveMid_275: -2107709498
+      GreenCaveMid_276: 2134649019
+      GreenCaveMid_277: -1848301198
+      GreenCaveMid_278: 14064665
+      GreenCaveMid_279: -1243567429
+      GreenCaveMid_28: -1203215779
+      GreenCaveMid_280: 802194933
+      GreenCaveMid_281: 1855912392
+      GreenCaveMid_282: -104328738
+      GreenCaveMid_283: 1067037238
+      GreenCaveMid_284: 731014137
+      GreenCaveMid_285: -823722064
+      GreenCaveMid_286: -390225924
+      GreenCaveMid_287: -1590743644
+      GreenCaveMid_288: 1575865005
+      GreenCaveMid_289: 721636226
+      GreenCaveMid_29: 995023203
+      GreenCaveMid_290: -194727917
+      GreenCaveMid_291: 1455390541
+      GreenCaveMid_292: -398169559
+      GreenCaveMid_293: 916522961
+      GreenCaveMid_294: -1692767181
+      GreenCaveMid_295: -717402991
+      GreenCaveMid_296: -520994428
+      GreenCaveMid_297: 1053938654
+      GreenCaveMid_298: -1871453891
+      GreenCaveMid_299: 1810814696
+      GreenCaveMid_3: 1093364072
+      GreenCaveMid_30: -1515350644
+      GreenCaveMid_300: -1329575586
+      GreenCaveMid_301: -603719343
+      GreenCaveMid_302: -2075561864
+      GreenCaveMid_303: -1013099490
+      GreenCaveMid_304: 947654980
+      GreenCaveMid_305: -691919057
+      GreenCaveMid_306: 1661036270
+      GreenCaveMid_307: -1102986684
+      GreenCaveMid_308: -52002145
+      GreenCaveMid_309: 2056700761
+      GreenCaveMid_31: -1478211513
+      GreenCaveMid_310: 1909566906
+      GreenCaveMid_311: 1722342081
+      GreenCaveMid_312: 1241078873
+      GreenCaveMid_313: 1808218204
+      GreenCaveMid_314: -1857944568
+      GreenCaveMid_315: 1995530438
+      GreenCaveMid_316: -279200444
+      GreenCaveMid_317: 1198602201
+      GreenCaveMid_318: 714170239
+      GreenCaveMid_319: 128254365
+      GreenCaveMid_32: -1770008069
+      GreenCaveMid_320: -895447957
+      GreenCaveMid_321: 119370604
+      GreenCaveMid_322: -1602795840
+      GreenCaveMid_323: 1424591263
+      GreenCaveMid_324: -1805785552
+      GreenCaveMid_325: -1818490266
+      GreenCaveMid_326: -1698904641
+      GreenCaveMid_327: 862669508
+      GreenCaveMid_328: -690678541
+      GreenCaveMid_329: 24728198
+      GreenCaveMid_33: 1572345324
+      GreenCaveMid_34: 1731451453
+      GreenCaveMid_35: 1643530132
+      GreenCaveMid_36: 249092941
+      GreenCaveMid_37: -391943401
+      GreenCaveMid_38: 1333150208
+      GreenCaveMid_39: 1684891382
+      GreenCaveMid_4: 960019874
+      GreenCaveMid_40: -755643279
+      GreenCaveMid_41: 524337572
+      GreenCaveMid_42: -625262071
+      GreenCaveMid_43: 1418108277
+      GreenCaveMid_44: -380151785
+      GreenCaveMid_45: -1562515355
+      GreenCaveMid_46: 1901909248
+      GreenCaveMid_47: -1715308882
+      GreenCaveMid_48: 1296201376
+      GreenCaveMid_49: 1656872680
+      GreenCaveMid_5: 858364239
+      GreenCaveMid_50: -432266363
+      GreenCaveMid_51: -1723834542
+      GreenCaveMid_52: -855092511
+      GreenCaveMid_53: 1820289516
+      GreenCaveMid_54: -1682788464
+      GreenCaveMid_55: 754931925
+      GreenCaveMid_56: 1911596621
+      GreenCaveMid_57: -1823000246
+      GreenCaveMid_58: 557733760
+      GreenCaveMid_59: -1473475777
+      GreenCaveMid_6: -1898141388
+      GreenCaveMid_60: 1256820175
+      GreenCaveMid_61: -924743453
+      GreenCaveMid_62: 70459192
+      GreenCaveMid_63: 299629752
+      GreenCaveMid_64: -314075577
+      GreenCaveMid_65: -1578448770
+      GreenCaveMid_66: -522657915
+      GreenCaveMid_67: 43628629
+      GreenCaveMid_68: 827170825
+      GreenCaveMid_69: -51551591
+      GreenCaveMid_7: 1919860456
+      GreenCaveMid_70: -378389399
+      GreenCaveMid_71: 1570530570
+      GreenCaveMid_72: 2111774880
+      GreenCaveMid_73: 804657035
+      GreenCaveMid_74: -2058895282
+      GreenCaveMid_75: 1934840223
+      GreenCaveMid_76: -843968164
+      GreenCaveMid_77: -915678959
+      GreenCaveMid_78: 1862829110
+      GreenCaveMid_79: 1342604750
+      GreenCaveMid_8: 988474173
+      GreenCaveMid_80: -594127693
+      GreenCaveMid_81: 1684721366
+      GreenCaveMid_82: 725423274
+      GreenCaveMid_83: -2072978531
+      GreenCaveMid_84: -427005244
+      GreenCaveMid_85: 1928792503
+      GreenCaveMid_86: 1652978638
+      GreenCaveMid_87: 951791392
+      GreenCaveMid_88: 977907098
+      GreenCaveMid_89: -701948581
+      GreenCaveMid_9: -651687386
+      GreenCaveMid_90: 2035584668
+      GreenCaveMid_91: 1356826462
+      GreenCaveMid_92: -1120637197
+      GreenCaveMid_93: -657932303
+      GreenCaveMid_94: -664843516
+      GreenCaveMid_95: -287204593
+      GreenCaveMid_96: -1153936077
+      GreenCaveMid_97: -1463505316
+      GreenCaveMid_98: -707355539
+      GreenCaveMid_99: -1102166269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

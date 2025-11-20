@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1b170273d946ab992492926841077, type: 3}
   m_Name: GreenCaveTheme
   m_EditorClassIdentifier: 
-  BackLayerSprite: {fileID: 0}
-  MidLayerSprite: {fileID: 0}
-  FrontLayerSprite: {fileID: 0}
-  cameraBackgroundColor: {r: 0, g: 1, b: 1, a: 1}
+  BackLayerSprite: {fileID: 21300000, guid: 4ad2b72dcc47b4eb486287d0d4e0dea2, type: 3}
+  MidLayerSprite: {fileID: 21300000, guid: 0c4465eadcea749eab0c068a1c7d7719, type: 3}
+  FrontLayerSprite: {fileID: 21300000, guid: ba96101fbb97247f48ff7292afd95762, type: 3}
+  cameraBackgroundColor: {r: 0.2224101, g: 0.3962264, b: 0.2780187, a: 1}

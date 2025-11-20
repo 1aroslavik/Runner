@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic; // Не используется, но можно оставить
 
 public class InfiniteParallax : MonoBehaviour
 {
@@ -6,11 +7,12 @@ public class InfiniteParallax : MonoBehaviour
     [Range(0f, 1f)]
     public float parallaxEffect = 0.5f; 
     
-    // ЭТО ПОЛЕ НУЖНО ДЛЯ BackgroundManager, чтобы он мог менять спрайты!
+    // Поле для BackgroundManager
     [HideInInspector] 
     public SpriteRenderer spriteRenderer; 
     
-    // public List<GameObject> generatedDecorations = new List<GameObject>(); // Это пригодится для генерации
+    // Публичное поле для декораций (можно временно закомментировать)
+    // public List<GameObject> generatedDecorations = new List<GameObject>(); 
 
     private float length; 
     private float startpos; 
@@ -19,26 +21,26 @@ public class InfiniteParallax : MonoBehaviour
     {
         if (cam == null) cam = Camera.main;
         
-        // ПОЛУЧАЕМ КОМПОНЕНТ SpriteRenderer ПРИ СТАРТЕ
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // Получаем SpriteRenderer
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
 
         if (spriteRenderer == null)
         {
-            // Здесь не должно быть ошибки, так как менеджер будет назначать спрайты.
-            // Но мы оставим проверку на всякий случай.
-            Debug.LogWarning($"InfiniteParallax на {gameObject.name} не нашел SpriteRenderer.", this);
-            return;
+            Debug.LogError($"[ПАРАЛЛАКС]: На объекте {gameObject.name} отсутствует компонент SpriteRenderer! Фон не будет работать.", this);
         }
     }
 
     void Start()
     {
-        // Перенесено из Awake, чтобы избежать ошибок, если WFC меняет размер спрайта
+        // Выполняется после Awake и после того, как BackgroundManager назначит спрайт
         if (spriteRenderer != null && spriteRenderer.sprite != null)
         {
             startpos = transform.position.x;
             // Получаем ширину спрайта для зацикливания
             length = spriteRenderer.bounds.size.x;
+        } else {
+            // Если спрайт не назначен, значит, менеджер не сработал или спрайт не загружен
+            Debug.LogWarning($"InfiniteParallax на {gameObject.name}: Спрайт отсутствует при старте. Движение не будет работать.", this);
         }
     }
 
@@ -47,27 +49,22 @@ public class InfiniteParallax : MonoBehaviour
         // Проверяем, что камера и длина существуют
         if (cam == null || length == 0) return;
 
-        // Вычисляем, насколько мы сместились относительно камеры
+        // Вычисляем смещение и двигаем фон
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 
-        // Двигаем фон
         transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
 
-        // Магия бесконечности: если камера ушла далеко вправо, "прыгаем" фоном вперед
+        // Магия бесконечности
         if (temp > startpos + length) startpos += length;
         else if (temp < startpos - length) startpos -= length;
     }
     
-    // Этот метод вам понадобится, когда вы вернете генерацию декораций
+    // Метод для очистки декораций (когда понадобится)
     /*
     public void ClearDecorations()
     {
-        foreach (GameObject deco in generatedDecorations)
-        {
-            Destroy(deco);
-        }
-        generatedDecorations.Clear();
+        // ...
     }
     */
 }
