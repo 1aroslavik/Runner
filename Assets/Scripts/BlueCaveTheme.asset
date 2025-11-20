@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1b170273d946ab992492926841077, type: 3}
   m_Name: BlueCaveTheme
   m_EditorClassIdentifier: 
-  BackLayerSprite: {fileID: -955342179, guid: 6666868b5c4fa4e3ab6d806ac797ca0d, type: 3}
-  MidLayerSprite: {fileID: 1336848387, guid: 6666868b5c4fa4e3ab6d806ac797ca0d, type: 3}
-  FrontLayerSprite: {fileID: 21300000, guid: 6cf576a3f0e4a4d1187556da31b1a213, type: 3}
+  BackLayerSprite: {fileID: 21300000, guid: 82c856ac52ed943f995013294f29f1fe, type: 3}
+  MidLayerSprite: {fileID: 21300000, guid: 6b390f73890194012808cbcf84dd9b0e, type: 3}
+  FrontLayerSprite: {fileID: 21300000, guid: e20b1bcba2b82476ea59e0169e9df1c2, type: 3}
   cameraBackgroundColor: {r: 0.1535244, g: 0.18463194, b: 0.2830189, a: 1}
