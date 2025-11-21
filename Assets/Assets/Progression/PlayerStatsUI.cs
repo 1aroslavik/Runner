@@ -7,7 +7,13 @@ public class PlayerStatsUI : MonoBehaviour
     public TMP_Text damageText;
     public TMP_Text speedText;
     public TMP_Text defenceText;
+    public PlayerStats stats;
 
+    void Start()
+    {
+        if (stats != null)
+            UpdateUI(stats);
+    }
     public void UpdateUI(PlayerStats stats)
     {
         hpText.text = $"HP: {stats.currentHealth}/{stats.maxHealth}";
