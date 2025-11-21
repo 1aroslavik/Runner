@@ -50,7 +50,8 @@ public class TunnelGenerator : MonoBehaviour
         );
         PlaceStartRoom(startCell);
 
-        CreateOpenCorridor(startCell, direction: +1);
+        // гарантированный проход
+        CreateOpenCorridor(startCell, +1);
 
         // ---------------- MAIN PATH ----------------
         var path = BuildMainTunnel(startCell, rnd);
@@ -64,7 +65,6 @@ public class TunnelGenerator : MonoBehaviour
         // ---------------- CARVE ----------------
         CarveMainTunnel(path);
         PatchFloor(path);
-
         AddSideBranches(path, rnd);
 
         PlaceDecorations(path, rnd);
@@ -73,15 +73,18 @@ public class TunnelGenerator : MonoBehaviour
         // ---------------- END ROOM ----------------
         Vector3Int end = path[path.Count - 1];
 
-        // ⬆ ФИКС: выставляем комнату по центру карты
+        // 🔥 Фикс: ставим фазовую высоту точно по центру Y
         end.y = Mathf.FloorToInt(bounds.center.y);
 
-        CutRect(end.x - 2, end.y - 2, end.x + 2, end.y + 2);
+        // вырезаем площадку
+        CutRect(end.x - 3, end.y - 3, end.x + 3, end.y + 3);
+
         PlaceEndRoom(end);
 
-        CreateOpenCorridor(end, direction: -1);
+        // гарантированный проход
+        CreateOpenCorridor(end, -1);
 
-        // ---------------- ENEMY SPAWN ----------------
+        // ---------------- ENEMIES ----------------
         if (enemySpawner != null)
         {
             enemySpawner.tilemap = map;
@@ -99,16 +102,22 @@ public class TunnelGenerator : MonoBehaviour
     // =====================================================================
     private void CreateOpenCorridor(Vector3Int cell, int direction)
     {
-        for (int dx = 0; dx <= 8; dx++)
+        // direction = +1 -> вправо
+        // direction = -1 -> влево
+
+        for (int dx = 0; dx <= 10; dx++)
         {
             int xx = cell.x + dx * direction;
-            for (int dy = -3; dy <= 3; dy++)
+            for (int dy = -4; dy <= +4; dy++)
             {
                 map.SetTile(new Vector3Int(xx, cell.y + dy, 0), null);
             }
         }
     }
 
+    // =====================================================================
+    // ROOM FINDER
+    // =====================================================================
     Transform FindDeep(Transform parent, string name)
     {
         foreach (Transform child in parent)
@@ -148,11 +157,6 @@ public class TunnelGenerator : MonoBehaviour
         Transform spawn = FindDeep(inst.transform, "BossSpawnPoint");
         Debug.Log("TRY PLACE END ROOM AT: " + tunnelCell);
 
-        if (!EndRoomPrefab)
-        {
-            Debug.LogError("❌ EndRoomPrefab = NULL!");
-            return;
-        }
         if (spawn != null && bossPrefab != null)
         {
             Instantiate(bossPrefab, spawn.position, Quaternion.identity);
@@ -205,6 +209,7 @@ public class TunnelGenerator : MonoBehaviour
 
             momentum += (targetY - y) * 0.05f;
             momentum += chaos * 0.3f;
+
             momentum = Mathf.Clamp(momentum, -3f, 3f);
 
             y += Mathf.RoundToInt(momentum);
@@ -235,7 +240,7 @@ public class TunnelGenerator : MonoBehaviour
     }
 
     // =====================================================================
-    // SHAPING + BRANCHES
+    // SHAPING
     // =====================================================================
     void ApplyHeightSteps(List<Vector3Int> path, System.Random rnd)
     {
@@ -279,6 +284,9 @@ public class TunnelGenerator : MonoBehaviour
         }
     }
 
+    // =====================================================================
+    // BRANCHES
+    // =====================================================================
     void AddSideBranches(List<Vector3Int> path, System.Random rnd)
     {
         for (int i = 15; i < path.Count - 25;)
