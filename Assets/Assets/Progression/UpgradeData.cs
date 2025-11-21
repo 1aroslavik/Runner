@@ -5,7 +5,6 @@ public class UpgradeData : ScriptableObject
 {
     public string upgradeName;
     public string description;
-
     public Sprite icon;
 
     public UpgradeType type;
@@ -15,9 +14,14 @@ public class UpgradeData : ScriptableObject
 public enum UpgradeType
 {
     MaxHP,
-    Damage,
+    MeleeDamage,
+    ArrowDamage,
     MoveSpeed,
+    SprintSpeed,
     AttackSpeed,
-    CritChance,
-    Defence
+    Defence,
+    JumpForce,
+    Regeneration,
+    CritChance
 }
+

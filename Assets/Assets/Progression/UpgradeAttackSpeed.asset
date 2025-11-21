@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e27b4f106c336442b88c06ca0a0fb4d, type: 3}
-  m_Name: UpgradeDamage
+  m_Name: UpgradeAttackSpeed
   m_EditorClassIdentifier: 
-  upgradeName: Damage
-  description: +10dmg
+  upgradeName: Attack Speed
+  description: +3
   icon: {fileID: 0}
-  type: 1
-  value: 10
+  type: 5
+  value: 3

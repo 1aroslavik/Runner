@@ -2,77 +2,70 @@
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Base Stats")]
-    public int maxHP = 100;
-    public int currentHP;
-    public float damage = 10f;
+    [Header("Основные параметры")]
+    public float maxHealth = 100f;
+    public float currentHealth = 100f;
+
     public float moveSpeed = 5f;
-    public float attackSpeed = 1f;
+    public float sprintSpeed = 8f;
 
-    [Header("Advanced (optional)")]
-    public float critChance = 0f;
-    public float defence = 0f;
+    public float meleeDamage = 20f;
+    public float arrowDamage = 30f;
 
-    void Start()
+    public float attackSpeed = 1f;   // чем больше — тем быстрее
+    public float defence = 0f;       // броня уменьшает урон
+
+    [Header("UI")]
+    public PlayerStatsUI statsUI;
+
+
+    private void Start()
     {
-        currentHP = maxHP;
+        currentHealth = maxHealth;
+
+        if (statsUI != null)
+            statsUI.UpdateUI(this);
     }
 
-    // ------------------------------------
-    //           APPLY UPGRADES
-    // ------------------------------------
-    public void AddHP(int amount)
+
+    // ===============================
+    //   Методы прокачки
+    // ===============================
+
+    public void AddMaxHP(float value)
     {
-        maxHP += amount;
-        currentHP += amount;
+        maxHealth += value;
+        currentHealth = maxHealth;
+        statsUI.UpdateUI(this);
     }
 
-    public void AddDamage(float amount)
+    public void AddMeleeDamage(float value)
     {
-        damage += amount;
+        meleeDamage += value;
+        statsUI.UpdateUI(this);
     }
 
-    public void AddMoveSpeed(float amount)
+    public void AddArrowDamage(float value)
     {
-        moveSpeed += amount;
+        arrowDamage += value;
+        statsUI.UpdateUI(this);
     }
 
-    public void AddAttackSpeed(float amount)
+    public void AddMoveSpeed(float value)
     {
-        attackSpeed -= amount;     // меньше — быстрее атака
-        if (attackSpeed < 0.1f) attackSpeed = 0.1f;
+        moveSpeed += value;
+        statsUI.UpdateUI(this);
     }
 
-    public void AddCritChance(float amount)
+    public void AddAttackSpeed(float value)
     {
-        critChance += amount;
+        attackSpeed += value;
+        statsUI.UpdateUI(this);
     }
 
-    public void AddDefence(float amount)
+    public void AddDefence(float value)
     {
-        defence += amount;
-    }
-
-    // ------------------------------------
-    //           DAMAGE SYSTEM
-    // ------------------------------------
-    public void TakeDamage(int dmg)
-    {
-        dmg -= Mathf.RoundToInt(defence);
-        if (dmg < 1) dmg = 1;
-
-        currentHP -= dmg;
-
-        if (currentHP <= 0)
-        {
-            currentHP = 0;
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("☠ Игрок умер");
-        // тут можно сделать рестарт карты
+        defence += value;
+        statsUI.UpdateUI(this);
     }
 }
