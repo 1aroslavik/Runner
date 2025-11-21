@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 112906615098292802}
   - component: {fileID: 5823636399245760961}
   - component: {fileID: 2958266065494178857}
+  - component: {fileID: 6134635174894412485}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -225,10 +226,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99e2ccde626dc04e9dbd3a250261f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  currentHP: 100
-  damage: 10
+  maxHealth: 100
+  currentHealth: 100
+  meleeDamage: 25
+  arrowDamage: 40
   moveSpeed: 5
-  attackSpeed: 1
-  critChance: 0
+  sprintSpeed: 8
+  jumpForce: 12
   defence: 0
+--- !u!114 &6134635174894412485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459336307477340451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e563619bc927e1e41b0b6d8c813179ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthFill: {fileID: 0}

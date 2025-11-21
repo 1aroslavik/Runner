@@ -1,16 +1,18 @@
+﻿using UnityEngine;
 using System.Linq;
-using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
     public UpgradeData[] allUpgrades;
     public UpgradeUI upgradeUI;
 
-    public void ShowRandom(PlayerStats stats)
+    public void TriggerUpgrade(PlayerStats stats)
     {
-        UpgradeData[] set =
-            allUpgrades.OrderBy(a => Random.value).Take(3).ToArray();
+        var chosen = allUpgrades
+            .OrderBy(x => Random.value)
+            .Take(3)
+            .ToArray();
 
-        upgradeUI.Show(set, stats);
+        upgradeUI.Show(chosen, stats);
     }
 }

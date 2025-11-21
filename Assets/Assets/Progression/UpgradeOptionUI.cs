@@ -23,8 +23,6 @@ public class UpgradeOptionUI : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("Option CLICKED!");  // ← тест
         ui.ChooseUpgrade(upgrade);
     }
-
 }

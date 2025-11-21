@@ -11,6 +11,7 @@ public class UpgradeData : ScriptableObject
     public float value;
 }
 
+
 public enum UpgradeType
 {
     MaxHP,
@@ -18,10 +19,7 @@ public enum UpgradeType
     ArrowDamage,
     MoveSpeed,
     SprintSpeed,
-    AttackSpeed,
-    Defence,
     JumpForce,
-    Regeneration,
-    CritChance
+    Defence
 }
 

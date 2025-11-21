@@ -2,53 +2,36 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    private Animator _animator;
-    private bool _isOpened = false;
+    private Animator anim;
+    private bool opened = false;
 
-    [Header("Система апгрейдов")]
-    public UpgradeManager upgradeManager;
+    private UpgradeManager upgradeManager;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 
-        if (_animator == null)
-            Debug.LogError("❌ Chest: Animator не найден!");
-
+        upgradeManager = FindObjectOfType<UpgradeManager>();
         if (upgradeManager == null)
-            Debug.LogError("❌ Chest: UpgradeManager не назначен!");
+            Debug.LogError("❌ Chest: UpgradeManager не найден!");
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (_isOpened) return;
+        if (opened) return;
         if (!col.CompareTag("Player")) return;
 
         PlayerStats stats = col.GetComponent<PlayerStats>();
+        if (stats == null) return;
 
-        if (stats == null)
-        {
-            Debug.LogError("❌ Chest: PlayerStats не найден у игрока!");
-            return;
-        }
+        opened = true;
 
-        _isOpened = true;
-        OpenChestSequence(stats);
+        if (anim != null)
+            anim.SetTrigger("Open");
+
+        upgradeManager.TriggerUpgrade(stats);
     }
 
-    private void OpenChestSequence(PlayerStats stats)
-    {
-        // 1. Запуск анимации
-        if (_animator != null)
-            _animator.SetTrigger("Open");
-
-        // 2. Выдать апгрейды
-        upgradeManager.ShowRandom(stats);
-
-        // 3. Удаление произойдет через Animation Event → CleanUp()
-    }
-
-    // ВЫЗЫВАЕТСЯ ИЗ АНИМАЦИИ (Animation Event)
     public void CleanUp()
     {
         Destroy(gameObject);

@@ -2,70 +2,54 @@
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Основные параметры")]
-    public float maxHealth = 100f;
-    public float currentHealth = 100f;
+    [Header("Здоровье")]
+    public float maxHealth = 100;
+    public float currentHealth = 100;
 
-    public float moveSpeed = 5f;
-    public float sprintSpeed = 8f;
+    [Header("Урон")]
+    public float meleeDamage = 25f;
+    public float arrowDamage = 40f;
 
-    public float meleeDamage = 20f;
-    public float arrowDamage = 30f;
+    [Header("Характеристики")]
+    public float moveSpeed = 5;
+    public float sprintSpeed = 8;
+    public float jumpForce = 12;
+    public float defence = 0;
 
-    public float attackSpeed = 1f;   // чем больше — тем быстрее
-    public float defence = 0f;       // броня уменьшает урон
-
-    [Header("UI")]
-    public PlayerStatsUI statsUI;
-
-
-    private void Start()
+    // ========= Методы улучшений =========
+    public void AddHP(int amount)
     {
-        currentHealth = maxHealth;
-
-        if (statsUI != null)
-            statsUI.UpdateUI(this);
-    }
-
-
-    // ===============================
-    //   Методы прокачки
-    // ===============================
-
-    public void AddMaxHP(float value)
-    {
-        maxHealth += value;
-        currentHealth = maxHealth;
-        statsUI.UpdateUI(this);
+        maxHealth += amount;
+        currentHealth += amount;
     }
 
     public void AddMeleeDamage(float value)
     {
         meleeDamage += value;
-        statsUI.UpdateUI(this);
     }
 
     public void AddArrowDamage(float value)
     {
         arrowDamage += value;
-        statsUI.UpdateUI(this);
     }
 
     public void AddMoveSpeed(float value)
     {
         moveSpeed += value;
-        statsUI.UpdateUI(this);
     }
 
-    public void AddAttackSpeed(float value)
+    public void AddSprintSpeed(float value)
     {
-        attackSpeed += value;
-        statsUI.UpdateUI(this);
+        sprintSpeed += value;
+    }
+
+    public void AddJumpForce(float value)
+    {
+        jumpForce += value;
     }
 
     public void AddDefence(float value)
     {
         defence += value;
-        statsUI.UpdateUI(this);
     }
 }
