@@ -119975,11 +119975,7 @@ MonoBehaviour:
   chestDistance: 50
   enemySpawner: {fileID: 1836066228}
   StartRoomPrefab: {fileID: 6093222412762566911, guid: 44f96d0dd110be84b82a21c60b6eb65f, type: 3}
-<<<<<<< HEAD
-  EndRoomPrefab: {fileID: 6093222412762566911, guid: a398cec618fce17418a6992d71b407bf, type: 3}
-=======
   EndRoomPrefab: {fileID: 4108613488743548901, guid: af43419dd30b53d4c8c07883b8e532f5, type: 3}
->>>>>>> bb2fbbe479d1d7ea01d02b729f8f2abe89fae1ff
   decorations: []
   decorChance: 0.12
   map: {fileID: 0}
