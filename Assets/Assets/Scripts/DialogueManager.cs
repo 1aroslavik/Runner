@@ -169,7 +169,7 @@ public class DialogueManager : MonoBehaviour
             TextMeshProUGUI buttonText = buttonGO.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
-                 buttonText.text = "Завершить";
+                 buttonText.text = "end";
             }
             
             Button buttonComponent = buttonGO.GetComponent<Button>();
