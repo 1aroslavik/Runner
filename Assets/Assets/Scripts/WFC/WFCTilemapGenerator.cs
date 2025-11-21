@@ -31,11 +31,17 @@ namespace WFC
 
         const int STEPS_PER_FRAME = 256; // ← ускоренная генерация
 
+      
+
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
         }
-
+  private void Start()
+        {
+            // Автоматическая генерация карты при запуске сцены
+            Generate();
+        }
         // ==========================================================
         //                           GENERATE
         // ==========================================================

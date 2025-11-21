@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,6 +7,9 @@ public class TunnelGenerator : MonoBehaviour
     [Header("Loot / Chests")]
     public GameObject chestPrefab;
     public int chestDistance = 200;
+
+    [Header("Enemies")]
+    public EnemySpawner enemySpawner;
 
     [Header("Rooms")]
     public GameObject StartRoomPrefab;
@@ -18,21 +21,17 @@ public class TunnelGenerator : MonoBehaviour
     public GameObject[] decorations;
     public float decorChance = 0.12f;
 
-    public List<Vector3Int> mainTunnelPath = new List<Vector3Int>();
-    public Vector3 startRoomWorldPos;
-    public Vector3 endRoomWorldPos;
-
-    // ‚ÌÛÚÂÌÌËÂ ‰‡ÌÌ˚Â
     [HideInInspector] public Tilemap map;
     [HideInInspector] public BoundsInt bounds;
 
+    public List<Vector3Int> mainTunnelPath = new();
+    public Vector3 startRoomWorldPos;
+    public Vector3 endRoomWorldPos;
+
     private int seed;
     private PlayerSpawn playerSpawn;
-    private int startRoomBottomY = -99999;
 
-    // ================================================================
-    //   œ”¡À»◊Õ€… «¿œ”—  »« WFC GENERATOR
-    // ================================================================
+    // =====================================================================
     public void GenerateTunnel(Tilemap tilemap, int seed, BoundsInt bounds, PlayerSpawn playerSpawn)
     {
         this.map = tilemap;
@@ -54,18 +53,10 @@ public class TunnelGenerator : MonoBehaviour
         var path = BuildMainTunnel(startCell, rnd);
         mainTunnelPath = new List<Vector3Int>(path);
 
-        // ---------------- ADD EXTRA SHAPING ----------------
+        // ---------------- EXTRAS ----------------
         ApplyHeightSteps(path, rnd);
         AddVerticalShafts(path, rnd);
         AddLargeCaves(path, rnd);
-        void CarveMainTunnel(List<Vector3Int> path)
-        {
-            foreach (var p in path)
-            {
-                // ÓÒÌÓ‚ÌÓÈ ÍÓË‰Ó 7 Ú‡ÈÎÓ‚ ¯ËËÌÓÈ (ÔÓ X) Ë 5 ÔÓ ‚˚ÒÓÚÂ (ÔÓ Y)
-                CutRect(p.x - 3, p.y - 2, p.x + 3, p.y + 2);
-            }
-        }
 
         // ---------------- CARVE MAIN TUNNEL ----------------
         CarveMainTunnel(path);
@@ -85,7 +76,7 @@ public class TunnelGenerator : MonoBehaviour
             i += rnd.Next(16, 30);
         }
 
-        // ---------------- DECORATIONS + LOOT ----------------
+        // ---------------- DECOR + LOOT ----------------
         PlaceDecorations(path, rnd);
         PlaceChests(path);
 
@@ -94,45 +85,37 @@ public class TunnelGenerator : MonoBehaviour
         CutRect(end.x - 2, end.y - 2, end.x + 2, end.y + 2);
         PlaceEndRoom(end);
 
+        // ---------------- ENEMY SPAWN (–ù–û–†–ú–ê–õ–¨–ù–´–ô –í–´–ó–û–í) ----------------
+        if (enemySpawner != null)
+        {
+            enemySpawner.tilemap = map;
+            enemySpawner.startRoomPos = startRoomWorldPos;
+            enemySpawner.endRoomPos = endRoomWorldPos;
+
+            enemySpawner.SpawnEnemiesAlongTunnel(mainTunnelPath);
+        }
+
         // ---------------- PLAYER SPAWN ----------------
         if (playerSpawn != null)
             playerSpawn.SpawnPlayer();
     }
 
-    // ================================================================
-    //   –¿«Ã≈Ÿ≈Õ»≈  ŒÃÕ¿“
-    // ================================================================
-
+    // =====================================================================
+    // ROOMS
+    // =====================================================================
     void PlaceStartRoom(Vector3Int tunnelCell)
     {
-        if (StartRoomPrefab == null) return;
+        if (!StartRoomPrefab) return;
 
         Vector3 world = map.CellToWorld(tunnelCell);
-        Tilemap roomMap = StartRoomPrefab.GetComponentInChildren<Tilemap>();
-        BoundsInt rb = roomMap.cellBounds;
-
-        float cell = roomMap.cellSize.x;
-        float rightEdge = rb.xMax * cell;
-
-        Vector3 pos = world;
-        pos.x -= Mathf.Abs(rightEdge) + StartRoomOffset;
-
-        GameObject inst = Instantiate(StartRoomPrefab, pos, Quaternion.identity, transform);
-
-        Transform spawnPoint = inst.transform.Find("PlayerSpawnPoint");
-        if (spawnPoint != null)
-        {
-            Vector3 w = spawnPoint.position;
-            Vector3Int c = map.WorldToCell(w);
-            startRoomBottomY = c.y - 1;
-        }
+        GameObject inst = Instantiate(StartRoomPrefab, world, Quaternion.identity, transform);
 
         startRoomWorldPos = inst.transform.position;
     }
 
     void PlaceEndRoom(Vector3Int tunnelCell)
     {
-        if (EndRoomPrefab == null) return;
+        if (!EndRoomPrefab) return;
 
         Vector3 world = map.CellToWorld(tunnelCell);
         GameObject inst = Instantiate(EndRoomPrefab, world, Quaternion.identity, transform);
@@ -140,11 +123,10 @@ public class TunnelGenerator : MonoBehaviour
         endRoomWorldPos = inst.transform.position;
     }
 
-    // ================================================================
-    //   "–≈«¿ »"
-    // ================================================================
-
-    public void CutRect(int x1, int y1, int x2, int y2)
+    // =====================================================================
+    // CUTTING
+    // =====================================================================
+    void CutRect(int x1, int y1, int x2, int y2)
     {
         if (x2 < x1) (x1, x2) = (x2, x1);
         if (y2 < y1) (y1, y2) = (y2, y1);
@@ -158,23 +140,21 @@ public class TunnelGenerator : MonoBehaviour
     {
         for (int dx = -rx; dx <= rx; dx++)
             for (int dy = -ry; dy <= ry; dy++)
-                if ((dx * dx) / (float)(rx * rx) + (dy * dy) / (float)(ry * ry) <= 1f)
+                if ((dx * dx) / (float)(rx * rx) + (dy * dy) <= 1f)
                     map.SetTile(center + new Vector3Int(dx, dy, 0), null);
     }
 
-    // ================================================================
-    //   Œ—ÕŒ¬ÕŒ… œ”“‹ (ÕŒ¬€… »«¬»À»—“€… ¿À√Œ–»“Ã)
-    // ================================================================
-
+    // =====================================================================
+    // MAIN PATH
+    // =====================================================================
     List<Vector3Int> BuildMainTunnel(Vector3Int start, System.Random rnd)
     {
-        List<Vector3Int> path = new List<Vector3Int>();
+        List<Vector3Int> path = new();
 
         int x = bounds.xMin;
         int y = start.y;
 
-        float dirY = 0f;
-        float momentum = 0f;
+        float momentum = 0;
         float noiseOffset = (seed % 9999);
 
         for (; x <= bounds.xMax; x++)
@@ -185,6 +165,7 @@ public class TunnelGenerator : MonoBehaviour
 
             momentum += (targetY - y) * 0.05f;
             momentum += chaos * 0.3f;
+
             momentum = Mathf.Clamp(momentum, -3f, 3f);
 
             y += Mathf.RoundToInt(momentum);
@@ -196,10 +177,15 @@ public class TunnelGenerator : MonoBehaviour
         return path;
     }
 
-    // ================================================================
-    //   ƒŒœŒÀÕ»“≈À‹Õ¿ﬂ ‘Œ–Ã¿ “”ÕÕ≈Àﬂ
-    // ================================================================
+    void CarveMainTunnel(List<Vector3Int> path)
+    {
+        foreach (var p in path)
+            CutRect(p.x - 3, p.y - 2, p.x + 3, p.y + 2);
+    }
 
+    // =====================================================================
+    // SHAPING
+    // =====================================================================
     void ApplyHeightSteps(List<Vector3Int> path, System.Random rnd)
     {
         for (int i = 12; i < path.Count - 12; i++)
@@ -234,24 +220,17 @@ public class TunnelGenerator : MonoBehaviour
             int rx = rnd.Next(5, 12);
             int ry = rnd.Next(4, 10);
 
-            for (int x = -rx; x <= rx; x++)
-                for (int y = -ry; y <= ry; y++)
-                    if ((x * x) / (float)(rx * rx) + (y * y) / (float)(ry * ry) <= 1f)
-                        map.SetTile(c + new Vector3Int(x, y, 0), null);
+            CutBlob(c, rx, ry);
 
-            // ‰ÓÔÓÎÌËÚÂÎ¸Ì˚Â ÏËÌË-ÔÂ˘Â˚
             for (int j = 0; j < rnd.Next(2, 5); j++)
-            {
                 CutBlob(c + new Vector3Int(rnd.Next(-rx, rx), rnd.Next(-ry, ry), 0),
                         rnd.Next(2, 4), rnd.Next(2, 4));
-            }
         }
     }
 
-    // ================================================================
-    //   ¬≈“¬»
-    // ================================================================
-
+    // =====================================================================
+    // BRANCHES
+    // =====================================================================
     List<Vector3Int> GrowSideBranch(Vector3Int from, System.Random rnd)
     {
         List<Vector3Int> b = new();
@@ -260,7 +239,7 @@ public class TunnelGenerator : MonoBehaviour
         int x = from.x;
         int y = from.y;
 
-        float dirY = 0;
+        float dy = 0;
         int dirX = rnd.Next(0, 2) == 0 ? -1 : +1;
 
         for (int i = 0; i < length; i++)
@@ -271,12 +250,11 @@ public class TunnelGenerator : MonoBehaviour
             float targetY = from.y + (n - 0.5f) * 10f;
             float chaos = (float)(rnd.NextDouble() - 0.5) * 4f;
 
-            dirY += (targetY - y) * 0.1f;
-            dirY += chaos * 0.4f;
+            dy += (targetY - y) * 0.1f;
+            dy += chaos * 0.4f;
+            dy = Mathf.Clamp(dy, -2f, 2f);
 
-            dirY = Mathf.Clamp(dirY, -2f, 2f);
-            y += Mathf.RoundToInt(dirY);
-
+            y += Mathf.RoundToInt(dy);
             y = Mathf.Clamp(y, bounds.yMin + 6, bounds.yMax - 6);
 
             b.Add(new Vector3Int(x, y, 0));
@@ -292,8 +270,7 @@ public class TunnelGenerator : MonoBehaviour
             CutBlob(p, 2, 1);
 
             if (rnd.Next(0, 100) < 30)
-                CutBlob(p + new Vector3Int(rnd.Next(-2, 3), rnd.Next(-2, 3), 0),
-                        3, 2);
+                CutBlob(p + new Vector3Int(rnd.Next(-2, 3), rnd.Next(-2, 3), 0), 3, 2);
         }
     }
 
@@ -303,13 +280,12 @@ public class TunnelGenerator : MonoBehaviour
         CutBlob(p + new Vector3Int(rnd.Next(-2, 3), rnd.Next(-2, 3), 0), 3, 2);
     }
 
-    // ================================================================
-    //   ƒ≈ Œ–¿÷»» / À”“
-    // ================================================================
-
+    // =====================================================================
+    // DECOR
+    // =====================================================================
     void PlaceChests(List<Vector3Int> path)
     {
-        if (chestPrefab == null) return;
+        if (!chestPrefab) return;
 
         for (int i = chestDistance; i < path.Count - chestDistance; i += chestDistance)
         {
@@ -333,6 +309,4 @@ public class TunnelGenerator : MonoBehaviour
             Instantiate(decorations[rnd.Next(decorations.Length)], world, Quaternion.identity);
         }
     }
-
-    // ================================================================
 }

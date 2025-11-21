@@ -1,69 +1,69 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Ссылки")]
-    public Tilemap groundTilemap;              // tilemap WFC Output
-    public GameObject enemyPrefab;             // враг
-    public EnemyType[] enemyTypes;             // <--- разные типы врагов
+    [Header("Основное")]
+    public GameObject enemyPrefab;
+    public Tilemap tilemap;
+    public int enemiesToSpawn = 15;
 
-    [Header("Параметры спавна")]
-    public int enemiesToSpawn = 10;            // сколько врагов генерировать
-    public int minDistanceBetween = 5;         // чтобы они не были в одной клетке
+    [Header("Не спавнить около комнат")]
+    public Vector3 startRoomPos;
+    public Vector3 endRoomPos;
+    public float safeRadius = 12f;
 
-    public void SpawnEnemies()
+    [Header("Типы врагов")]
+    public EnemyType[] enemyTypes; // ← вот они
+
+    public void SpawnEnemiesAlongTunnel(List<Vector3Int> tunnelPath)
     {
-        if (groundTilemap == null || enemyPrefab == null)
+        if (enemyPrefab == null)
         {
-            Debug.LogWarning("⚠ Нет Tilemap или EnemyPrefab");
+            Debug.LogError("❌ EnemySpawner: enemyPrefab не назначен!");
             return;
         }
-
+        if (tilemap == null)
+        {
+            Debug.LogError("❌ EnemySpawner: tilemap не назначен!");
+            return;
+        }
         if (enemyTypes == null || enemyTypes.Length == 0)
         {
-            Debug.LogError("❌ enemyTypes пустой — назначи ScriptableObject!");
+            Debug.LogError("❌ EnemySpawner: enemyTypes пустой! Назначи EnemyType");
             return;
         }
 
-        Debug.Log("👹 Генерируем врагов...");
-
-        BoundsInt bounds = groundTilemap.cellBounds;
         int spawned = 0;
-
         int safety = 0;
 
         while (spawned < enemiesToSpawn && safety < 5000)
         {
             safety++;
 
-            // случайная точка на карте
-            int x = Random.Range(bounds.xMin, bounds.xMax);
-            int y = Random.Range(bounds.yMin, bounds.yMax);
-            Vector3Int cell = new Vector3Int(x, y, 0);
+            // случайная точка туннеля
+            Vector3Int cell = tunnelPath[Random.Range(0, tunnelPath.Count)];
+            Vector3 worldPos = tilemap.CellToWorld(cell) + new Vector3(0.5f, 1.2f, 0f);
 
-            // проверяем, есть ли земля
-            if (!groundTilemap.HasTile(cell))
-                continue;
-
-            // проверяем, что над тайлом есть воздух (место для врага)
-            if (groundTilemap.HasTile(cell + Vector3Int.up))
-                continue;
-
-            // финальная позиция врага
-            Vector3 spawnPos = groundTilemap.CellToWorld(cell) + new Vector3(0.5f, 1f, 0f);
+            // избегаем старт/энда
+            if (Vector3.Distance(worldPos, startRoomPos) < safeRadius) continue;
+            if (Vector3.Distance(worldPos, endRoomPos) < safeRadius) continue;
 
             // создаём врага
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            GameObject enemyObj = Instantiate(enemyPrefab, worldPos, Quaternion.identity);
 
-            // НАЗНАЧАЕМ тип врага
-            Enemy e = enemy.GetComponent<Enemy>();
-            e.type = enemyTypes[Random.Range(0, enemyTypes.Length)];
-            e.ApplyType(); // вручную применяем параметры
+            // выбираем случайный EnemyType
+            Enemy enemy = enemyObj.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.type = enemyTypes[Random.Range(0, enemyTypes.Length)];
+                enemy.ApplyType();
+            }
 
             spawned++;
         }
 
-        Debug.Log($"✔ Спавн врагов завершён: {spawned}");
+        Debug.Log($"👹 Спавнер врагов: создано {spawned} врагов.");
     }
 }
