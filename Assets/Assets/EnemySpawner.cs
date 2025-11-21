@@ -7,7 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("Основное")]
     public GameObject enemyPrefab;
     public Tilemap tilemap;
-    public int spawnStep = 70;
+    // Используем spawnStep для определения, как часто спавнить врагов (каждый N-й шаг пути)
+    public int spawnStep = 70; // <-- Это поле, которое вы сохранили
 
     [Header("Не спавнить около комнат")]
     public Vector3 startRoomPos;
@@ -17,7 +18,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("Типы врагов")]
     public EnemyType[] enemyTypes;
 
-    public void SpawnEnemiesAlongTunnel(List<Vector3Int> path)
+    // ИСПРАВЛЕНО: Теперь функция принимает 'path' (путь туннеля), а не 'tunnelPath'
+    public void SpawnEnemiesAlongTunnel(List<Vector3Int> path) 
     {
         if (enemyPrefab == null)
         {
@@ -34,44 +36,53 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("❌ EnemySpawner: enemyTypes пустой! Назначи EnemyType");
             return;
         }
-
-        int spawned = 0;
-        int safety = 0;
-
-        while (spawned < enemiesToSpawn && safety < 5000)
+        if (path == null || path.Count == 0)
         {
-            safety++;
+            Debug.LogWarning("⚠️ EnemySpawner: Путь туннеля пуст. Невозможно спавнить врагов!");
+            return;
+        }
 
-            // случайная точка туннеля
-            Vector3Int cell = tunnelPath[Random.Range(0, tunnelPath.Count)];
+        int pathLength = path.Count; // <--- Используем длину пути для прогресса
+        int enemiesSpawned = 0; // <--- Счетчик для лога
+
+        // ИСПРАВЛЕНО: Заменяем цикл while на цикл for, чтобы использовать 'i' и длину пути.
+        // Спавним врага каждые 'spawnStep' клеток пути.
+        for (int i = 0; i < pathLength; i += spawnStep)
+        {
+            // 1. Получаем позицию
+            Vector3Int cell = path[i]; // <--- ИСПОЛЬЗУЕМ 'path' и 'i'
             Vector3 worldPos = tilemap.CellToWorld(cell) + new Vector3(0.5f, 1.2f, 0f);
 
+            // 2. Избегаем старт/энда
             if (Vector3.Distance(worldPos, startRoomPos) < safeRadius) continue;
             if (Vector3.Distance(worldPos, endRoomPos) < safeRadius) continue;
 
-            // создаём врага
+            // 3. Создаём врага
             GameObject enemyObj = Instantiate(enemyPrefab, worldPos, Quaternion.identity);
 
-            // выбираем случайный EnemyType
+            // 4. Настраиваем врага
             Enemy enemy = enemyObj.GetComponent<Enemy>();
 
             if (enemy == null)
             {
                 Debug.LogError("ПРЕДУПРЕЖДЕНИЕ: На префабе врага НЕТ компонента Enemy!");
+                Destroy(enemyObj); // Удаляем врага, если он не настроен
                 continue;
             }
-
-            // выбираем случайный тип врага
+            
+            // 5. Выбираем и применяем тип врага
             EnemyType chosenType = enemyTypes[Random.Range(0, enemyTypes.Length)];
-
-            // применяем тип
             enemy.ApplyType(chosenType);
 
-            // прогресс 0..1
-            float progress = (float)i / lastIndex;
+            // 6. Прогресс для усиления врага (0.0 на старте, 1.0 в конце)
+            float progress = (float)i / pathLength; // <--- ИСПОЛЬЗУЕМ 'i' и 'pathLength'
 
-            // усиление врага
+            // 7. Усиление врага
             enemy.ApplyDifficulty(progress);
+            
+            enemiesSpawned++; // Увеличиваем счетчик
         }
+
+        Debug.Log($"👹 Спавнер врагов: создано {enemiesSpawned} врагов.");
     }
 }
