@@ -69,7 +69,11 @@ public class EnemyAI : MonoBehaviour
 
         if (hp != null)
         {
-            hp.TakeDamage(enemy.damage);
+            // ИСПРАВЛЕНИЕ ОШИБКИ CS1503:
+            // Преобразуем урон (float) в целое число (int), округляя его.
+            int damageInt = Mathf.RoundToInt(enemy.damage);
+            
+            hp.TakeDamage(damageInt);
         }
     }
 }
