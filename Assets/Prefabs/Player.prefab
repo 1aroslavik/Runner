@@ -232,7 +232,7 @@ MonoBehaviour:
   arrowDamage: 40
   moveSpeed: 5
   sprintSpeed: 8
-  jumpForce: 12
+  jumpForce: 40
   defence: 0
 --- !u!114 &6134635174894412485
 MonoBehaviour:
@@ -248,4 +248,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  healthFill: {fileID: 0}

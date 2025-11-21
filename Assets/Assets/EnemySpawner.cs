@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Основное")]
     public GameObject enemyPrefab;
     public Tilemap tilemap;
-    public int enemiesToSpawn = 15;
+    public int spawnStep = 70;
 
     [Header("Не спавнить около комнат")]
     public Vector3 startRoomPos;
@@ -15,9 +15,9 @@ public class EnemySpawner : MonoBehaviour
     public float safeRadius = 12f;
 
     [Header("Типы врагов")]
-    public EnemyType[] enemyTypes; // ← вот они
+    public EnemyType[] enemyTypes;
 
-    public void SpawnEnemiesAlongTunnel(List<Vector3Int> tunnelPath)
+    public void SpawnEnemiesAlongTunnel(List<Vector3Int> path)
     {
         if (enemyPrefab == null)
         {
@@ -34,11 +34,6 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("❌ EnemySpawner: enemyTypes пустой! Назначи EnemyType");
             return;
         }
-        if (tunnelPath == null || tunnelPath.Count == 0)
-        {
-            Debug.LogError("❌ EnemySpawner: Путь туннеля пуст. Невозможно спавнить врагов!");
-            return;
-        }
 
         int spawned = 0;
         int safety = 0;
@@ -49,35 +44,34 @@ public class EnemySpawner : MonoBehaviour
 
             // случайная точка туннеля
             Vector3Int cell = tunnelPath[Random.Range(0, tunnelPath.Count)];
-            
-            // NOTE: Мы используем Vector3(0.5f, 1.2f, 0f) для позиционирования
             Vector3 worldPos = tilemap.CellToWorld(cell) + new Vector3(0.5f, 1.2f, 0f);
 
-            // избегаем старт/энда
             if (Vector3.Distance(worldPos, startRoomPos) < safeRadius) continue;
             if (Vector3.Distance(worldPos, endRoomPos) < safeRadius) continue;
 
             // создаём врага
             GameObject enemyObj = Instantiate(enemyPrefab, worldPos, Quaternion.identity);
-            enemyObj.name = $"Enemy_{spawned}"; // <--- ДЛЯ ОТЛАДКИ: даем имя
 
-            // Добавляем тег, если его нет
-            if (enemyObj.tag != "Enemy")
-            {
-                 enemyObj.tag = "Enemy";
-            }
-            
             // выбираем случайный EnemyType
             Enemy enemy = enemyObj.GetComponent<Enemy>();
-            if (enemy != null)
+
+            if (enemy == null)
             {
-                enemy.type = enemyTypes[Random.Range(0, enemyTypes.Length)];
-                enemy.ApplyType();
+                Debug.LogError("ПРЕДУПРЕЖДЕНИЕ: На префабе врага НЕТ компонента Enemy!");
+                continue;
             }
 
-            spawned++;
-        }
+            // выбираем случайный тип врага
+            EnemyType chosenType = enemyTypes[Random.Range(0, enemyTypes.Length)];
 
-        Debug.Log($"👹 Спавнер врагов: создано {spawned} врагов.");
+            // применяем тип
+            enemy.ApplyType(chosenType);
+
+            // прогресс 0..1
+            float progress = (float)i / lastIndex;
+
+            // усиление врага
+            enemy.ApplyDifficulty(progress);
+        }
     }
 }

@@ -14,8 +14,6 @@ public class TunnelGenerator : MonoBehaviour
     [Header("Rooms")]
     public GameObject StartRoomPrefab;
     public GameObject EndRoomPrefab;
-    public float StartRoomOffset = 3f;
-    public float EndRoomOffset = 3f;
 
     [Header("Decorations")]
     public GameObject[] decorations;
@@ -41,6 +39,9 @@ public class TunnelGenerator : MonoBehaviour
 
         System.Random rnd = new System.Random(seed);
 
+        // ❌ НЕ ЧИСТИМ КАРТУ! (WFC должна остаться)
+        // map.ClearAllTiles();
+
         // ---------------- START ROOM ----------------
         Vector3Int startCell = new Vector3Int(
             bounds.xMin + 5,
@@ -49,11 +50,14 @@ public class TunnelGenerator : MonoBehaviour
         );
         PlaceStartRoom(startCell);
 
+        // === ГАРАНТИРОВАННЫЙ ВЫХОД ИЗ СТАРТОВОЙ КОМНАТЫ ===
+        CreateOpenCorridor(startCell, direction: +1);
+
         // ---------------- MAIN PATH ----------------
         var path = BuildMainTunnel(startCell, rnd);
         mainTunnelPath = new List<Vector3Int>(path);
 
-        // ---------------- EXTRAS ----------------
+        // ---------------- SHAPING ----------------
         ApplyHeightSteps(path, rnd);
         AddVerticalShafts(path, rnd);
         AddLargeCaves(path, rnd);
@@ -61,20 +65,11 @@ public class TunnelGenerator : MonoBehaviour
         // ---------------- CARVE MAIN TUNNEL ----------------
         CarveMainTunnel(path);
 
+        // === УБИРАЕМ ДЫРКИ ПОД ТУННЕЛЕМ ===
+        PatchFloor(path);
+
         // ---------------- SIDE BRANCHES ----------------
-        for (int i = 15; i < path.Count - 25;)
-        {
-            if (rnd.Next(0, 100) < 55)
-            {
-                var br = GrowSideBranch(path[i], rnd);
-                CarveBranch(br, rnd);
-            }
-
-            if (rnd.Next(0, 100) < 35)
-                CarveMiniChamber(path[i], rnd);
-
-            i += rnd.Next(16, 30);
-        }
+        AddSideBranches(path, rnd);
 
         // ---------------- DECOR + LOOT ----------------
         PlaceDecorations(path, rnd);
@@ -85,19 +80,39 @@ public class TunnelGenerator : MonoBehaviour
         CutRect(end.x - 2, end.y - 2, end.x + 2, end.y + 2);
         PlaceEndRoom(end);
 
-        // ---------------- ENEMY SPAWN (НОРМАЛЬНЫЙ ВЫЗОВ) ----------------
+        // === ГАРАНТИРОВАННЫЙ ВХОД В КОНЕЧНУЮ КОМНАТУ ===
+        CreateOpenCorridor(end, direction: -1);
+
+        // ---------------- ENEMY SPAWN ----------------
         if (enemySpawner != null)
         {
             enemySpawner.tilemap = map;
             enemySpawner.startRoomPos = startRoomWorldPos;
             enemySpawner.endRoomPos = endRoomWorldPos;
-
             enemySpawner.SpawnEnemiesAlongTunnel(mainTunnelPath);
         }
 
         // ---------------- PLAYER SPAWN ----------------
         if (playerSpawn != null)
             playerSpawn.SpawnPlayer();
+    }
+
+    // =====================================================================
+    // GUARANTEED CORRIDOR (start & end)
+    // =====================================================================
+    private void CreateOpenCorridor(Vector3Int cell, int direction)
+    {
+        // direction = +1 → вправо (стартовая комната)
+        // direction = -1 → влево (конечная комната)
+
+        for (int dx = 0; dx <= 8; dx++)
+        {
+            int xx = cell.x + dx * direction;
+            for (int dy = -3; dy <= 3; dy++)
+            {
+                map.SetTile(new Vector3Int(xx, cell.y + dy, 0), null);
+            }
+        }
     }
 
     // =====================================================================
@@ -184,6 +199,18 @@ public class TunnelGenerator : MonoBehaviour
     }
 
     // =====================================================================
+    // FIX FLOOR HOLES
+    // =====================================================================
+    void PatchFloor(List<Vector3Int> path)
+    {
+        foreach (var p in path)
+        {
+            map.SetTile(new Vector3Int(p.x, p.y - 3, 0), null);
+            map.SetTile(new Vector3Int(p.x, p.y - 4, 0), null);
+        }
+    }
+
+    // =====================================================================
     // SHAPING
     // =====================================================================
     void ApplyHeightSteps(List<Vector3Int> path, System.Random rnd)
@@ -231,6 +258,23 @@ public class TunnelGenerator : MonoBehaviour
     // =====================================================================
     // BRANCHES
     // =====================================================================
+    void AddSideBranches(List<Vector3Int> path, System.Random rnd)
+    {
+        for (int i = 15; i < path.Count - 25;)
+        {
+            if (rnd.Next(0, 100) < 55)
+            {
+                var br = GrowSideBranch(path[i], rnd);
+                CarveBranch(br, rnd);
+            }
+
+            if (rnd.Next(0, 100) < 35)
+                CarveMiniChamber(path[i], rnd);
+
+            i += rnd.Next(16, 30);
+        }
+    }
+
     List<Vector3Int> GrowSideBranch(Vector3Int from, System.Random rnd)
     {
         List<Vector3Int> b = new();
