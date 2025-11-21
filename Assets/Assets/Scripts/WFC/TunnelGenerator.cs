@@ -4,6 +4,9 @@ using UnityEngine.Tilemaps;
 
 public class TunnelGenerator : MonoBehaviour
 {
+    [Header("Boss")]
+    public GameObject bossPrefab;
+
     [Header("Loot / Chests")]
     public GameObject chestPrefab;
     public int chestDistance = 200;
@@ -39,9 +42,6 @@ public class TunnelGenerator : MonoBehaviour
 
         System.Random rnd = new System.Random(seed);
 
-        // ❌ НЕ ЧИСТИМ КАРТУ! (WFC должна остаться)
-        // map.ClearAllTiles();
-
         // ---------------- START ROOM ----------------
         Vector3Int startCell = new Vector3Int(
             bounds.xMin + 5,
@@ -50,7 +50,6 @@ public class TunnelGenerator : MonoBehaviour
         );
         PlaceStartRoom(startCell);
 
-        // === ГАРАНТИРОВАННЫЙ ВЫХОД ИЗ СТАРТОВОЙ КОМНАТЫ ===
         CreateOpenCorridor(startCell, direction: +1);
 
         // ---------------- MAIN PATH ----------------
@@ -62,25 +61,24 @@ public class TunnelGenerator : MonoBehaviour
         AddVerticalShafts(path, rnd);
         AddLargeCaves(path, rnd);
 
-        // ---------------- CARVE MAIN TUNNEL ----------------
+        // ---------------- CARVE ----------------
         CarveMainTunnel(path);
-
-        // === УБИРАЕМ ДЫРКИ ПОД ТУННЕЛЕМ ===
         PatchFloor(path);
 
-        // ---------------- SIDE BRANCHES ----------------
         AddSideBranches(path, rnd);
 
-        // ---------------- DECOR + LOOT ----------------
         PlaceDecorations(path, rnd);
         PlaceChests(path);
 
         // ---------------- END ROOM ----------------
         Vector3Int end = path[path.Count - 1];
+
+        // ⬆ ФИКС: выставляем комнату по центру карты
+        end.y = Mathf.FloorToInt(bounds.center.y);
+
         CutRect(end.x - 2, end.y - 2, end.x + 2, end.y + 2);
         PlaceEndRoom(end);
 
-        // === ГАРАНТИРОВАННЫЙ ВХОД В КОНЕЧНУЮ КОМНАТУ ===
         CreateOpenCorridor(end, direction: -1);
 
         // ---------------- ENEMY SPAWN ----------------
@@ -92,19 +90,15 @@ public class TunnelGenerator : MonoBehaviour
             enemySpawner.SpawnEnemiesAlongTunnel(mainTunnelPath);
         }
 
-        // ---------------- PLAYER SPAWN ----------------
         if (playerSpawn != null)
             playerSpawn.SpawnPlayer();
     }
 
     // =====================================================================
-    // GUARANTEED CORRIDOR (start & end)
+    // GUARANTEED CORRIDOR
     // =====================================================================
     private void CreateOpenCorridor(Vector3Int cell, int direction)
     {
-        // direction = +1 → вправо (стартовая комната)
-        // direction = -1 → влево (конечная комната)
-
         for (int dx = 0; dx <= 8; dx++)
         {
             int xx = cell.x + dx * direction;
@@ -113,6 +107,20 @@ public class TunnelGenerator : MonoBehaviour
                 map.SetTile(new Vector3Int(xx, cell.y + dy, 0), null);
             }
         }
+    }
+
+    Transform FindDeep(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+                return child;
+
+            Transform result = FindDeep(child, name);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
 
     // =====================================================================
@@ -136,6 +144,23 @@ public class TunnelGenerator : MonoBehaviour
         GameObject inst = Instantiate(EndRoomPrefab, world, Quaternion.identity, transform);
 
         endRoomWorldPos = inst.transform.position;
+
+        Transform spawn = FindDeep(inst.transform, "BossSpawnPoint");
+        Debug.Log("TRY PLACE END ROOM AT: " + tunnelCell);
+
+        if (!EndRoomPrefab)
+        {
+            Debug.LogError("❌ EndRoomPrefab = NULL!");
+            return;
+        }
+        if (spawn != null && bossPrefab != null)
+        {
+            Instantiate(bossPrefab, spawn.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("❌ BossSpawnPoint НЕ найден внутри префаба EndRoom!");
+        }
     }
 
     // =====================================================================
@@ -180,7 +205,6 @@ public class TunnelGenerator : MonoBehaviour
 
             momentum += (targetY - y) * 0.05f;
             momentum += chaos * 0.3f;
-
             momentum = Mathf.Clamp(momentum, -3f, 3f);
 
             y += Mathf.RoundToInt(momentum);
@@ -211,7 +235,7 @@ public class TunnelGenerator : MonoBehaviour
     }
 
     // =====================================================================
-    // SHAPING
+    // SHAPING + BRANCHES
     // =====================================================================
     void ApplyHeightSteps(List<Vector3Int> path, System.Random rnd)
     {
@@ -255,9 +279,6 @@ public class TunnelGenerator : MonoBehaviour
         }
     }
 
-    // =====================================================================
-    // BRANCHES
-    // =====================================================================
     void AddSideBranches(List<Vector3Int> path, System.Random rnd)
     {
         for (int i = 15; i < path.Count - 25;)
