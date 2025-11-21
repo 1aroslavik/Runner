@@ -21,52 +21,68 @@ public class PlayerSpawn : MonoBehaviour
     [Tooltip("Тэг объекта внутри стартовой комнаты, который задаёт точку спавна игрока.")]
     public string spawnPointTag = "PlayerSpawnPoint";
 
+    // ПРИМЕЧАНИЕ: Здесь нет функций Awake/Start, что хорошо, 
+    // так как это предотвращает автоматический спавн без GameStateManager.
 
-    public void SpawnPlayer()
+    // ==========================================================
+    //                        ОЧИСТКА СТАРЫХ ИГРОКОВ
+    // ==========================================================
+    /// <summary>
+    /// Удаляет всех существующих игроков, чтобы гарантировать, что останется только один.
+    /// Вызывается перед SpawnPlayer.
+    /// </summary>
+    private void ClearOldPlayer()
     {
-        if (!playerPrefab)
+        // Ищем всех игроков по тегу.
+        var oldPlayers = GameObject.FindGameObjectsWithTag("Player");
+        if (oldPlayers.Length > 0)
         {
-            Debug.LogError("❌ Player prefab is missing!");
-            return;
+            Debug.Log($"Очистка: Найдено {oldPlayers.Length} старых игроков. Удаляем.");
         }
-
-        if (!groundTilemap)
+        
+        foreach (var player in oldPlayers)
         {
-            Debug.LogError("❌ groundTilemap is missing!");
-            return;
-        }
-
-        BoundsInt bounds = groundTilemap.cellBounds;
-
-        GameObject spawnObj = GameObject.FindWithTag(spawnPointTag);
-        Vector3 spawnPos;
-
-        if (spawnObj != null)
-        {
-            spawnPos = spawnObj.transform.position;
-            Debug.Log("✔ PlayerSpawnPoint найден, спавним игрока в стартовой комнате");
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ PlayerSpawnPoint не найден, ищу позицию по тайлмапу");
-            spawnPos = FindSpawnPoint(bounds);
-
-            if (spawnPos == Vector3.zero)
+            // Убеждаемся, что мы не удаляем сам Game Manager или другие важные объекты.
+            if (player.GetComponent<PlayerHealth>() != null) 
             {
-                Debug.LogError("❌ Не удалось найти точку спавна!");
-                return;
+                Destroy(player);
             }
         }
+    }
+    
+    // ==========================================================
+    //                        СПАВН ИГРОКА (ВЫЗЫВАЕТСЯ GAMEMANAGER)
+    // ==========================================================
+    public void SpawnPlayer()
+    {
+        // 1. ГАРАНТИРУЕМ, ЧТО НЕТ ДУБЛИКАТОВ
+        ClearOldPlayer(); 
+
+        // 2. ПОЛУЧАЕМ ПОЗИЦИЮ СПАВНА
+        Vector3 spawnPos = GetPlayerSpawnPosition();
+        
+        if (spawnPos == Vector3.zero)
+        {
+             Debug.LogError("❌ Не удалось найти точку спавна. Проверьте groundTilemap.");
+             return;
+        }
+
 
         // создаём игрока
         GameObject player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+        
+        // 3. ДОБАВЛЯЕМ ТЕГ "Player" (если префаб не имеет его)
+        if (player.tag != "Player")
+        {
+             player.tag = "Player";
+        }
 
         // подключаем статы
         PlayerStats stats = player.GetComponent<PlayerStats>();
         if (upgradeUI != null)
         {
             upgradeUI.playerStats = stats;
-            Debug.Log("✔ PlayerStats connected to UpgradeUI");
+            // Debug.Log("✔ PlayerStats connected to UpgradeUI");
         }
         else
         {
@@ -82,6 +98,36 @@ public class PlayerSpawn : MonoBehaviour
         // NPC
         if (npcSpawner != null)
             npcSpawner.SpawnNPCNear(player);
+    }
+
+    // ==========================================================
+    //             ПОЛУЧЕНИЕ ПОЗИЦИИ (ДЛЯ GAMEMANAGER)
+    // ==========================================================
+    /// <summary>
+    /// Возвращает координаты точки спавна, используя логику поиска тега или тайлмапа.
+    /// Используется GameStateManager.
+    /// </summary>
+    public Vector3 GetPlayerSpawnPosition()
+    {
+        if (!playerPrefab) return Vector3.zero;
+        if (!groundTilemap) return Vector3.zero;
+
+        BoundsInt bounds = groundTilemap.cellBounds;
+
+        GameObject spawnObj = GameObject.FindWithTag(spawnPointTag);
+        Vector3 spawnPos;
+
+        if (spawnObj != null)
+        {
+            spawnPos = spawnObj.transform.position;
+        }
+        else
+        {
+            // Debug.LogWarning("⚠️ PlayerSpawnPoint не найден, ищу позицию по тайлмапу");
+            spawnPos = FindSpawnPoint(bounds);
+        }
+        
+        return spawnPos;
     }
 
 

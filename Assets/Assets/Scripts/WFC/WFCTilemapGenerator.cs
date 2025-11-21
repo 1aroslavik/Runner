@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using SardineFish.Utils;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = System.Random; 
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -16,6 +18,9 @@ namespace WFC
     {
         [Header("Player Spawner")]
         public PlayerSpawn playerSpawn;
+        
+        [Header("Спавнеры")] // <--- НОВЫЙ ЗАГОЛОВОК
+        public EnemySpawner enemySpawner; // <--- ДОБАВЛЕНО: Ссылка на EnemySpawner
 
         public int Seed;
         public TilemapPattern TilemapPattern;
@@ -29,7 +34,7 @@ namespace WFC
         public TunnelGenerator tunnelGenerator;
         public SavedMapList savedMaps;
 
-        const int STEPS_PER_FRAME = 256; // ← ускоренная генерация
+        const int STEPS_PER_FRAME = 256; 
 
       
 
@@ -37,11 +42,63 @@ namespace WFC
         {
             _tilemap = GetComponent<Tilemap>();
         }
-  private void Start()
+        private void Start()
         {
             // Автоматическая генерация карты при запуске сцены
             Generate();
         }
+        
+        // ==========================================================
+        //                       PUBLIC RESTART (ДЛЯ GAMEMANAGER)
+        // ==========================================================
+        /// <summary>
+        /// Вызывается GameStateManager'ом. Запускает цикл очистки, сброса сида и новой генерации.
+        /// </summary>
+        public void GenerateNewLevel()
+        {
+            Debug.Log("WFC Генератор: Запуск цикла очистки и генерации нового уровня.");
+            
+            // 1. Очищаем все сгенерированные объекты
+            ClearGeneratedObjects(); 
+            
+            // 2. Запускаем генерацию
+            Generate();
+        }
+        
+        // ==========================================================
+        //                           CLEANUP
+        // ==========================================================
+        /// <summary>
+        /// Уничтожает все сгенерированные объекты (старых игроков, врагов, NPC и т.д.) перед новой генерацией.
+        /// </summary>
+        private void ClearGeneratedObjects()
+        {
+            // --- УДАЛЯЕМ ВСЕХ СТАРЫХ ИГРОКОВ (если GameStateManager кого-то пропустил) ---
+            var oldPlayers = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in oldPlayers)
+            {
+                if (player.GetComponent<PlayerHealth>() != null) 
+                {
+                    Destroy(player);
+                }
+            }
+            
+            // --- УДАЛЯЕМ ВРАГОВ И NPC ---
+            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (var enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+
+            var npcs = GameObject.FindGameObjectsWithTag("NPC");
+            foreach (var npc in npcs)
+            {
+                Destroy(npc);
+            }
+            
+            Debug.Log($"✔ Очистка завершена. Удалено игроков: {oldPlayers.Length - 1}, врагов: {enemies.Length}, NPC: {npcs.Length}.");
+        }
+        
         // ==========================================================
         //                           GENERATE
         // ==========================================================
@@ -64,9 +121,12 @@ namespace WFC
                 tm.ClearAllTiles();
 
             RandomSeed();
+            
+            // Останавливаем старую корутину генерации, если она еще работала!
+            StopAllCoroutines(); 
             StartCoroutine(GenerateProgressive());
         }
-
+        
         IEnumerator GenerateProgressive()
         {
             _generator.Reset(Seed);
@@ -100,17 +160,24 @@ namespace WFC
             }
 
             // -------------------- DO FINAL FILL -------------------------
-            ForceFillMap();
-
+            ForceFillMap(); 
+            
             // --------------------- GENERATE TUNNEL ----------------------
             if (tunnelGenerator != null)
                 tunnelGenerator.GenerateTunnel(_tilemap, Seed, Bounds, playerSpawn);
+                
+            // --------------------- СПАВН ВРАГОВ --------------------------
+            // ВЫЗЫВАЕМ СПАВНЕР ВРАГОВ ПОСЛЕ ТОГО, КАК ТУННЕЛЬ СГЕНЕРИРОВАН!
+            if (enemySpawner != null && tunnelGenerator != null)
+            {
+                enemySpawner.SpawnEnemiesAlongTunnel(tunnelGenerator.mainTunnelPath);
+            }
         }
 
         // ==========================================================
         //                 IMMEDIATE WFC (NO COROUTINE)
         // ==========================================================
-        private void GenerateImmediateWFC()
+        private void GenerateImmediateWFC() 
         {
             _tilemap.ClearAllTiles();
             TilemapPattern.ExtractPatterns();
@@ -139,7 +206,7 @@ namespace WFC
         // ==========================================================
         //                      FORCE FILL (FIXED)
         // ==========================================================
-        private void ForceFillMap()
+        private void ForceFillMap() 
         {
             var size = _generator.Size;
             System.Random rnd = new System.Random();
@@ -243,6 +310,9 @@ namespace WFC
                 Debug.LogError("❌ No saved maps!");
                 return;
             }
+            
+            // ОЧИСТКА ПРИ ЗАГРУЗКЕ КАРТЫ:
+            ClearGeneratedObjects(); 
 
             SavedMap map = savedMaps.maps[0];
             Seed = map.seed;

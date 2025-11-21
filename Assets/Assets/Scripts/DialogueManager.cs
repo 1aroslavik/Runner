@@ -232,29 +232,30 @@ public class DialogueManager : MonoBehaviour
     }
 
     // **********************************************
-    // 🔥 МЕТОД ДЛЯ GAME MANAGER 🔥
+    // 🔥 МЕТОД ДЛЯ GAME MANAGER (ИСПРАВЛЕНО!) 🔥
     // **********************************************
     
     /// <summary>
-    /// Запускает диалог, загружая его из Resources по имени узла (нода).
+    /// Запускает диалог, загружая его узел (Node) по имени. 
     /// Используется GameStateManager'ом после респавна.
     /// </summary>
-    /// <param name="nodeName">Имя ассета DialogueConversation для загрузки (например, "RespawnNode_1").</param>
+    /// <param name="nodeName">Имя ассета DialogueNode для загрузки (например, "RespawnNode_1").</param>
     public void StartDialogueNode(string nodeName)
     {
-        // Логика ищет ассет DialogueConversation с нужным именем в папке Resources/Dialogues.
-        // ПРОВЕРЬТЕ: что ассеты лежат в папке Resources/Dialogues
-        DialogueConversation conversation = Resources.Load<DialogueConversation>("Dialogues/" + nodeName);
+        // ИСПРАВЛЕНИЕ: Ищем правильный тип ассета: DialogueNode! 
+        // ИСПРАВЛЕНИЕ: Убираем пробел в пути "DialogueData /"
+        DialogueNode node = Resources.Load<DialogueNode>("DialogueData/" + nodeName);
         
-        if (conversation != null)
+        if (node != null)
         {
-            Debug.Log($"Запуск диалога по узлу: {nodeName}");
-            // Вызываем существующую функцию запуска
-            StartDialogue(conversation);
+            Debug.Log($"Запуск узла диалога по имени: {nodeName}");
+            
+            // Вызываем ShowNode, так как мы нашли нод (а не целую Conversation).
+            ShowNode(node); 
         }
         else
         {
-            Debug.LogError($"❌ Диалог или Conversation с именем '{nodeName}' не найден! Проверьте, что ассет существует и находится в папке Resources/Dialogues.");
+            Debug.LogError($"❌ Узел диалога с именем '{nodeName}' не найден! Проверьте, что ассет типа DialogueNode существует в папке Resources/DialogueData.");
         }
     }
 

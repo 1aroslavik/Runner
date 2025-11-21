@@ -372,7 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conversations:
   - {fileID: 11400000, guid: a018b6403ae7544c18feb78fd4210505, type: 2}
-  - {fileID: 11400000, guid: a018b6403ae7544c18feb78fd4210505, type: 2}
+  - {fileID: 11400000, guid: d50bb272e9cf9433cb24160f68d78563, type: 2}
+  - {fileID: 11400000, guid: 42ef237855cef45cab14f768716e2867, type: 2}
   talkButton: {fileID: 7803187307500975430}
 --- !u!61 &-2164507237679700569
 BoxCollider2D:

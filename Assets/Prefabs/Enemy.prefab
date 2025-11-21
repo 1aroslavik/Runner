@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6814230011878021348
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   moveSpeed: 2
-  damage: 10
+  damage: 30
   healthBarPrefab: {fileID: 6796965012762864519, guid: 25a5497ab08531545be349add3714404, type: 3}
 --- !u!114 &8630568539387872741
 MonoBehaviour:
@@ -201,10 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.2
   attackRate: 1
-  damage: 15
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  damage: 100
 --- !u!114 &8001011597046853384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthFill: {fileID: 0}
+  currentHealth: 0
 --- !u!114 &6121669771321508416
 MonoBehaviour:
   m_ObjectHideFlags: 0

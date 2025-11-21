@@ -73,11 +73,34 @@ public class DialogueTrigger : MonoBehaviour
             Debug.LogError("❌ Нет DialogueManager на сцене!");
             return;
         }
+        
+        // --- ИСПРАВЛЕНИЕ: ИСПОЛЬЗУЕМ GAMEMANAER ДЛЯ ПРОГРЕССА ---
+        int runCount = 0;
+        
+        if (GameStateManager.Instance != null)
+        {
+            // Получаем счетчик смертей (0 при первом прохождении, 1 при первом респавне и т.д.)
+            runCount = GameStateManager.Instance.DeathCount; 
+        }
+        else
+        {
+            Debug.LogError("❌ GameStateManager не найден! Прогресс диалогов невозможен.");
+            return;
+        }
+        // --------------------------------------------------------
 
-        int runCount = PlayerPrefs.GetInt("CurrentRunCount", 0);
         if (conversations.Length == 0) return;
 
+        // Выбираем диалог по остатку деления: (0, 1, 2, 0, 1, 2...)
         DialogueConversation conversationToPlay = conversations[runCount % conversations.Length];
+        
+        // Проверяем, что выбранный Conversation существует
+        if (conversationToPlay == null)
+        {
+            Debug.LogError($"❌ DialogueTrigger: Conversation для индекса {runCount % conversations.Length} (прохождение {runCount + 1}) не назначен в массиве!");
+            return;
+        }
+        
         DialogueManager.Instance.StartDialogue(conversationToPlay);
     }
 }

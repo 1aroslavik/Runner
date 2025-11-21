@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Linq; // Добавляем для сортировки
+using System.Linq; 
+using Random = UnityEngine.Random; 
 
 public class NPCSpawner : MonoBehaviour
 {
+    // Убираем старую заглушку и используем DialogueTrigger
+    
     [Header("Настройки")]
     public GameObject npcPrefab;
     public Tilemap groundTilemap;
@@ -15,45 +18,59 @@ public class NPCSpawner : MonoBehaviour
     public float idealMaxRadius = 8f;   
     
     [Header("Абсолютный Минимум")]
-    // NPC не должен спавниться ближе этой дистанции.
     public float absoluteMinDistance = 1.5f; 
+    
+    // ==========================================================
+    //                        ОЧИСТКА СТАРЫХ NPC 
+    // ==========================================================
+    public void ClearOldNPCs()
+    {
+        var oldNpcs = GameObject.FindGameObjectsWithTag("NPC");
+        if (oldNpcs.Length > 0)
+        {
+            Debug.Log($"Очистка NPC: Найдено {oldNpcs.Length} старых NPC. Удаляем.");
+        }
+        
+        foreach (var npc in oldNpcs)
+        {
+            Destroy(npc);
+        }
+    }
 
     public void SpawnNPCNear(GameObject player)
     {
+        // 1. ГАРАНТИРУЕМ ОЧИСТКУ ПЕРЕД СПАВНОМ НОВЫХ
+        ClearOldNPCs();
+        
         if (npcPrefab == null || groundTilemap == null)
         {
             Debug.LogError("❌ NPCSpawner: Не привязан префаб или тайлмап!");
             return;
         }
 
-        // Обновление физики земли
         groundTilemap.RefreshAllTiles();
         TilemapCollider2D col = groundTilemap.GetComponent<TilemapCollider2D>();
         if (col != null) col.ProcessTilemapChanges();
 
         Vector3 playerPos = player.transform.position;
         Vector3Int playerCell = groundTilemap.WorldToCell(playerPos);
+        
         List<Vector3> validSpawns = new List<Vector3>();
 
-        // 1. ПОПЫТКА 1: Строгий поиск в ИДЕАЛЬНОЙ зоне (3.5 - 8.0 м), ТОЛЬКО СПРАВА
         validSpawns = FindSpawnsInRadius(playerPos, playerCell, idealMinRadius, idealMaxRadius, true);
 
-        // 2. ПОПЫТКА 2: Аварийный поиск в БЛИЖНЕЙ зоне (1.5 - 3.5 м), ТОЛЬКО СПРАВА
         if (validSpawns.Count == 0)
         {
             Debug.LogWarning("NPCSpawner: Попытка 1 (справа) не удалась. Ищем в ближней зоне 1.5-3.5м.");
             validSpawns = FindSpawnsInRadius(playerPos, playerCell, absoluteMinDistance, idealMinRadius, true);
         }
         
-        // 3. ПОПЫТКА 3: ПОИСК ПОСЛЕДНЕЙ НАДЕЖДЫ (Ищем ЛЮБОЕ МЕСТО на всей карте > 1.5м)
         if (validSpawns.Count == 0)
         {
             Debug.LogWarning("⚠️ NPCSpawner: Ближний поиск провален. Ищем ЛЮБОЙ доступный пол на карте дальше 1.5м.");
             
-            // Ищем по всей карте, но требуем, чтобы место было ДОСТУПНО (IsGoodSpawnPoint)
             validSpawns = FindSpawnsAnywhere(playerPos, absoluteMinDistance);
             
-            // Если нашли, сортируем по близости к игроку, чтобы взять ближайший
             if (validSpawns.Count > 1)
             {
                 validSpawns = validSpawns.OrderBy(p => Vector3.Distance(p, playerPos)).ToList();
@@ -63,23 +80,36 @@ public class NPCSpawner : MonoBehaviour
         // --- Логика Инстанцирования ---
         if (validSpawns.Count > 0)
         {
+            // УДАЛЕНА ЛОГИКА РАСЧЕТА targetNodeName, т.к. DialogueTrigger делает это сам.
+            // УДАЛЕНА ЛОГИКА ЗАГРУЗКИ И УСТАНОВКИ ДИАЛОГОВОГО НОДА, т.к. она вызывала ошибки.
+
+
             for(int i = 0; i < npcCount; i++)
             {
                 if (validSpawns.Count == 0) break;
                 
-                // В случае "Последней надежды" validSpawns[0] - это ближайшая точка.
                 int rnd = (validSpawns.Count > 1 && validSpawns.Count < 5) ? 0 : Random.Range(0, validSpawns.Count); 
                 
                 Vector3 pos = validSpawns[rnd] + Vector3.up * 2.5f;
                 
-                Instantiate(npcPrefab, pos, Quaternion.identity);
+                GameObject newNpc = Instantiate(npcPrefab, pos, Quaternion.identity);
+
+                // *** ВЕСЬ БЛОК НАСТРОЙКИ ДИАЛОГА УДАЛЕН ***
+                // Теперь NPC будет использовать свой DialogueTrigger, 
+                // который сам считает прогресс через GameStateManager.
+
+                if (newNpc.tag != "NPC")
+                {
+                    newNpc.tag = "NPC";
+                }
+                
                 validSpawns.RemoveAt(rnd);
-                Debug.Log($"✅ NPC ГАРАНТИРОВАНО создан в {pos}.");
+                // Убрали Debug.Log, который ссылался на targetNodeName
+                Debug.Log($"✅ NPC создан в {pos}.");
             }
         }
         else
         {
-            // Это сообщение означает, что на карте нет ни одного доступного пола.
             Debug.LogWarning("❌ NPCSpawner: Не найдено НИ ОДНОЙ ДОСТУПНОЙ КЛЕТКИ на карте дальше 1.5м. Спавн невозможен.");
         }
     }
@@ -96,7 +126,7 @@ public class NPCSpawner : MonoBehaviour
             {
                 Vector3Int checkCell = playerCell + new Vector3Int(x, y, 0);
 
-                if (IsGoodSpawnPoint(checkCell)) // Требуем доступного места
+                if (IsGoodSpawnPoint(checkCell)) 
                 {
                     Vector3 worldPos = groundTilemap.GetCellCenterWorld(checkCell);
                     float dist = Vector3.Distance(worldPos, playerPos);
@@ -125,7 +155,6 @@ public class NPCSpawner : MonoBehaviour
         {
              Vector3Int checkCell = new Vector3Int(pos.x, pos.y, 0);
              
-             // KEY: Требуем, чтобы это был доступный пол, а не стена/потолок
              if (IsGoodSpawnPoint(checkCell)) 
              {
                 Vector3 worldPos = groundTilemap.GetCellCenterWorld(checkCell);
@@ -142,11 +171,8 @@ public class NPCSpawner : MonoBehaviour
     // --- Смягченная проверка пола/потолка (позволяет спавн в туннелях высотой 2 юнита) ---
     private bool IsGoodSpawnPoint(Vector3Int cell)
     {
-        // 1. Проверка: есть пол
         if (!groundTilemap.HasTile(cell)) return false; 
         
-        // 2. Проверка: гарантированно пуста ТОЛЬКО 1 клетка над полом.
-        // Мы убрали проверку второй клетки, чтобы спавн работал в узких туннелях.
         if (groundTilemap.HasTile(cell + Vector3Int.up)) return false; 
            
         return true;
