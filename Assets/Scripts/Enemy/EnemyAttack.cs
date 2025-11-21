@@ -44,7 +44,11 @@ public class EnemyAttack : MonoBehaviour
             var hp = hit.GetComponent<PlayerHealth>();
             if (hp != null)
             {
-                hp.TakeDamage(damage);
+                // ИСПРАВЛЕНИЕ ОШИБКИ CS1503:
+                // Преобразуем урон (float) в целое число (int), округляя его.
+                int damageInt = Mathf.RoundToInt(damage);
+
+                hp.TakeDamage(damageInt); // <-- Теперь передаем int
                 // Debug.Log("💢 Враг ударил игрока на " + damage);
             }
         }
