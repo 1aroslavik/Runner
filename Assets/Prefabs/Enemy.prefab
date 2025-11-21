@@ -166,7 +166,7 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &-6832564944333225844
@@ -202,9 +202,6 @@ MonoBehaviour:
   attackRange: 1.2
   attackRate: 1
   damage: 15
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!114 &8001011597046853384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthFill: {fileID: 0}
+  currentHealth: 0
 --- !u!114 &6121669771321508416
 MonoBehaviour:
   m_ObjectHideFlags: 0

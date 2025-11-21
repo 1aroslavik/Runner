@@ -27,8 +27,8 @@ public class Enemy : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
 
-        ApplyType();            // применяем ScriptableObject
-        SetupHealthBar();       // создаем полосу HP
+        ApplyType();            // базовые данные из ScriptableObject
+        SetupHealthBar();       // полоса HP
     }
 
 
@@ -53,6 +53,36 @@ public class Enemy : MonoBehaviour
         damage = type.damage;
     }
 
+    // Перегрузка с параметром — для спавнера
+    public void ApplyType(EnemyType newType)
+    {
+        type = newType;   // назначаем новый тип
+        ApplyType();      // используем уже существующую логику
+    }
+
+
+    // ================================
+    //  УСИЛЕНИЕ ПО ТУННЕЛЮ
+    // ================================
+    public void ApplyDifficulty(float progress)
+    {
+        // progress = 0..1
+
+        // Увеличиваем ХП
+        maxHealth *= Mathf.Lerp(1f, 3f, progress);
+        currentHealth = maxHealth;
+
+        // Увеличиваем урон
+        damage *= Mathf.Lerp(1f, 2f, progress);
+
+        // Скорость растёт слегка
+        moveSpeed *= Mathf.Lerp(1f, 1.25f, progress);
+
+        // Обновляем полоску HP
+        if (healthFill != null)
+            healthFill.fillAmount = 1f;
+    }
+
 
     // ================================
     //  СОЗДАТЬ ПОЛОСУ ЗДОРОВЬЯ
@@ -73,7 +103,6 @@ public class Enemy : MonoBehaviour
 
         hpCanvas = bar.GetComponentInChildren<Canvas>();
 
-        // ИСПОЛЬЗУЕМ рекурсивный поиск
         healthFill = FindHealthFill(bar.transform);
 
         if (healthFill == null)
@@ -106,7 +135,7 @@ public class Enemy : MonoBehaviour
 
 
     // ================================
-    //  ОБНОВЛЕНИЕ CANVAS ПОЗИЦИИ
+    //  ОБНОВЛЕНИЕ ПОЗИЦИИ HP BAR
     // ================================
     void Update()
     {
