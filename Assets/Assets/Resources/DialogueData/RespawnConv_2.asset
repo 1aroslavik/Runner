@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95557bc24f6643a4abc9bbb2365d778, type: 3}
   m_Name: RespawnConv_2
   m_EditorClassIdentifier: 
-  startNode: {fileID: 11400000, guid: 48aaf5bc3f4dc4f31ba0d353322fd5ae, type: 2}
+  startNode: {fileID: 11400000, guid: f574878bad7234a2aa81a5108df0aae2, type: 2}
