@@ -119970,7 +119970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa96ca69d6e7784eb5b3604a8e33fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 941307139030337743, guid: ff7139dd171e00a46b1c84588a23598b, type: 3}
+  bossPrefab: {fileID: 840805204114203791, guid: ff7139dd171e00a46b1c84588a23598b, type: 3}
   chestPrefab: {fileID: 4241575905382877883, guid: 32694498bd8ffe94f9686a8913065e8b, type: 3}
   chestDistance: 50
   enemySpawner: {fileID: 1836066228}
