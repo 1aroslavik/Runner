@@ -93,6 +93,12 @@ public class TunnelGenerator : MonoBehaviour
             enemySpawner.SpawnEnemiesAlongTunnel(mainTunnelPath);
         }
 
+        if (playerSpawn == null)
+        {
+            Debug.LogError("❌ TunnelGenerator: playerSpawn НЕ назначен! Игрок не будет заспавнен.");
+            return;
+        }
+
         if (playerSpawn != null)
             playerSpawn.SpawnPlayer();
     }

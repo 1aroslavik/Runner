@@ -13,7 +13,15 @@ public class PlayerStatsUI : MonoBehaviour
     {
         Debug.Log("PlayerStatsUI STARTED");
 
-        stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        var player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogError("PlayerStatsUI: Player НЕ найден на сцене!");
+            return;
+        } else {
+            stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        }
 
         if (stats != null)
             UpdateUI(stats);

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c9eabdbe1887a4cb810b7eba018479, type: 3}
   m_Name: EnemyType_slime
   m_EditorClassIdentifier: 
-  enemyName: Slime
-  sprite: {fileID: 21300000, guid: 1c7fcc14d49047445b915a3d80758b69, type: 3}
+  enemyName: Slimes
+  sprite: {fileID: 21300000, guid: 7ed2a24a3e82942f695dd5ecc190b782, type: 3}
   maxHealth: 100
   moveSpeed: 2
   damage: 15

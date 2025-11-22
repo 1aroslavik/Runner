@@ -105,6 +105,7 @@ namespace WFC
         [EditorButton]
         public void Generate()
         {
+            Debug.Log("[WFC Генератор]: Запуск генерации уровня...");
             LoadingScreenUI.Instance?.Show();
 
             if (!TilemapPattern)
@@ -131,6 +132,8 @@ namespace WFC
         
         IEnumerator GenerateProgressive()
         {
+            Debug.Log("[WFC Генератор]: Запуск прогрессивной генерации...");
+    
             _generator.Reset(Seed);
             yield return null;
 
@@ -162,14 +165,17 @@ namespace WFC
             }
 
             // -------------------- DO FINAL FILL -------------------------
+            Debug.Log("[WFC Генератор]: Завершение генерации (финальный фикс)...");
             ForceFillMap(); 
             
             // --------------------- GENERATE TUNNEL ----------------------
+            Debug.Log("[WFC Генератор]: Генерация туннеля...");
             if (tunnelGenerator != null)
                 tunnelGenerator.GenerateTunnel(_tilemap, Seed, Bounds, playerSpawn);
 
             // --------------------- СПАВН ВРАГОВ --------------------------
             // ВЫЗЫВАЕМ СПАВНЕР ВРАГОВ ПОСЛЕ ТОГО, КАК ТУННЕЛЬ СГЕНЕРИРОВАН!
+            Debug.Log("[WFC Генератор]: Спавн врагов...");
             if (enemySpawner != null && tunnelGenerator != null)
             {
                 enemySpawner.SpawnEnemiesAlongTunnel(tunnelGenerator.mainTunnelPath);
