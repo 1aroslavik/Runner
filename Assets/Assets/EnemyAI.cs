@@ -18,31 +18,34 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         
-        // 1. УСТОЙЧИВАЯ ИНИЦИАЛИЗАЦИЯ ANIMATOR: ищем на самом объекте
-        _animator = GetComponent<Animator>(); 
+        // --- ИСПРАВЛЕННАЯ ЛОГИКА AWAKE ---
+        // Используем GetComponentInChildren(true), чтобы найти на самом объекте ИЛИ дочернем, 
+        // даже если он неактивен.
+        _animator = GetComponentInChildren<Animator>(true); 
         
-        if (_animator == null)
-        {
-             // Если не нашли на себе, ищем на дочерних объектах (более надежный способ)
-             _animator = GetComponentInChildren<Animator>(); 
-             if (_animator == null)
-             {
-                 Debug.LogError("❌ Animator не найден. Анимация работать не будет!");
-             }
-        }
+        // if (_animator == null)
+        // {
+        //      Debug.LogError("❌ Animator не найден на враге или его потомках. Анимация работать не будет!");
+        // }
     }
     
     // МЕТОД START ДЛЯ ПРИНУДИТЕЛЬНОГО ЗАПУСКА АНИМАЦИИ
     void Start()
     {
+        if (_animator == null)
+        {
+            _animator = GetComponentInChildren<Animator>(true);
+        }
+
         if (_animator != null)
         {
-            // ПРИНУДИТЕЛЬНЫЙ СТАРТ: Убедитесь, что "EnemySlimeWalk" (или "EnemySkeletonWalk")
-            // ТОЧНО совпадает с именем вашего состояния ходьбы на карте!
+            // ПРИНУДИТЕЛЬНЫЙ СТАРТ:
+            // Убедитесь, что "EnemySlimeWalk" ТОЧНО совпадает с именем вашего состояния ходьбы!
             _animator.Play("EnemySlimeWalk"); 
-            // Установка скорости > 0 гарантирует, что анимация Walk запустится
             _animator.SetFloat("Speed", 1f); 
-            Debug.Log("✅ Аниматор принудительно запущен в состояние WALK.");
+            // Debug.Log("✅ Аниматор принудительно запущен в состояние WALK."); // Убираем лишний Debug.Log из Start
+        } else {
+            Debug.LogError("❌ Animator не найден на враге или его потомках. Анимация работать не будет!");
         }
     }
     
@@ -65,13 +68,10 @@ public class EnemyAI : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // 🛑 УДАЛЕНА ЛОГИКА IDLE: Враг всегда либо атакует, либо двигается
-        
         // -------- 1. Игрок рядом → атакуем (ATTACK) --------
         if (distance <= attackRange)
         {
             AttackPlayer();
-            // Враг останавливается для удара (ВАЖНО для синхронизации анимации)
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
 
@@ -98,8 +98,13 @@ public class EnemyAI : MonoBehaviour
 
         // 2. АНИМАЦИЯ WALK/RUN: Передаем абсолютное значение скорости
         float actualSpeed = Mathf.Abs(currentMoveSpeed);
-        if (_animator != null)
-            _animator.SetFloat("Speed", actualSpeed); 
+        // Debug.Log($"[EnemyAI]: Текущая скорость врага: {actualSpeed}"); // Убираем лишний Debug.Log из Move
+
+        if (_animator != null && _animator.runtimeAnimatorController == null)
+            Debug.LogError("❌ AnimatorController не назначен в Animator врага. Анимация работать не будет!");
+
+        if (_animator != null && _animator.runtimeAnimatorController != null)
+            _animator.SetFloat("Speed", actualSpeed);
 
         // поворот спрайта
         transform.localScale = new Vector3(direction, 1, 1);

@@ -51,6 +51,32 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         moveSpeed = type.moveSpeed;
         damage = type.damage;
+
+        if (type.prefabWithAnimator != null)
+        {
+            Animator myAnimator = GetComponentInChildren<Animator>(true);
+            Animator prefabAnimator = type.prefabWithAnimator.GetComponentInChildren<Animator>(true);
+
+            if (prefabAnimator == null)
+            {
+                prefabAnimator = type.prefabWithAnimator.GetComponent<Animator>();
+            }
+
+            if (myAnimator && prefabAnimator)
+            {
+                myAnimator.runtimeAnimatorController = prefabAnimator.runtimeAnimatorController;
+            }
+
+            if (myAnimator == null)
+            {
+                Debug.LogError("❌ myAnimator not found on Enemy!");
+            }
+
+            if (prefabAnimator == null)
+            {
+                Debug.LogError("❌ prefabAnimator not found on EnemyType prefab!");
+            }
+        }
     }
 
     // Перегрузка с параметром — для спавнера

@@ -8,4 +8,7 @@ public class EnemyType : ScriptableObject
     public float maxHealth = 100f;
     public float moveSpeed = 2f;
     public float damage = 15f;
+
+    [Header("Префаб с Анимациями")]
+    public GameObject prefabWithAnimator;
 }
