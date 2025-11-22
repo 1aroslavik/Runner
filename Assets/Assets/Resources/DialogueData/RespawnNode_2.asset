@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - characterName: Stranger
-    text: hello stranger! what are you diong here?
+    text: hello stranger! what are you doing here?
     portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Player
     text: what? we just saw each other
@@ -22,10 +22,13 @@ MonoBehaviour:
   - characterName: Stranger
     text: 'Im sorry, but I see you for the first time '
     portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
-  - characterName: Stranger
-    text: who are you?
-    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Player
     text: are you kidding me?
     portrait: {fileID: 21300000, guid: efb2a070b193c4d239a7befb5a2f08f0, type: 3}
+  - characterName: Stranger
+    text: don't worry! thic place is save!
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
+  - characterName: Stranger
+    text: you can try to reach the end!
+    portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   options: []
