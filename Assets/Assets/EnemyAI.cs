@@ -2,28 +2,52 @@
 
 public class EnemyAI : MonoBehaviour
 {
+    // === Настройки ИИ ===
     public float detectionRange = 6f;   
     public float attackRange = 1.2f;    
     public float attackCooldown = 1f;   
 
+    // === Приватные ссылки ===
     private Transform player;
-    private Enemy enemy;    // Мы не будем инициализировать это в Awake
+    private Enemy enemy;    
     private Rigidbody2D rb;
+    private Animator _animator; // <-- Ссылка на Animator
     private float lastAttackTime;
 
     void Awake()
     {
-        // Только то, что нужно для самого врага сразу:
         rb = GetComponent<Rigidbody2D>();
         
-        // ВНИМАНИЕ: Ссылку на "enemy" (статы) убрали из Awake!
-        // Она будет искаться в момент атаки, когда спавнер ее точно настроит.
+        // 1. УСТОЙЧИВАЯ ИНИЦИАЛИЗАЦИЯ ANIMATOR: ищем на самом объекте
+        _animator = GetComponent<Animator>(); 
+        
+        if (_animator == null)
+        {
+             // Если не нашли на себе, ищем на дочерних объектах (более надежный способ)
+             _animator = GetComponentInChildren<Animator>(); 
+             if (_animator == null)
+             {
+                 Debug.LogError("❌ Animator не найден. Анимация работать не будет!");
+             }
+        }
     }
     
-    // Новая функция для поиска игрока.
+    // МЕТОД START ДЛЯ ПРИНУДИТЕЛЬНОГО ЗАПУСКА АНИМАЦИИ
+    void Start()
+    {
+        if (_animator != null)
+        {
+            // ПРИНУДИТЕЛЬНЫЙ СТАРТ: Убедитесь, что "EnemySlimeWalk" (или "EnemySkeletonWalk")
+            // ТОЧНО совпадает с именем вашего состояния ходьбы на карте!
+            _animator.Play("EnemySlimeWalk"); 
+            // Установка скорости > 0 гарантирует, что анимация Walk запустится
+            _animator.SetFloat("Speed", 1f); 
+            Debug.Log("✅ Аниматор принудительно запущен в состояние WALK.");
+        }
+    }
+    
     void FindPlayer()
     {
-        // Если ссылка на игрока потеряна (уничтожена), ищем ее заново.
         if (player == null || (player.gameObject.activeInHierarchy == false && player.gameObject.tag == "Player"))
         {
             GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
@@ -36,45 +60,46 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        FindPlayer(); // <--- Сначала находим игрока
-        
-        if (player == null) return; // Если игрока все еще нет, выходим
+        FindPlayer(); 
+        if (player == null) return; 
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // -------- 1. Игрок далеко → стоим --------
-        if (distance > detectionRange)
-        {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            return;
-        }
-
-        // -------- 2. Игрок в зоне видимости → идём к игроку --------
-        if (distance > attackRange)
-        {
-            MoveTowardPlayer();
-        }
-
-        // -------- 3. Игрок рядом → атакуем --------
-        else
+        // 🛑 УДАЛЕНА ЛОГИКА IDLE: Враг всегда либо атакует, либо двигается
+        
+        // -------- 1. Игрок рядом → атакуем (ATTACK) --------
+        if (distance <= attackRange)
         {
             AttackPlayer();
+            // Враг останавливается для удара (ВАЖНО для синхронизации анимации)
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+
+        // -------- 2. Игрок вне зоны атаки → идём/бежим (WALK/RUN) --------
+        else 
+        {
+            MoveTowardPlayer();
         }
     }
 
     void MoveTowardPlayer()
     {
-        // ГАРАНТИЯ СТАТОВ: Получаем статы, если их еще нет
         if (enemy == null)
         {
             enemy = GetComponent<Enemy>();
-            if (enemy == null) return; // Если статов нет, не двигаемся
+            if (enemy == null) return; 
         }
         
         float direction = player.position.x > transform.position.x ? 1 : -1;
 
-        rb.linearVelocity = new Vector2(direction * enemy.moveSpeed, rb.linearVelocity.y);
+        // ВАША ОРИГИНАЛЬНАЯ ЛОГИКА ДВИЖЕНИЯ
+        float currentMoveSpeed = direction * enemy.moveSpeed;
+        rb.linearVelocity = new Vector2(currentMoveSpeed, rb.linearVelocity.y);
+
+        // 2. АНИМАЦИЯ WALK/RUN: Передаем абсолютное значение скорости
+        float actualSpeed = Mathf.Abs(currentMoveSpeed);
+        if (_animator != null)
+            _animator.SetFloat("Speed", actualSpeed); 
 
         // поворот спрайта
         transform.localScale = new Vector3(direction, 1, 1);
@@ -86,34 +111,26 @@ public class EnemyAI : MonoBehaviour
 
         lastAttackTime = Time.time;
         
-        // ГАРАНТИЯ СТАТОВ: Получаем статы, если их еще нет (Ленивая инициализация)
+        // 3. АНИМАЦИЯ ATTACK: Запуск триггера
+        if (_animator != null)
+            _animator.SetTrigger("Attack"); // Запуск клипа атаки
+            
+        // ... (Остальная логика нанесения урона) ...
         if (enemy == null)
         {
             enemy = GetComponent<Enemy>();
-            if (enemy == null)
-            {
-                 Debug.LogWarning("❌ Enemy stats (Enemy component) not found!");
-                 return;
-            }
+            if (enemy == null) return;
         }
 
-        // ищем компонент здоровья у игрока
         PlayerHealth hp = player.GetComponent<PlayerHealth>();
 
         if (hp != null)
         {
-            // Преобразуем урон (float) в целое число (int), округляя его.
             int damageInt = Mathf.RoundToInt(enemy.damage);
             
-            // Если урон > 0, наносим его.
             if (damageInt > 0)
             {
                 hp.TakeDamage(damageInt);
-            }
-            else
-            {
-                // Это сработает, если damage в инспекторе = 0.0 или очень мало.
-                Debug.LogWarning($"Урон врага равен 0! Текущий damage: {enemy.damage}");
             }
         }
     }

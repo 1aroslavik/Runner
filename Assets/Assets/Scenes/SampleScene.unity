@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1459336307477340451, guid: 8e5c2b3afc13aed4992162ccd557fcdf, type: 3}
   groundTilemap: {fileID: 641589481}
-  upgradeUI: {fileID: 0}
+  upgradeUI: {fileID: 862618659}
   cameraFollow: {fileID: 963194230}
   npcSpawner: {fileID: 1189694564}
   spawnPointTag: PlayerSpawnPoint

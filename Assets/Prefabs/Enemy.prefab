@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6121669771321508416}
   - component: {fileID: 8079143763735540115}
   - component: {fileID: 8205201535111368469}
+  - component: {fileID: 1322541567087895589}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2.01
   attackRate: 1
-  damage: 100
+  damage: 16
 --- !u!114 &8001011597046853384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1322541567087895589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356048621037516206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72245a45dd4c0a4ea3199927f06231c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 6
+  attackRange: 1.2
+  attackCooldown: 1
 --- !u!1 &4438900080984280897
 GameObject:
   m_ObjectHideFlags: 0

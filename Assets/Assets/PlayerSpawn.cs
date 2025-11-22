@@ -35,6 +35,8 @@ public class PlayerSpawn : MonoBehaviour
     // ==========================================================
     public void SpawnPlayer()
     {
+        Debug.Log("[PlayerSpawn]: Спавн игрока...");
+
         ClearOldPlayer();
 
         Vector3 spawnPos = GetPlayerSpawnPosition();
@@ -50,7 +52,7 @@ public class PlayerSpawn : MonoBehaviour
             upgradeUI.playerStats = stats;
 
         // === Главный фикс: передать UI статов НОВОМУ игроку ===
-        var statsUI = FindObjectOfType<PlayerStatsUI>();
+        var statsUI = FindFirstObjectByType<PlayerStatsUI>();
         if (statsUI != null)
         {
             statsUI.SetStats(stats);   // <<< ВАЖНО
