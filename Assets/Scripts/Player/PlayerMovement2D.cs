@@ -128,11 +128,23 @@ public class PlayerMovement2D : MonoBehaviour
         {
             Debug.Log("Удар по: " + enemy.name);
 
+            // Урон обычным врагам
             Enemy e = enemy.GetComponent<Enemy>();
             if (e != null)
+            {
                 e.TakeDamage(meleeDamage);
+                continue;
+            }
+
+            // Урон боссу
+            BossHealth boss = enemy.GetComponent<BossHealth>();
+            if (boss != null)
+            {
+                boss.TakeDamage((int)meleeDamage);
+            }
         }
     }
+
 
     void OnDrawGizmosSelected()
     {

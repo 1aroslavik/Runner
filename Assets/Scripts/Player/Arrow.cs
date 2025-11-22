@@ -6,18 +6,28 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        // ------------------------------
+        // Урон обычным врагам
+        // ------------------------------
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null)
         {
             Debug.Log("🎯 Попадание по врагу: " + other.name);
-
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-                Debug.Log("💥 Урон нанесён: " + damage);
-            }
-
+            enemy.TakeDamage(damage);
             Destroy(gameObject);
+            return;
+        }
+
+        // ------------------------------
+        // Урон боссу
+        // ------------------------------
+        BossHealth boss = other.GetComponent<BossHealth>();
+        if (boss != null)
+        {
+            Debug.Log("🔥 Попадание по БОССУ!");
+            boss.TakeDamage((int)damage);
+            Destroy(gameObject);
+            return;
         }
     }
 }

@@ -3,24 +3,24 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour
 {
     public float speed = 6f;
-    public int damage = 15;
-    public float life = 4f;
 
-    void Start()
+    private Vector3 direction;
+
+    public void SetDirection(Vector3 dir)
     {
-        Destroy(gameObject, life);
+        direction = dir.normalized;
     }
 
     void Update()
     {
-        transform.position += transform.up * speed * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            col.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+            col.GetComponent<PlayerHealth>()?.TakeDamage(15);
             Destroy(gameObject);
         }
     }
