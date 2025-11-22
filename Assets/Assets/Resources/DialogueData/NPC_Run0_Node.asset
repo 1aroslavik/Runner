@@ -29,7 +29,7 @@ MonoBehaviour:
     text: you've changed
     portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Stranger
-    text: Il take care about you now
+    text: I"l take care about you now
     portrait: {fileID: 21300000, guid: e53acfa6f15f94f018844eb4da94eff5, type: 3}
   - characterName: Player
     text: really? thank you
