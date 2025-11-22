@@ -13,6 +13,9 @@ public class UpgradeUI : MonoBehaviour
 
     void Start()
     {
+        if (statsUI == null)
+            statsUI = FindObjectOfType<PlayerStatsUI>();
+
         Hide();
     }
 
@@ -32,6 +35,10 @@ public class UpgradeUI : MonoBehaviour
     {
         ApplyUpgrade(u);
 
+        // ⬇ Сохраняем прокачанные статы
+        PermanentStats.Instance.SaveFrom(playerStats);
+
+        // ⬇ Обновляем UI
         if (statsUI != null)
             statsUI.UpdateUI(playerStats);
 

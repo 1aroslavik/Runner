@@ -86,6 +86,8 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void CompleteLevelGeneration() 
     {
+        DeathScreenUI.Instance?.HideDeathScreen();
+
         // 1. Респавн игрока (вызывает спавн NPC)
         SpawnPlayer(); 
 

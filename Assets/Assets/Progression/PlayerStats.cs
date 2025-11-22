@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Характеристики")]
     public float moveSpeed = 5;
     public float sprintSpeed = 8;
-    public float jumpForce = 12;
+    public float jumpForce = 30;
     public float defence = 0;
 
     // ========= Методы улучшений =========

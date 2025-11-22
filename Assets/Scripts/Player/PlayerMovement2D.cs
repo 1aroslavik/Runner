@@ -10,13 +10,7 @@ public class PlayerMovement2D : MonoBehaviour
     [Header("Ближний бой (E)")]
     public Transform attackPoint;
     public float attackRadius = 0.6f;
-    public float meleeDamage = 25f;
     public LayerMask enemyLayer;
-
-    [Header("Параметры движения")]
-    public float moveSpeed = 5f;
-    public float sprintSpeed = 8f;
-    public float jumpForce = 12f;
 
     private Rigidbody2D rb;
     private float moveInput;
@@ -27,10 +21,13 @@ public class PlayerMovement2D : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
 
+    private PlayerStats stats;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        stats = GetComponent<PlayerStats>();
 
         if (groundCheck == null)
         {
@@ -53,7 +50,6 @@ public class PlayerMovement2D : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Разворот игрока
         if (moveInput > 0)
             transform.localScale = Vector3.one;
         else if (moveInput < 0)
@@ -62,21 +58,18 @@ public class PlayerMovement2D : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(moveInput));
         animator.SetBool("isGrounded", isGrounded);
 
-        // Прыжок
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, stats.jumpForce);
             animator.SetTrigger("Jump");
         }
 
-        // Стрельба
         if (Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetTrigger("Attack");
             ShootArrow();
         }
 
-        // Ближний бой
         if (Input.GetKeyDown(KeyCode.E))
         {
             animator.SetTrigger("Attack_2");
@@ -89,14 +82,13 @@ public class PlayerMovement2D : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius);
         isGrounded = hit != null;
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift)
+            ? stats.sprintSpeed
+            : stats.moveSpeed;
 
         rb.linearVelocity = new Vector2(moveInput * currentSpeed, rb.linearVelocity.y);
     }
 
-    // -------------------------------------------------------------------
-    // СТРЕЛЬБА
-    // -------------------------------------------------------------------
     void ShootArrow()
     {
         if (arrowPrefab == null) return;
@@ -111,12 +103,14 @@ public class PlayerMovement2D : MonoBehaviour
 
         arrow.transform.localScale = new Vector3(dir, 1, 1);
 
+        // ✅ Передаём урон из PlayerStats
+        Arrow a = arrow.GetComponent<Arrow>();
+        a.damage = stats.arrowDamage;
+
         Destroy(arrow, arrowLifetime);
     }
 
-    // -------------------------------------------------------------------
-    // БЛИЖНИЙ БОЙ
-    // -------------------------------------------------------------------
+
     void MeleeAttack()
     {
         if (attackPoint == null) return;
@@ -126,38 +120,18 @@ public class PlayerMovement2D : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Удар по: " + enemy.name);
-
-            // Урон обычным врагам
             Enemy e = enemy.GetComponent<Enemy>();
             if (e != null)
             {
-                e.TakeDamage(meleeDamage);
+                e.TakeDamage(stats.meleeDamage);
                 continue;
             }
 
-            // Урон боссу
             BossHealth boss = enemy.GetComponent<BossHealth>();
             if (boss != null)
             {
-                boss.TakeDamage((int)meleeDamage);
+                boss.TakeDamage((int)stats.meleeDamage);
             }
-        }
-    }
-
-
-    void OnDrawGizmosSelected()
-    {
-        if (attackPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-        }
-
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
 }

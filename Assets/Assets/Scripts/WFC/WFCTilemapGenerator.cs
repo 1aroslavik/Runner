@@ -105,6 +105,8 @@ namespace WFC
         [EditorButton]
         public void Generate()
         {
+            LoadingScreenUI.Instance?.Show();
+
             if (!TilemapPattern)
                 return;
 
@@ -165,13 +167,17 @@ namespace WFC
             // --------------------- GENERATE TUNNEL ----------------------
             if (tunnelGenerator != null)
                 tunnelGenerator.GenerateTunnel(_tilemap, Seed, Bounds, playerSpawn);
-                
+
             // --------------------- СПАВН ВРАГОВ --------------------------
             // ВЫЗЫВАЕМ СПАВНЕР ВРАГОВ ПОСЛЕ ТОГО, КАК ТУННЕЛЬ СГЕНЕРИРОВАН!
             if (enemySpawner != null && tunnelGenerator != null)
             {
                 enemySpawner.SpawnEnemiesAlongTunnel(tunnelGenerator.mainTunnelPath);
             }
+            DeathScreenUI.Instance?.HideDeathScreen();
+            LoadingScreenUI.Instance?.Hide();   // ← ЗАГРУЗКА ГОТОВА
+
+
         }
 
         // ==========================================================

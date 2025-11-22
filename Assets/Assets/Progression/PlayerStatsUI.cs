@@ -20,6 +20,11 @@ public class PlayerStatsUI : MonoBehaviour
         else
             Debug.LogError("stats == NULL !");
     }
+    public void SetStats(PlayerStats newStats)
+    {
+        stats = newStats;
+        UpdateUI(stats);
+    }
 
 
     void Update()

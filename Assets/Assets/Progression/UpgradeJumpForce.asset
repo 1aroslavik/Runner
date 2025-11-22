@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeJumpForce
   m_EditorClassIdentifier: 
   upgradeName: Jump Force
-  description: +5
+  description: +1
   icon: {fileID: 0}
   type: 7
-  value: 5
+  value: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeMoveSpeed
   m_EditorClassIdentifier: 
   upgradeName: Move Speed
-  description: +10
+  description: +2
   icon: {fileID: 0}
   type: 3
-  value: 10
+  value: 2
