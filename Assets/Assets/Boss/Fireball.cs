@@ -1,10 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed = 7f;
-    public int damage = 10;
+    public float speed = 6f;
+    public int damage = 15;
     public float lifeTime = 4f;
+
+    private Vector3 direction;
 
     void Start()
     {
@@ -13,18 +15,38 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        transform.position += transform.right * speed * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;
+    }
+
+    // Устанавливаем направление из BossAI
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir.normalized;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        // Попадание в игрока
         if (col.CompareTag("Player"))
         {
-            var hp = col.GetComponent<PlayerHealth>();
+            PlayerHealth hp = col.GetComponent<PlayerHealth>();
             if (hp != null)
+            {
                 hp.TakeDamage(damage);
+                Debug.Log("🔥 Босс нанёс урон игроку: " + damage);
+            }
 
             Destroy(gameObject);
         }
+
+        if (col.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+        if (col.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

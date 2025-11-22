@@ -3,65 +3,61 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    [HideInInspector] public int currentHealth;
-
+    private PlayerStats stats;
     private Rigidbody2D rb;
     private Image healthFill;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<PlayerStats>();
 
-        var hud = GameObject.Find("HealthFill");
-        if (hud != null)
-            healthFill = hud.GetComponent<Image>();
-        else
-            Debug.LogError("❌ PlayerHealth: HealthFill НЕ найден!");
+        if (stats == null)
+        {
+            Debug.LogError("❌ PlayerHealth: PlayerStats не найден!");
+        }
 
-        Respawn(maxHealth);
+        // Находим полосу HP
+        healthFill = GameObject.Find("HealthFill")?.GetComponent<Image>();
+        if (healthFill == null)
+            Debug.LogError("❌ PlayerHealth: объект HealthFill не найден!");
+
+        Respawn();
     }
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        if (currentHealth < 0) currentHealth = 0;
+        stats.currentHealth -= amount;
+        if (stats.currentHealth < 0) stats.currentHealth = 0;
 
         UpdateUI();
 
-        if (currentHealth <= 0)
-        {
+        if (stats.currentHealth <= 0)
             Die();
-        }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         if (healthFill != null)
-            healthFill.fillAmount = (float)currentHealth / maxHealth;
+            healthFill.fillAmount = stats.currentHealth / stats.maxHealth;
     }
 
     void Die()
     {
         Debug.Log("💀 Игрок погиб!");
 
-        // Вырубаем управление и физику, но НЕ отключаем объект!
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // Сообщаем менеджеру игры
         if (GameStateManager.Instance != null)
-        {
             GameStateManager.Instance.HandlePlayerDeath(gameObject);
-        }
     }
 
-    public void Respawn(int healthToRestore)
+    public void Respawn()
     {
-        currentHealth = healthToRestore;
+        stats.currentHealth = stats.maxHealth;
         UpdateUI();
 
-        // Возвращаем физику
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }

@@ -2,40 +2,53 @@
 
 public class BossAI : MonoBehaviour
 {
-    [Header("Настройки фаз")]
-    public int currentPhase = 1;
-
-    [Header("Атаки")]
+    [Header("Снаряды")]
     public GameObject fireballPrefab;
     public Transform shootPoint;
 
-    [Header("Фаза 1 — одиночный шар")]
+    [Header("Фаза 1 — одиночный выстрел")]
     public float phase1ShootRate = 2f;
 
-    [Header("Фаза 2 — регенерация")]
-    public float regenAmount = 3f;
-    public float regenDuration = 5f;
-    private float regenTimer;
+    [Header("Фаза 2 — круговой залп")]
+    public int phase2Projectiles = 12;
+    public float phase2ShootRate = 3f;
+    public bool isInvulnerable = false;
 
-    [Header("Фаза 3 — тройной залп")]
-    public float phase3ShootRate = 1.2f;
+    [Header("Фаза 3 — регенерация")]
+    public float regenPerSecond = 5f;
+    public float regenDuration = 5f;
+
+    [Header("Дистанция атаки")]
+    public float attackRange = 10f;  // <<< ДОБАВИЛ ЭТО
 
     private float nextShotTime;
+    private float regenTimer;
 
     private BossHealth health;
     private Transform player;
 
+    public int currentPhase = 1;
+
     void Start()
     {
         health = GetComponent<BossHealth>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentPhase = 1;
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+        if (p != null)
+            player = p.transform;
     }
 
     void Update()
     {
-        if (player == null) return;
+        // Игрок мог умереть или исчезнуть — ищем снова
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null)
+                player = p.transform;
+
+            return; // без игрока ничего не делаем
+        }
 
         switch (currentPhase)
         {
@@ -44,84 +57,99 @@ public class BossAI : MonoBehaviour
                 break;
 
             case 2:
-                Phase2_Regenerate();
+                Phase2_Attack();
                 break;
 
             case 3:
-                Phase3_Attack();
+                Phase3_Regenerate();
                 break;
         }
     }
 
-    // =====================================================================
-    //  ФАЗА 1 — одиночный шар
-    // =====================================================================
+    // =====================================================
+    // ФАЗА 1 — одиночный выстрел в игрока
+    // =====================================================
     void Phase1_Attack()
     {
         if (Time.time < nextShotTime) return;
 
+        // ---- проверка дистанции ----
+        float dist = Vector3.Distance(transform.position, player.position);
+        if (dist > attackRange) return;
+
         nextShotTime = Time.time + phase1ShootRate;
-
-        ShootFireball(0f);
+        ShootSingleAtPlayer();
     }
 
-    // =====================================================================
-    //  ФАЗА 2 — регенерация
-    // =====================================================================
-    void Phase2_Regenerate()
+    void ShootSingleAtPlayer()
     {
-        regenTimer += Time.deltaTime;
+        if (player == null) return;
 
-        if (regenTimer <= regenDuration)
-        {
-            health.Heal(regenAmount * Time.deltaTime);
-        }
-        else
-        {
-            regenTimer = 0f;
-            currentPhase = 3; // Переход в фазу 3
-        }
-    }
-
-    // =====================================================================
-    //  ФАЗА 3 — тройной залп
-    // =====================================================================
-    void Phase3_Attack()
-    {
-        if (Time.time < nextShotTime) return;
-
-        nextShotTime = Time.time + phase3ShootRate;
-
-        ShootFireball(0f);
-        ShootFireball(15f);
-        ShootFireball(-15f);
-    }
-
-    // =====================================================================
-    //  ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-    // =====================================================================
-    void ShootFireball(float angleOffset)
-    {
         Vector3 dir = (player.position - shootPoint.position).normalized;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        angle += angleOffset;
-
-        Quaternion rot = Quaternion.Euler(0, 0, angle);
-
-        Instantiate(fireballPrefab, shootPoint.position, rot);
+        GameObject fb = Instantiate(fireballPrefab, shootPoint.position, Quaternion.identity);
+        fb.GetComponent<Fireball>().SetDirection(dir);
     }
 
-    // =====================================================================
-    //  Вызывается из BossHealth
-    // =====================================================================
+
+    // =====================================================
+    // ФАЗА 2 — круговой залп
+    // =====================================================
+    void Phase2_Attack()
+    {
+        isInvulnerable = true;
+
+        if (Time.time < nextShotTime) return;
+
+        // ---- проверка дистанции ----
+        float dist = Vector3.Distance(transform.position, player.position);
+        if (dist > attackRange) return;
+
+        nextShotTime = Time.time + phase2ShootRate;
+
+        float angleStep = 360f / phase2Projectiles;
+
+        for (int i = 0; i < phase2Projectiles; i++)
+        {
+            float angle = i * angleStep;
+
+            Vector3 dir = new Vector3(
+                Mathf.Cos(angle * Mathf.Deg2Rad),
+                Mathf.Sin(angle * Mathf.Deg2Rad),
+                0
+            );
+
+            GameObject fb = Instantiate(fireballPrefab, shootPoint.position, Quaternion.identity);
+            fb.GetComponent<Fireball>().SetDirection(dir);
+        }
+    }
+
+    // =====================================================
+    // ФАЗА 3 — регенерация
+    // =====================================================
+    void Phase3_Regenerate()
+    {
+        isInvulnerable = false;
+
+        regenTimer += Time.deltaTime;
+        health.Heal(regenPerSecond * Time.deltaTime);
+
+        if (regenTimer >= regenDuration)
+        {
+            regenTimer = 0;
+        }
+    }
+
+    // =====================================================
+    // Обновление фазы
+    // =====================================================
     public void UpdatePhase(int currentHP, int maxHP)
     {
         float hpPercent = (float)currentHP / maxHP;
 
-        if (hpPercent > 0.66f)
+        if (hpPercent > 0.7f)
             currentPhase = 1;
-        else if (hpPercent > 0.33f)
+        else if (hpPercent > 0.4f)
             currentPhase = 2;
         else
             currentPhase = 3;
