@@ -14,12 +14,13 @@ public class GameStateManager : MonoBehaviour
     public DialogueManager dialogueSystem;
 
     [Header("Окно победы")]
-    public GameObject winPanel; // ← новое поле
+    public GameObject winPanel;
 
     void Awake()
     {
         if (Instance != null && Instance != this)
         {
+            Debug.LogWarning("⚠️ Обнаружен второй GameStateManager! Удаляю объект: " + gameObject.name);
             Destroy(this.gameObject);
             return;
         }
@@ -53,18 +54,18 @@ public class GameStateManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("❌ GameStateManager: LevelGenerator не назначен. Респавн невозможен!");
+            Debug.LogError("❌ GameStateManager: LevelGenerator не назначен! Респавн невозможен!");
         }
     }
 
-    // =================================
-    // Вызвается после генерации уровня
-    // =================================
     public void CompleteLevelGeneration()
     {
+        Debug.Log("🏁 WFCTilemapGenerator сообщил: генерация завершена.");
+
         DeathScreenUI.Instance?.HideDeathScreen();
 
         SpawnPlayer();
+
         StartDialogueOnRespawn();
     }
 
@@ -73,6 +74,9 @@ public class GameStateManager : MonoBehaviour
     // ===============================
     void SpawnPlayer()
     {
+        Debug.Log("▶️ SpawnPlayer()");
+        Debug.Log("🔍 playerSpawner = " + (playerSpawner ? playerSpawner.name : "NULL"));
+
         if (playerSpawner != null)
         {
             playerSpawner.SpawnPlayer();
@@ -100,7 +104,7 @@ public class GameStateManager : MonoBehaviour
         else
             Debug.LogError("❌ WinPanel не назначен!");
 
-        Time.timeScale = 0f; // пауза игры
+        Time.timeScale = 0f;
     }
 
     public void ResetGameProgress()
