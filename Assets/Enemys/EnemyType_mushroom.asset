@@ -17,3 +17,4 @@ MonoBehaviour:
   maxHealth: 100
   moveSpeed: 2
   damage: 15
+  prefabWithAnimator: {fileID: 3994263226801170591, guid: 16e0d1507ed7144d6b6767e6ddaa1eb3, type: 3}

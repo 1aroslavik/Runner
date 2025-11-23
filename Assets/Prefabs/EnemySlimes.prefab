@@ -57,6 +57,22 @@ PrefabInstance:
       value: EnemySlimes
       objectReference: {fileID: 0}
     - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.x
+      value: 3.7320433
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.y
+      value: 3.358016
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.014224529
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.14201242
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.96
       objectReference: {fileID: 0}
@@ -68,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7ed2a24a3e82942f695dd5ecc190b782, type: 3}
+    - target: {fileID: 8630568539387872741, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: attackRange
+      value: 3.61
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
