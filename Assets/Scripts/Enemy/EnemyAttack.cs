@@ -25,17 +25,21 @@ public class EnemyAttack : MonoBehaviour
         player = playerGO.transform;
         playerHealth = playerGO.GetComponent<PlayerHealth>();
     }
-
     void Update()
     {
-        // всегда обновляем ссылку, вдруг игрок умер/заспавнился
-        if (player == null || playerHealth == null)
+        if (player == null)
+        {
             FindPlayerAndHealth();
-
-        if (player == null || playerHealth == null)
             return;
+        }
 
-        float dist = Vector2.Distance(transform.position, player.position);
+        Vector2 enemyPos = transform.position;
+        Vector2 playerPos = player.position;
+
+        // 👉 ИГНОРИРУЕМ РАЗНИЦУ ПО ВЫСОТЕ
+        playerPos.y = enemyPos.y;
+
+        float dist = Vector2.Distance(enemyPos, playerPos);
 
         if (dist <= attackRange && Time.time >= nextAttackTime)
         {
@@ -43,6 +47,7 @@ public class EnemyAttack : MonoBehaviour
             DoDamage();
         }
     }
+
 
     void DoDamage()
     {
