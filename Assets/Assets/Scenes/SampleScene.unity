@@ -122378,7 +122378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4356048621037516206, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
   tilemap: {fileID: 641589481}
-  spawnStep: 70
+  spawnStep: 15
   startRoomPos: {x: 0, y: 0, z: 0}
   endRoomPos: {x: 0, y: 0, z: 0}
   safeRadius: 10
