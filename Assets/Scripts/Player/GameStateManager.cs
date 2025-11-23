@@ -1,126 +1,114 @@
-using UnityEngine; 
+using UnityEngine;
 using WFC; // Добавляем, чтобы видеть WFCTilemapGenerator
 
 public class GameStateManager : MonoBehaviour
 {
-    // 1. Singleton Instance 
     public static GameStateManager Instance { get; private set; }
 
-    // ==========================================================
-    //                        СОСТОЯНИЕ ИГРЫ
-    // ==========================================================
-    
-    private int deathCount = 0; 
+    private int deathCount = 0;
+    public int DeathCount => deathCount;
 
-    public int DeathCount => deathCount; 
-
-    // ==========================================================
-    //                      ССЫЛКИ МЕНЕДЖЕРОВ
-    // ==========================================================
-    
     [Header("Ссылки Менеджеров")]
     public PlayerSpawn playerSpawner; 
-    public WFCTilemapGenerator levelGenerator; // Ссылка на ваш генератор WFC
-    public DialogueManager dialogueSystem; 
+    public WFCTilemapGenerator levelGenerator; 
+    public DialogueManager dialogueSystem;
 
     void Awake()
     {
-        // Логика Singleton
+        Debug.Log("▶️ GameStateManager.Awake() вызван у: " + gameObject.name);
+
+        // Проверка на дубликаты
         if (Instance != null && Instance != this)
         {
+            Debug.LogWarning("⚠️ Обнаружен второй GameStateManager! Удаляю объект: " + gameObject.name);
             Destroy(this.gameObject);
             return;
         }
 
         Instance = this;
-        
-        // Объект не уничтожается при перезагрузке/рестарте, чтобы сохранить deathCount
-        DontDestroyOnLoad(this.gameObject); 
-        
-        Debug.Log("Game Manager инициализирован. Текущий счетчик смертей (запусков): " + deathCount);
+        DontDestroyOnLoad(this.gameObject);
+
+        Debug.Log("✔️ GameStateManager установлен как Singleton.");
+        Debug.Log("🔍 levelGenerator в Awake = " + (levelGenerator ? levelGenerator.name : "NULL"));
     }
-    
-    // ==========================================================
-    //                        ОБРАБОТКА СМЕРТИ
-    // ==========================================================
-    
+
+    void Start()
+    {
+        Debug.Log("▶️ GameStateManager.Start()");
+        Debug.Log("🔍 levelGenerator в Start = " + (levelGenerator ? levelGenerator.name : "NULL"));
+    }
+
     public void HandlePlayerDeath(GameObject playerObject)
     {
-        Debug.Log($"Игрок умер. Текущий счетчик: {deathCount}");
-        
-        // 1. Удаляем старый объект игрока
+        Debug.Log($"💀 Игрок умер. Текущий счетчик смертей: {deathCount}");
+        Debug.Log("🔍 levelGenerator при смерти игрока = " + (levelGenerator ? levelGenerator.name : "NULL"));
+
         if (playerObject != null)
         {
+            Debug.Log("🗑 Уничтожаю объект игрока: " + playerObject.name);
             Destroy(playerObject);
         }
-        
-        // 2. Увеличиваем счетчик
+
         deathCount++;
-        
-        Debug.Log($"Счетчик после смерти (для следующего цикла): {deathCount}");
-        
-        // Запускаем процесс перезапуска через 2 секунды ожидания
-        Invoke("RestartGame", 2f); 
+        Debug.Log($"📈 Счетчик смертей увеличен: {deathCount}");
+
+        Invoke("RestartGame", 2f);
     }
 
     void RestartGame()
     {
-        // 1. Генерируем новый уровень (запускает асинхронный процесс в WFCTilemapGenerator)
+        Debug.Log("🔄 RestartGame начат.");
+        Debug.Log("🔍 levelGenerator в RestartGame = " + (levelGenerator ? levelGenerator.name : "NULL"));
+
         if (levelGenerator != null)
         {
-            levelGenerator.GenerateNewLevel(); 
+            Debug.Log("🧱 Запускаю генерацию нового уровня через WFC.");
+            levelGenerator.GenerateNewLevel();
         }
         else
         {
-            Debug.LogError("❌ GameStateManager: LevelGenerator не назначен. Респавн невозможен!");
+            Debug.LogError("❌ GameStateManager: LevelGenerator не назначен! Респавн невозможен!");
         }
-
-        // SpawnPlayer() и StartDialogueOnRespawn() будут вызваны после завершения генерации.
     }
 
-    // ==========================================================
-    //                    ФИНАЛИЗАЦИЯ (ВЫЗЫВАЕТСЯ WFC)
-    // ==========================================================
-    /// <summary>
-    /// Вызывается WFCTilemapGenerator после того, как корутина генерации полностью завершится.
-    /// </summary>
-    public void CompleteLevelGeneration() 
+    public void CompleteLevelGeneration()
     {
+        Debug.Log("🏁 WFCTilemapGenerator сообщил: генерация завершена.");
+        Debug.Log("🔍 levelGenerator в CompleteLevelGeneration = " + (levelGenerator ? levelGenerator.name : "NULL"));
+
         DeathScreenUI.Instance?.HideDeathScreen();
 
-        // 1. Респавн игрока (вызывает спавн NPC)
-        SpawnPlayer(); 
+        Debug.Log("👤 Спавню игрока...");
+        SpawnPlayer();
 
-        // 2. Запускаем диалог
+        Debug.Log("💬 Запускаю диалог (если требуется)...");
         StartDialogueOnRespawn();
     }
-    
-    // ==========================================================
-    //                    ФУНКЦИИ РЕСПАВНА
-    // ==========================================================
 
     void SpawnPlayer()
     {
+        Debug.Log("▶️ SpawnPlayer()");
+        Debug.Log("🔍 playerSpawner = " + (playerSpawner ? playerSpawner.name : "NULL"));
+
         if (playerSpawner != null)
         {
-             // ПРОСТО ВЫЗЫВАЕМ ФУНКЦИЮ СПАВНА
-             playerSpawner.SpawnPlayer(); 
+            playerSpawner.SpawnPlayer();
+            Debug.Log("✔️ Игрок успешно заспавнен.");
         }
         else
         {
-             Debug.LogError("❌ GameStateManager: Player Spawner не назначен!");
+            Debug.LogError("❌ GameStateManager: Player Spawner не назначен!");
         }
     }
 
     void StartDialogueOnRespawn()
     {
-        // ОСТАВЛЯЕМ ФУНКЦИЮ ПУСТОЙ, потому что DialogueTrigger.cs теперь сам считывает DeathCount
-        // и запускает нужный Conversation при нажатии кнопки "Talk".
+        Debug.Log("▶️ StartDialogueOnRespawn()");
     }
 
     public void ResetGameProgress()
     {
         deathCount = 0;
-        Debug.Log("Прогресс игры сброшен к началу.");
+        Debug.Log("🔄 Прогресс игры сброшен.");
     }
 }
