@@ -123382,6 +123382,7 @@ MonoBehaviour:
   playerSpawner: {fileID: 2125331785}
   levelGenerator: {fileID: 641589479}
   dialogueSystem: {fileID: 474210851}
+  winPanel: {fileID: 1678928461}
 --- !u!4 &1959712575
 Transform:
   m_ObjectHideFlags: 0
