@@ -52,6 +52,10 @@ public class BossHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("💀 БОСС УМЕР");
+
+        GameStateManager.Instance?.HandleBossDeath();
+
         Destroy(gameObject);
     }
+
 }
