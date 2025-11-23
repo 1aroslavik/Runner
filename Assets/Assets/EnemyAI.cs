@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
         // --- ИСПРАВЛЕННАЯ ЛОГИКА AWAKE ---
         // Используем GetComponentInChildren(true), чтобы найти на самом объекте ИЛИ дочернем, 
         // даже если он неактивен.
-        _animator = GetComponentInChildren<Animator>(true); 
+        _animator = GetComponentInChildren<Animator>(true);
         
         // if (_animator == null)
         // {
@@ -117,8 +117,10 @@ public class EnemyAI : MonoBehaviour
         lastAttackTime = Time.time;
         
         // 3. АНИМАЦИЯ ATTACK: Запуск триггера
-        if (_animator != null)
+        if (_animator != null) {
+            _animator.SetFloat("Speed", 0f); // Останавливаем анимацию ходьбы
             _animator.SetTrigger("Attack"); // Запуск клипа атаки
+        }
             
         // ... (Остальная логика нанесения урона) ...
         if (enemy == null)

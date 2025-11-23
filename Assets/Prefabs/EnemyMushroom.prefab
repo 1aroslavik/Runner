@@ -57,6 +57,22 @@ PrefabInstance:
       value: EnemyMushroom
       objectReference: {fileID: 0}
     - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5206444
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.y
+      value: 4.487523
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.05431497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.38941514
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 2.375
       objectReference: {fileID: 0}

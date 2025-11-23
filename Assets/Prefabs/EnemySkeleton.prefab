@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1322541567087895589, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: detectionRange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2004460707074670250, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -57,12 +61,32 @@ PrefabInstance:
       value: EnemySkeleton
       objectReference: {fileID: 0}
     - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.x
+      value: 3.3514526
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Size.y
+      value: 4.2119246
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.007748246
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.22514582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 3.24
       objectReference: {fileID: 0}
     - target: {fileID: 6814230011878021348, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079143763735540115, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
+      propertyPath: detectionRange
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8205201535111368469, guid: d845c3b6e2ddeb743a04880d3839a0d4, type: 3}
       propertyPath: m_Sprite
