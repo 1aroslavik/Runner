@@ -5,7 +5,7 @@ using System.Linq;
 using SardineFish.Utils;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = System.Random; 
+using Random = System.Random;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,9 +18,9 @@ namespace WFC
     {
         [Header("Player Spawner")]
         public PlayerSpawn playerSpawn;
-        
-        [Header("Спавнеры")] // <--- НОВЫЙ ЗАГОЛОВОК
-        public EnemySpawner enemySpawner; // <--- ДОБАВЛЕНО: Ссылка на EnemySpawner
+
+        [Header("Спавнеры")]
+        public EnemySpawner enemySpawner;
 
         public int Seed;
         public TilemapPattern TilemapPattern;
@@ -34,74 +34,58 @@ namespace WFC
         public TunnelGenerator tunnelGenerator;
         public SavedMapList savedMaps;
 
-        const int STEPS_PER_FRAME = 256; 
+        const int STEPS_PER_FRAME = 256;
 
-      
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // ТОЛЬКО ЭТА СТРОКА — решение WebGL проблемы
+        private TileBase[] allTiles;
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // Грузим ВСЕ тайлы из Resources/Tiles
+            allTiles = Resources.LoadAll<TileBase>("Tiles");
+
+            if (allTiles == null || allTiles.Length == 0)
+                Debug.LogError("❌ WebGL: Не найдено ТАЙЛОВ в Resources/Tiles !");
+            else
+                Debug.Log($"✔ WebGL: Загружено тайлов: {allTiles.Length}");
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         }
+
         private void Start()
         {
-            // Автоматическая генерация карты при запуске сцены
             Generate();
         }
-        
-        // ==========================================================
-        //                       PUBLIC RESTART (ДЛЯ GAMEMANAGER)
-        // ==========================================================
-        /// <summary>
-        /// Вызывается GameStateManager'ом. Запускает цикл очистки, сброса сида и новой генерации.
-        /// </summary>
+
         public void GenerateNewLevel()
         {
             Debug.Log("WFC Генератор: Запуск цикла очистки и генерации нового уровня.");
-            
-            // 1. Очищаем все сгенерированные объекты
-            ClearGeneratedObjects(); 
-            
-            // 2. Запускаем генерацию
+            ClearGeneratedObjects();
             Generate();
         }
-        
-        // ==========================================================
-        //                           CLEANUP
-        // ==========================================================
-        /// <summary>
-        /// Уничтожает все сгенерированные объекты (старых игроков, врагов, NPC и т.д.) перед новой генерацией.
-        /// </summary>
+
         private void ClearGeneratedObjects()
         {
-            // --- УДАЛЯЕМ ВСЕХ СТАРЫХ ИГРОКОВ (если GameStateManager кого-то пропустил) ---
             var oldPlayers = GameObject.FindGameObjectsWithTag("Player");
             foreach (var player in oldPlayers)
             {
-                if (player.GetComponent<PlayerHealth>() != null) 
-                {
+                if (player.GetComponent<PlayerHealth>() != null)
                     Destroy(player);
-                }
             }
-            
-            // --- УДАЛЯЕМ ВРАГОВ И NPC ---
+
             var enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (var enemy in enemies)
-            {
                 Destroy(enemy);
-            }
 
             var npcs = GameObject.FindGameObjectsWithTag("NPC");
             foreach (var npc in npcs)
-            {
                 Destroy(npc);
-            }
-            
-            Debug.Log($"✔ Очистка завершена. Удалено игроков: {oldPlayers.Length - 1}, врагов: {enemies.Length}, NPC: {npcs.Length}.");
         }
-        
-        // ==========================================================
-        //                           GENERATE
-        // ==========================================================
+
         [EditorButton]
         public void Generate()
         {
@@ -124,23 +108,21 @@ namespace WFC
                 tm.ClearAllTiles();
 
             RandomSeed();
-            
-            // Останавливаем старую корутину генерации, если она еще работала!
-            StopAllCoroutines(); 
+
+            StopAllCoroutines();
             StartCoroutine(GenerateProgressive());
         }
-        
+
         IEnumerator GenerateProgressive()
         {
             Debug.Log("[WFC Генератор]: Запуск прогрессивной генерации...");
-    
+
             _generator.Reset(Seed);
             yield return null;
 
             var enumerator = _generator.RunProgressive().GetEnumerator();
             bool finished = false;
 
-            // ------------------------- FAST WFC -------------------------
             while (!finished)
             {
                 for (int i = 0; i < STEPS_PER_FRAME; i++)
@@ -154,42 +136,26 @@ namespace WFC
                     var chunk = enumerator.Current;
                     var state = _generator.ChunkStates[chunk.x, chunk.y, chunk.z];
 
-                    // Ставим тайлы ТОЛЬКО если state.Definite = true
                     if (state.Definite && state.Pattern != null && state.Pattern.Chunk != null)
-                    {
                         _tilemap.SetTile(Bounds.min + chunk, state.Pattern.Chunk);
-                    }
                 }
 
                 yield return null;
             }
 
-            // -------------------- DO FINAL FILL -------------------------
-            Debug.Log("[WFC Генератор]: Завершение генерации (финальный фикс)...");
-            ForceFillMap(); 
-            
-            // --------------------- GENERATE TUNNEL ----------------------
-            Debug.Log("[WFC Генератор]: Генерация туннеля...");
+            ForceFillMap();
+
             if (tunnelGenerator != null)
                 tunnelGenerator.GenerateTunnel(_tilemap, Seed, Bounds, playerSpawn);
 
-            // --------------------- СПАВН ВРАГОВ --------------------------
-            // ВЫЗЫВАЕМ СПАВНЕР ВРАГОВ ПОСЛЕ ТОГО, КАК ТУННЕЛЬ СГЕНЕРИРОВАН!
-            Debug.Log("[WFC Генератор]: Спавн врагов...");
             if (enemySpawner != null && tunnelGenerator != null)
-            {
                 enemySpawner.SpawnEnemiesAlongTunnel(tunnelGenerator.mainTunnelPath);
-            }
+
             DeathScreenUI.Instance?.HideDeathScreen();
-            LoadingScreenUI.Instance?.Hide();   // ← ЗАГРУЗКА ГОТОВА
-
-
+            LoadingScreenUI.Instance?.Hide();
         }
 
-        // ==========================================================
-        //                 IMMEDIATE WFC (NO COROUTINE)
-        // ==========================================================
-        private void GenerateImmediateWFC() 
+        private void GenerateImmediateWFC()
         {
             _tilemap.ClearAllTiles();
             TilemapPattern.ExtractPatterns();
@@ -207,18 +173,13 @@ namespace WFC
                 var state = _generator.ChunkStates[chunk.x, chunk.y, chunk.z];
 
                 if (state.Definite && state.Pattern != null && state.Pattern.Chunk != null)
-                {
                     _tilemap.SetTile(Bounds.min + chunk, state.Pattern.Chunk);
-                }
             }
 
             ForceFillMap();
         }
 
-        // ==========================================================
-        //                      FORCE FILL (FIXED)
-        // ==========================================================
-        private void ForceFillMap() 
+        private void ForceFillMap()
         {
             var size = _generator.Size;
             System.Random rnd = new System.Random();
@@ -230,7 +191,6 @@ namespace WFC
                     var state = _generator.ChunkStates[x, y, 0];
                     var pos = Bounds.min + new Vector3Int(x, y, 0);
 
-                    // Уже готово — ставим и пропускаем
                     if (state.Definite)
                     {
                         _tilemap.SetTile(pos, state.Pattern.Chunk);
@@ -240,7 +200,6 @@ namespace WFC
                     TileBase tile;
                     var compat = state.Compatibles.ToArray();
 
-                    // Выбор по совместимым
                     if (compat.Length > 0)
                     {
                         var chosen = compat[rnd.Next(compat.Length)];
@@ -249,7 +208,6 @@ namespace WFC
                     }
                     else
                     {
-                        // Полный тупик — берём случайный валидный паттерн
                         var all = _generator.Patterns.ToArray();
                         var chosen = all[rnd.Next(all.Length)];
                         state.CollapseTo(chosen);
@@ -262,9 +220,6 @@ namespace WFC
             }
         }
 
-        // ==========================================================
-        //                           SAVE MAP
-        // ==========================================================
         [EditorButton]
         public void SaveMap()
         {
@@ -310,9 +265,6 @@ namespace WFC
         }
 #endif
 
-        // ==========================================================
-        //                           LOAD MAP
-        // ==========================================================
         [EditorButton]
         public void LoadMap()
         {
@@ -322,9 +274,8 @@ namespace WFC
                 Debug.LogError("❌ No saved maps!");
                 return;
             }
-            
-            // ОЧИСТКА ПРИ ЗАГРУЗКЕ КАРТЫ:
-            ClearGeneratedObjects(); 
+
+            ClearGeneratedObjects();
 
             SavedMap map = savedMaps.maps[0];
             Seed = map.seed;
